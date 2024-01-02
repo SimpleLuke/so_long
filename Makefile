@@ -1,7 +1,7 @@
 NAME = so_long
 CC = cc
 CFLAG = -Wall -Werror -Wextra
-SRC = so_long.c
+SRC = src/main.c
 OBJ = $(SRC:.c=.o)
 LIBFT_PATH = ./libft
 LIBFT = $(LIBFT_PATH)/libft.a
@@ -10,8 +10,8 @@ MLX_NAME = libmlx_Linux.a
 MLX = $(MLX_PATH)$(MLX_NAME)
 RM = rm -rf
 
-#%.o:%.c
-	#$(CC) $(CFLAG) -I/usr/include -Imlx-linux -O3 -c $< -o $@
+%.o:%.c
+	$(CC) $(CFLAG) -c $< -o $@
 
 all: $(MLX) $(NAME)
 
