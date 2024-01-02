@@ -5,27 +5,30 @@ SRC = so_long.c
 OBJ = $(SRC:.c=.o)
 LIBFT_PATH = ./libft
 LIBFT = $(LIBFT_PATH)/libft.a
-MLX_PATH = mlx_linux
+MLX_PATH = mlx_linux/
+MLX_NAME = libmlx_Linux.a
+MLX = $(MLX_PATH)$(MLX_NAME)
 RM = rm -rf
 
 #%.o:%.c
 	#$(CC) $(CFLAG) -I/usr/include -Imlx-linux -O3 -c $< -o $@
 
-all: $(NAME)
+all: $(MLX) $(NAME)
 
-$(NAME): mlx $(LIBFT) $(OBJ)
+$(NAME): $(LIBFT) $(OBJ)
 	$(CC) $(CFLAG) $(OBJ) $(LIBFT) -Lmlx_linux -lmlx_Linux -L/usr/lib \
 		-Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
-mlx:
-	git submodule init
-	git submodule update
-	make -C $(MLX_PATH)
+$(MLX):
+	@git submodule init
+	@git submodule update
+	@make -sC $(MLX_PATH)
 
 $(LIBFT):
 	make -C $(LIBFT_PATH) all
 
 clean:
 	make -C $(LIBFT_PATH) clean
+	make -C $(MLX_PATH) clean
 	$(RM) $(OBJ)
 
 fclean: clean
@@ -34,4 +37,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re libft mlx
+.PHONY: all clean fclean re libft
