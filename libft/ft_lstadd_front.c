@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:58:03 by llai              #+#    #+#             */
-/*   Updated: 2023/11/08 14:55:53 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/03 17:37:16 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@
  * 	None.
  */
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+void	ft_lstadd_front(t_list **lst, t_list *new_node)
 {
-	if (!new)
+	if (!new_node)
 		return ;
 	if (!*lst)
 	{
-		*lst = new;
+		*lst = new_node;
 		return ;
 	}
-	new -> next = *lst;
-	*lst = new;
+	new_node -> next = *lst;
+	*lst = new_node;
 }

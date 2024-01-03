@@ -1,7 +1,7 @@
 NAME = so_long
 CC = cc
 CFLAG = -Wall -Werror -Wextra
-SRC = src/main.c
+SRC = src/main.c src/draw_shape.c src/color.c src/close.c
 OBJ = $(SRC:.c=.o)
 LIBFT_PATH = ./libft
 LIBFT = $(LIBFT_PATH)/libft.a
