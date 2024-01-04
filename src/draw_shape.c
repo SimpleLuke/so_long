@@ -1,6 +1,6 @@
 #include "../includes/so_long.h"
 
-void draw_circle(t_data *data, int center_x, int center_y, int radius, int color)
+void draw_circle(t_player *data, int center_x, int center_y, int radius, int color)
 {
     for (int y = -radius; y <= radius; y++)
     {
@@ -19,7 +19,7 @@ void draw_circle(t_data *data, int center_x, int center_y, int radius, int color
     }
 }
 
-void draw_square(t_data *data, int x, int y, int size, int color)
+void draw_square(t_player *data, int x, int y, int size, int color)
 {
     // Square
     for (int i = y; i < y + size; i++)
@@ -31,7 +31,7 @@ void draw_square(t_data *data, int x, int y, int size, int color)
     }
 }
 
-void draw_grad_square(t_data *data, int x, int y, int size)
+void draw_grad_square(t_player *data, int x, int y, int size)
 {
     // Square
     for (int i = y; i < y + size; i++)
@@ -48,7 +48,7 @@ void draw_grad_square(t_data *data, int x, int y, int size)
     }
 }
 
-void generate_checked_texture(t_data *data, int width, int height)
+void generate_checked_texture(t_player *data, int width, int height)
 {
     for (int y = 0; y < height; y++)
     {

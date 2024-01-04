@@ -1,7 +1,8 @@
 NAME = so_long
 CC = cc
 CFLAG = -Wall -Werror -Wextra
-SRC = src/main.c src/draw_shape.c src/color.c src/close.c
+SRC = src/main.c src/draw_shape.c src/color.c src/close.c src/player_movment.c \
+	  src/mlx_utils.c src/game_init.c src/render.c src/map.c
 OBJ = $(SRC:.c=.o)
 LIBFT_PATH = ./libft
 LIBFT = $(LIBFT_PATH)/libft.a
@@ -11,7 +12,7 @@ MLX = $(MLX_PATH)$(MLX_NAME)
 RM = rm -rf
 
 %.o:%.c
-	$(CC) $(CFLAG) -c $< -o $@
+	$(CC) $(CFLAG) -c $< -o $@ -g
 
 all: $(MLX) $(NAME)
 

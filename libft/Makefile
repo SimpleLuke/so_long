@@ -6,7 +6,7 @@
 #    By: llai <llai@student.42london.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/31 09:38:33 by llai              #+#    #+#              #
-#    Updated: 2023/12/19 08:58:32 by llai             ###   ########.fr        #
+#    Updated: 2024/01/04 17:49:55 by llai             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,27 +57,24 @@ SRC = ft_isalpha.c \
 	  ft_print_unsigned_dec.c \
 	  ft_print_ptr.c \
 	  ft_atol.c \
-	  ft_atoll.c
-BONUS_SRC = ft_lstnew.c \
-			ft_lstadd_front.c \
-			ft_lstsize.c \
-			ft_lstlast.c \
-			ft_lstadd_back.c \
-			ft_lstdelone.c \
-			ft_lstclear.c \
-			ft_lstiter.c \
-			ft_lstmap.c
+	  ft_atoll.c \
+	  get_next_line.c \
+	  ft_lstnew.c \
+	  ft_lstadd_front.c \
+	  ft_lstsize.c \
+	  ft_lstlast.c \
+	  ft_lstadd_back.c \
+	  ft_lstdelone.c \
+	  ft_lstclear.c \
+	  ft_lstiter.c \
+	  ft_lstmap.c
 OBJS = $(SRC:.c=.o)
-BONUS_OBJS = $(BONUS_SRC:.c=.o)
 
 %.o: %.c 
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 $(NAME): $(OBJS) $(BONUS_OBJS)
 	$(AR) $@ $^
-
-bonus: $(OBJS) $(BONUS_OBJS)
-	$(AR) $(NAME) $^
 
 all: $(NAME)
 

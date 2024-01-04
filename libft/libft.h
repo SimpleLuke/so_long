@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 19:15:44 by llai              #+#    #+#             */
-/*   Updated: 2024/01/03 17:37:25 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/04 17:43:26 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,5 +149,7 @@ int			ft_print_unsigned_dec(unsigned int n);
 /*                Returns the count of the output string.                     */
 /* ************************************************************************** */
 int			ft_print_ptr(unsigned long int n);
+
+char    *get_next_line(int fd);
 
 #endif
