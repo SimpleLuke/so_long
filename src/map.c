@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:32:19 by llai              #+#    #+#             */
-/*   Updated: 2024/01/05 18:02:23 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/05 20:36:09 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char    *read_map(t_game *game, char *map)
 
 bool    check_map(t_game *game)
 {
-    if (!check_rec(game) || !check_comp(game) || !check_wall(game))
+    if (!check_rec(game) || !check_comp(game) || !check_wall(game) || !check_path(game))
         return (false);
     return (true);
 }

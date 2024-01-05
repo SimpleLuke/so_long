@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 14:33:09 by llai              #+#    #+#             */
-/*   Updated: 2024/01/05 16:00:48 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/05 20:38:42 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include "../mlx_linux/mlx.h"
 #include "../libft/libft.h"
+#include <stdbool.h>
 
 #define ESC_KEY 0xff1b
 #define HEIGHT 32
@@ -70,6 +71,7 @@ void    my_mlx_pixel_put(t_player *data, int x, int y, int color);
 
 // Map 
 char    *read_map(t_game *game, char *map);
+bool    check_path(t_game *game);
 
 // Render
 void    render_image(t_game *game);
