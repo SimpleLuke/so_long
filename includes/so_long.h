@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 14:33:09 by llai              #+#    #+#             */
-/*   Updated: 2024/01/04 19:32:56 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/05 16:00:48 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,30 @@ typedef struct s_player {
 typedef struct s_texture {
     int     width;
     int     height;
-    void    *ground;
+    void    *space;
     void    *wall;
+    void    *collectible;
+    void    *map_exit;
+    void    *player_start;
 }   t_texture;
 
+typedef struct s_comp {
+    int space;
+    int wall;
+    int collectible;
+    int map_exit;
+    int player_start;
+}   t_comp;
+
 typedef struct s_game {
-    int     width;
-    int     height;
-    void    *mlx;
-    void    *win;
-    char    *map;
+    int         width;
+    int         height;
+    void        *mlx;
+    void        *win;
+    char        *map;
     t_player    player;
     t_texture   texture;
+    t_comp      comp;
 }   t_game;
 
 // Initialization

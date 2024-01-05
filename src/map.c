@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:32:19 by llai              #+#    #+#             */
-/*   Updated: 2024/01/05 14:59:29 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/05 16:22:44 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 bool    check_map(t_game *game);
 bool    check_rec(t_game *game);
+bool    check_comp(t_game *game);
 
 char    *read_map(t_game *game, char *map)
 {
@@ -43,8 +44,6 @@ char    *read_map(t_game *game, char *map)
         ft_printf("Error\n");
         exit(EXIT_FAILURE);
     }
-    game->height = 5;
-    game->width = 13;
     free(line);
     close(fd);
     return (line);
@@ -52,15 +51,45 @@ char    *read_map(t_game *game, char *map)
 
 bool    check_map(t_game *game)
 {
-    if (!check_rec(game))
+    if (!check_rec(game) || !check_comp(game))
+        return (false);
+    return (true);
+}
+
+bool    check_comp(t_game *game)
+{
+    int i;
+
+    i = 0;
+    game->comp.wall = 0;
+    game->comp.space = 0;
+    game->comp.collectible = 0;
+    game->comp.map_exit = 0;
+    game->comp.player_start = 0;
+    while (game->map[i] != '\0')
+    {
+        if (game->map[i] == '1')
+            game->comp.wall++;
+        else if (game->map[i] == '0')
+            game->comp.space++;
+        else if (game->map[i] == 'C')
+            game->comp.collectible++;
+        else if (game->map[i] == 'E')
+            game->comp.map_exit++;
+        else if (game->map[i] == 'P')
+            game->comp.player_start++;
+        else
+            return (false);
+        i++;
+    }
+    if (!game->comp.wall || !game->comp.space || !game->comp.collectible || game->comp.map_exit != 1 || game->comp.player_start != 1)
         return (false);
     return (true);
 }
 
 bool    check_rec(t_game *game) 
 {
-    ft_printf("H: %d,W: %d\n", game->height, game->width);
-    if (ft_strlen(game->map) % game->width || game->height == 0)
+    if (ft_strlen(game->map) % game->width || game->height < 2)
         return (false);
     return (true);
 }
