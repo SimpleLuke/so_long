@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:32:19 by llai              #+#    #+#             */
-/*   Updated: 2024/01/05 16:22:44 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/05 18:02:23 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 bool    check_map(t_game *game);
 bool    check_rec(t_game *game);
 bool    check_comp(t_game *game);
+bool    check_wall(t_game *game);
 
 char    *read_map(t_game *game, char *map)
 {
@@ -51,8 +52,45 @@ char    *read_map(t_game *game, char *map)
 
 bool    check_map(t_game *game)
 {
-    if (!check_rec(game) || !check_comp(game))
+    if (!check_rec(game) || !check_comp(game) || !check_wall(game))
         return (false);
+    return (true);
+}
+
+bool    check_wall(t_game *game)
+{
+    int i;
+    int len;
+
+    i = 0;
+    len = ft_strlen(game->map);
+    while (i < game->width)
+    {
+        if (game->map[i] != '1')
+            return (false);
+        i++;
+    }
+    i = len - 1;
+    while (i > len - game->width - 1)
+    {
+        if (game->map[i] != '1')
+            return (false);
+        i--;
+    }
+    i = 0;
+    while (i < len)
+    {
+        if (game->map[i] != '1')
+            return (false);
+        i += game->width;
+    }
+    i = game->width - 1;
+    while (i < len + 1)
+    {
+        if (game->map[i] != '1')
+            return (false);
+        i += game->width;
+    }
     return (true);
 }
 
