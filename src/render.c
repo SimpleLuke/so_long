@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 15:24:19 by llai              #+#    #+#             */
-/*   Updated: 2024/01/04 19:37:39 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/05 14:44:27 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,13 @@ void    render_map(t_game *game)
             mlx_put_image_to_window(game->mlx, game->win, game->texture.wall, j * 32, k * 32);
         if (game->map[i] == '0')
             mlx_put_image_to_window(game->mlx, game->win, game->texture.ground, j * 32, k * 32);
-        if (game->map[i] != '\n')
-            j++;
-        else
+        if ((i + 1) % game->width == 0)
         {
             j = 0;
             k++;
         }
+        else
+            j++;
         i++;
     }
 }

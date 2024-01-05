@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:32:19 by llai              #+#    #+#             */
-/*   Updated: 2024/01/04 19:30:15 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/05 14:59:29 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,56 +15,52 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-bool check_map(t_game *game, char *map);
+bool    check_map(t_game *game);
+bool    check_rec(t_game *game);
 
 char    *read_map(t_game *game, char *map)
 {
     int     fd;
     char    *line;
 
-    if (!check_map(game, map))
-    {
-        ft_printf("Error\n");
-        exit(EXIT_FAILURE);
-    }
     fd = open(map, O_RDONLY);
     line = "";
     game->map = "";
+    game->height = 0;
     while (line != NULL)
     {
         line = get_next_line(fd);
         if (line != NULL)
-            game->map = ft_strjoin(game->map, line);
-        else
-            game->map = ft_strjoin(game->map, "\0");
+        {
+            game->width = ft_strlen(line) - 1;
+            game->map = ft_strjoin(game->map, ft_strtrim(line, "\n"));
+            game->height += 1;
+        }
     }
+    ft_printf("%s\n", game->map);
+    if (!check_map(game))
+    {
+        ft_printf("Error\n");
+        exit(EXIT_FAILURE);
+    }
+    game->height = 5;
+    game->width = 13;
     free(line);
     close(fd);
     return (line);
 }
 
-bool check_map(t_game *game, char *map)
+bool    check_map(t_game *game)
 {
-    int     fd;
-    size_t  len;
-    size_t  height;
-    char    *line;
+    if (!check_rec(game))
+        return (false);
+    return (true);
+}
 
-    len = 0;
-    height = 0;
-    fd = open(map, O_RDONLY);
-    line = get_next_line(fd);
-    len = ft_strlen(line);
-    while (line != NULL)
-    {
-        line = get_next_line(fd);
-        if (line != NULL && len != ft_strlen(line))
-            return (false);
-        height++;
-    }
-    free(line);
-    close(fd);
-    game->width = len - 1;
-    game->height = height;
+bool    check_rec(t_game *game) 
+{
+    ft_printf("H: %d,W: %d\n", game->height, game->width);
+    if (ft_strlen(game->map) % game->width || game->height == 0)
+        return (false);
     return (true);
 }
