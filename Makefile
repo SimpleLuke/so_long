@@ -1,8 +1,17 @@
 NAME = so_long
 CC = cc
 CFLAG = -Wall -Werror -Wextra
-SRC = src/main.c src/draw_shape.c src/color.c src/close.c src/player_movment.c \
-	  src/mlx_utils.c src/game_init.c src/render.c src/map.c src/path.c
+SRC = src/main.c \
+	  src/init.c \
+	  src/draw_shape.c \
+	  src/color.c \
+	  src/close.c \
+	  src/player_movment.c \
+	  src/mlx_utils.c \
+	  src/game_init.c \
+	  src/render.c \
+	  src/map.c \
+	  src/path.c
 OBJ = $(SRC:.c=.o)
 LIBFT_PATH = ./libft
 LIBFT = $(LIBFT_PATH)/libft.a

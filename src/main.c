@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 14:33:39 by llai              #+#    #+#             */
-/*   Updated: 2024/01/04 19:28:53 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/06 13:37:48 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/so_long.h"
@@ -19,11 +19,12 @@ int	main(int argc, char **argv)
     (void)argv;
     if (argc == 2)
     {
+		init_game(&game);
         read_map(&game, argv[1]);
         game.mlx = mlx_init();
-        ft_printf("%d %d\n", game.height, game.width);
+        ft_printf("H:%d W:%d\n", game.height, game.width);
         game.win = mlx_new_window(game.mlx, game.width * 32, game.height * 32, "so_long");
-        ft_printf("MAP: \n%s\n", game.map);
+        // ft_printf("MAP: \n%s\n", game.map);
         mlx_hook(game.win, 2, 1L<<0, esc_close_win, &game);
         mlx_hook(game.win, 17, 0, destory_game, &game);
         load_image(&game);

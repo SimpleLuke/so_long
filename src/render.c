@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 15:24:19 by llai              #+#    #+#             */
-/*   Updated: 2024/01/05 16:18:50 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/06 13:38:51 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,35 +46,29 @@ void    load_image(t_game *game)
     if (game->texture.player_start == NULL)
         ft_printf("FAIL TO LOAD START IMAGE\n");
 }
-
-void    render_map(t_game *game)
+void	render_map(t_game *game)
 {
-    int i;
-    int j;
-    int k;
+	int i;
+	int	j;
 
-    i = 0;
-    j = 0;
-    k = 0;
-    while (game->map[i] != '\0')
-    {
-        if (game->map[i] == '1')
-            mlx_put_image_to_window(game->mlx, game->win, game->texture.wall, j * 32, k * 32);
-        if (game->map[i] == '0')
-            mlx_put_image_to_window(game->mlx, game->win, game->texture.space, j * 32, k * 32);
-        if (game->map[i] == 'C')
-            mlx_put_image_to_window(game->mlx, game->win, game->texture.collectible, j * 32, k * 32);
-        if (game->map[i] == 'P')
-            mlx_put_image_to_window(game->mlx, game->win, game->texture.player_start, j * 32, k * 32);
-        if (game->map[i] == 'E')
-            mlx_put_image_to_window(game->mlx, game->win, game->texture.map_exit, j * 32, k * 32);
-        if ((i + 1) % game->width == 0)
-        {
-            j = 0;
-            k++;
-        }
-        else
-            j++;
-        i++;
-    }
+	i = 0;
+	while (i < game->height)
+	{
+		j = 0;
+		while (j < game->width)
+		{
+			if (game->map[i][j] == '1')
+				mlx_put_image_to_window(game->mlx, game->win, game->texture.wall, j * 32, i * 32);
+			else if (game->map[i][j] == '0')
+				mlx_put_image_to_window(game->mlx, game->win, game->texture.space, j * 32, i * 32);
+			else if (game->map[i][j] == 'C')
+				mlx_put_image_to_window(game->mlx, game->win, game->texture.collectible, j * 32, i * 32);
+			else if (game->map[i][j] == 'P')
+				mlx_put_image_to_window(game->mlx, game->win, game->texture.player_start, j * 32, i * 32);
+			else if (game->map[i][j] == 'E')
+				mlx_put_image_to_window(game->mlx, game->win, game->texture.map_exit, j * 32, i * 32);
+			j++;
+		}
+		i++;
+	}
 }

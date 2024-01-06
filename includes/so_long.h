@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 14:33:09 by llai              #+#    #+#             */
-/*   Updated: 2024/01/05 20:38:42 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/06 13:15:32 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ typedef struct s_game {
     int         height;
     void        *mlx;
     void        *win;
-    char        *map;
+    char        **map;
     t_player    player;
     t_texture   texture;
     t_comp      comp;
@@ -66,6 +66,7 @@ typedef struct s_game {
 // Initialization
 // void    game_init(t_game *game);
 
+void	init_game(t_game *game);
 // Custom put pixel
 void    my_mlx_pixel_put(t_player *data, int x, int y, int color);
 
