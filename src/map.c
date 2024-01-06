@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:32:19 by llai              #+#    #+#             */
-/*   Updated: 2024/01/06 14:26:52 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/06 15:58:05 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,30 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-bool	check_map(t_game *game);
+bool	check_map(t_game *game, char *map_line);
 char	*read_map(t_game *game, char *map_path);
+void	free_lines(char *line, char *map_line, char *trim);
+void	map_to_line(t_game *game, int fd, char **line, char **map_line);
+
+void	map_to_line(t_game *game, int fd, char **line, char **map_line)
+{
+	char	*trim;
+
+	*line = "";
+	*map_line = ft_strdup("");
+	while (*line != NULL)
+	{
+		*line = get_next_line(fd);
+		if (*line != NULL)
+		{
+			game->width = ft_strlen(*line) - 1;
+			trim = ft_strtrim(*line, "\n");
+			*map_line = ft_strjoin_gnl(*map_line, trim, game->width);
+			game->height += 1;
+			free_lines(*line, 0, trim);
+		}
+	}
+}
 
 char	*read_map(t_game *game, char *map_path)
 {
@@ -25,32 +47,29 @@ char	*read_map(t_game *game, char *map_path)
 	char	*map_line;
 
 	fd = open(map_path, O_RDONLY);
-	line = "";
-	map_line = "";
-	while (line != NULL)
+	map_to_line(game, fd, &line, &map_line);
+	if (!convert_map(game, map_line) && !check_map(game, map_line))
 	{
-		line = get_next_line(fd);
-		if (line != NULL)
-		{
-			game->width = ft_strlen(line) - 1;
-			map_line = ft_strjoin(map_line, ft_strtrim(line, "\n"));
-			game->height += 1;
-		}
-	}
-	if (!convert_map(game, map_line) && !check_map(game))
-	{
+		free_lines(line, map_line, 0);
 		ft_printf("Error\n");
 		exit(EXIT_FAILURE);
 	}
-	free(line);
+	free_lines(line, map_line, 0);
 	close(fd);
 	return (line);
 }
 
-bool	check_map(t_game *game)
+bool	check_map(t_game *game, char *map_line)
 {
-	if (!check_rec(game) || !check_comp(game)
+	if (!check_rec(game, map_line) || !check_comp(game)
 		|| !check_wall(game) || !check_path(game))
 		return (false);
 	return (true);
+}
+
+void	free_lines(char *line, char *map_line, char *trim)
+{
+	free(line);
+	free(map_line);
+	free(trim);
 }

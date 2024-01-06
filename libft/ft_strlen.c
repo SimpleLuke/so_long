@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:50:37 by llai              #+#    #+#             */
-/*   Updated: 2023/11/02 21:17:57 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/06 15:27:37 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -26,7 +26,7 @@ size_t	ft_strlen(const char *s)
 	size_t	count;
 
 	count = 0;
-	while (*s++ != '\0')
+	while (s[count] != '\0')
 		count++;
 	return (count);
 }

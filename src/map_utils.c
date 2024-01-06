@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 14:18:56 by llai              #+#    #+#             */
-/*   Updated: 2024/01/06 14:37:50 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/06 15:34:32 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-bool	check_rec(t_game *game);
+bool	check_rec(t_game *game, char *map_line);
 bool	check_comp(t_game *game);
 int		count_comp(t_game *game, int row, int col);
 bool	check_wall(t_game *game);
@@ -106,20 +106,16 @@ bool	check_comp(t_game *game)
 	}
 	if (!game->comp.wall || !game->comp.space || !game->comp.collectible
 		|| game->comp.map_exit != 1 || game->comp.player_start != 1)
+	{
+		ft_printf("Error: Invalid map componments\n");
 		return (false);
+	}
 	return (true);
 }
 
-bool	check_rec(t_game *game)
+bool	check_rec(t_game *game, char *map_line)
 {
-	int	i;
-
-	i = 0;
-	while (i < game->height)
-	{
-		if ((int)ft_strlen(game->map[i]) != game->width || game->height < 2)
-			return (false);
-		i++;
-	}
+	if (ft_strlen(map_line) % game->width || game->height < 2)
+		return (false);
 	return (true);
 }

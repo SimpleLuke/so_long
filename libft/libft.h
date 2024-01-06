@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 19:15:44 by llai              #+#    #+#             */
-/*   Updated: 2024/01/04 17:43:26 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/06 15:47:13 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,5 +151,6 @@ int			ft_print_unsigned_dec(unsigned int n);
 int			ft_print_ptr(unsigned long int n);
 
 char    *get_next_line(int fd);
+char	*ft_strjoin_gnl(char *s1, const char *s2, size_t len);
 
 #endif
