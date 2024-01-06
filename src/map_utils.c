@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 14:18:56 by llai              #+#    #+#             */
-/*   Updated: 2024/01/06 14:25:47 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/06 14:37:50 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 bool	check_rec(t_game *game);
 bool	check_comp(t_game *game);
+int		count_comp(t_game *game, int row, int col);
 bool	check_wall(t_game *game);
 int		convert_map(t_game *game, char *map_line);
 
@@ -71,32 +72,37 @@ bool	check_wall(t_game *game)
 	return (true);
 }
 
+int	count_comp(t_game *game, int row, int col)
+{
+	if (game->map[row][col] == '1')
+		game->comp.wall++;
+	else if (game->map[row][col] == '0')
+		game->comp.space++;
+	else if (game->map[row][col] == 'C')
+		game->comp.collectible++;
+	else if (game->map[row][col] == 'P')
+		game->comp.player_start++;
+	else if (game->map[row][col] == 'E')
+		game->comp.map_exit++;
+	else
+		return (1);
+	return (0);
+}
+
 bool	check_comp(t_game *game)
 {
 	int	i;
 	int	j;
 
-	i = 0;
-	while (i < game->height)
+	i = -1;
+	while (++i < game->height)
 	{
-		j = 0;
-		while (j < game->width)
+		j = -1;
+		while (++j < game->width)
 		{
-			if (game->map[i][j] == '1')
-				game->comp.wall++;
-			else if (game->map[i][j] == '0')
-				game->comp.space++;
-			else if (game->map[i][j] == 'C')
-				game->comp.collectible++;
-			else if (game->map[i][j] == 'P')
-				game->comp.player_start++;
-			else if (game->map[i][j] == 'E')
-				game->comp.map_exit++;
-			else
+			if (count_comp(game, i, j))
 				return (false);
-			j++;
 		}
-		i++;
 	}
 	if (!game->comp.wall || !game->comp.space || !game->comp.collectible
 		|| game->comp.map_exit != 1 || game->comp.player_start != 1)
@@ -104,7 +110,7 @@ bool	check_comp(t_game *game)
 	return (true);
 }
 
-bool	check_rec(t_game *game) 
+bool	check_rec(t_game *game)
 {
 	int	i;
 
