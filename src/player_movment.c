@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:55:50 by llai              #+#    #+#             */
-/*   Updated: 2024/01/06 20:46:33 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/06 21:04:20 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,23 @@
 #include <stdbool.h>
 
 int		keystroke(int keycode, t_game *game);
-void	move_player(t_game *game, enum direction dir);
-bool	is_wall(t_game *game, enum direction dir);
+void	move_player(t_game *game, enum e_direction dir);
+bool	is_wall(t_game *game, enum e_direction dir);
 void	replace_ground(t_game *game);
 
-bool	is_wall(t_game *game, enum direction dir)
+bool	is_wall(t_game *game, enum e_direction dir)
 {
-	if (dir == UP && game->map[game->player.location.y - 1][game->player.location.x] == '1')
+	if (dir == UP && game->map
+		[game->player.location.y - 1][game->player.location.x] == '1')
 		return (true);
-	else if (dir == DOWN && game->map[game->player.location.y + 1][game->player.location.x] == '1')
+	else if (dir == DOWN && game->map
+		[game->player.location.y + 1][game->player.location.x] == '1')
 		return (true);
-	else if (dir == LEFT && game->map[game->player.location.y][game->player.location.x - 1] == '1')
+	else if (dir == LEFT && game->map
+		[game->player.location.y][game->player.location.x - 1] == '1')
 		return (true);
-	else if (dir == RIGHT && game->map[game->player.location.y][game->player.location.x + 1] == '1')
+	else if (dir == RIGHT && game->map
+		[game->player.location.y][game->player.location.x + 1] == '1')
 		return (true);
 	return (false);
 }
@@ -46,55 +50,43 @@ int	keystroke(int keycode, t_game *game)
 
 void	replace_ground(t_game *game)
 {
-	char current;
+	char	current;
 
 	current = game->map[game->player.location.y][game->player.location.x];
 	if (current == 'P')
 		mlx_put_image_to_window(game->mlx, game->win,
 			game->texture.player_start, game->player.location.x * 32,
-				game->player.location.y * 32);
+			game->player.location.y * 32);
 	else if (current == 'E')
 		mlx_put_image_to_window(game->mlx, game->win,
 			game->texture.map_exit, game->player.location.x * 32,
-				game->player.location.y * 32);
+			game->player.location.y * 32);
 	else
 		mlx_put_image_to_window(game->mlx, game->win,
 			game->texture.space, game->player.location.x * 32,
-				game->player.location.y * 32);
+			game->player.location.y * 32);
 }
 
-void	move_player(t_game *game, enum direction dir)
+void	move_player(t_game *game, enum e_direction dir)
 {
 	if (dir == UP)
 	{
 		replace_ground(game);
-		game->player.location.y -= 1;
-		mlx_put_image_to_window(game->mlx, game->win,
-			game->player.sprite, game->player.location.x * 32,
-				game->player.location.y * 32);
+		move_up(game);
 	}
 	else if (dir == DOWN)
 	{
 		replace_ground(game);
-		game->player.location.y += 1;
-		mlx_put_image_to_window(game->mlx, game->win,
-			game->player.sprite, game->player.location.x * 32,
-				game->player.location.y * 32);
+		move_down(game);
 	}
 	else if (dir == LEFT)
 	{
 		replace_ground(game);
-		game->player.location.x -= 1;
-		mlx_put_image_to_window(game->mlx, game->win,
-			game->player.sprite, game->player.location.x * 32,
-				game->player.location.y * 32);
+		move_left(game);
 	}
 	else if (dir == RIGHT)
 	{
 		replace_ground(game);
-		game->player.location.x += 1;
-		mlx_put_image_to_window(game->mlx, game->win,
-			game->player.sprite, game->player.location.x * 32,
-				game->player.location.y * 32);
+		move_right(game);
 	}
 }

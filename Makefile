@@ -7,13 +7,14 @@ SRC = src/main.c \
 	  src/color.c \
 	  src/close.c \
 	  src/player_movment.c \
+	  src/movement_utils.c \
 	  src/mlx_utils.c \
 	  src/game_init.c \
 	  src/render.c \
 	  src/map.c \
 	  src/map_utils.c \
 	  src/path.c \
-	  src/player.c
+	  src/player.c 
 OBJ = $(SRC:.c=.o)
 LIBFT_PATH = ./libft
 LIBFT = $(LIBFT_PATH)/libft.a

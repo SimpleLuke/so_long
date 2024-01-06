@@ -6,14 +6,16 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 15:24:19 by llai              #+#    #+#             */
-/*   Updated: 2024/01/06 19:39:19 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/06 20:48:53 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
 void	render_map(t_game *game);
-void	load_map_image(t_game *game); void	render_map(t_game *game); void	render_sprite(t_game *game, char type, int row, int col);
+void	load_map_image(t_game *game);
+void	render_map(t_game *game);
+void	render_sprite(t_game *game, char type, int row, int col);
 void	load_image(t_game *game);
 
 void	render_image(t_game *game)

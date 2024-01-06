@@ -6,13 +6,13 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 14:46:04 by llai              #+#    #+#             */
-/*   Updated: 2024/01/03 14:46:49 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/06 20:58:00 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
-
-int create_trgb(int t, int r, int g, int b)
-{
-    return (t << 24 | r << 16 | g << 8 | b);
-}
+// #include "../includes/so_long.h"
+//
+// int create_trgb(int t, int r, int g, int b)
+// {
+//     return (t << 24 | r << 16 | g << 8 | b);
+// }
