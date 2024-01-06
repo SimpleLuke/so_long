@@ -6,24 +6,29 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 15:24:19 by llai              #+#    #+#             */
-/*   Updated: 2024/01/06 15:08:29 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/06 19:39:19 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-#include <stdint.h>
 
 void	render_map(t_game *game);
+void	load_map_image(t_game *game); void	render_map(t_game *game); void	render_sprite(t_game *game, char type, int row, int col);
 void	load_image(t_game *game);
-void	render_map(t_game *game);
-void	render_sprite(t_game *game, char type, int row, int col);
 
 void	render_image(t_game *game)
 {
 	render_map(game);
+	render_player(game);
 }
 
 void	load_image(t_game *game)
+{
+	load_map_image(game);
+	load_player_image(game);
+}
+
+void	load_map_image(t_game *game)
 {
 	game->texture.space = mlx_xpm_file_to_image
 		(game->mlx, "assets/pokemon_bg.xpm",
@@ -70,7 +75,11 @@ void	render_map(t_game *game)
 			else if (game->map[i][j] == 'C')
 				render_sprite(game, 'C', i, j);
 			else if (game->map[i][j] == 'P')
+			{
 				render_sprite(game, 'P', i, j);
+				game->player.location.x = j;
+				game->player.location.y = i;
+			}
 			else if (game->map[i][j] == 'E')
 				render_sprite(game, 'E', i, j);
 		}

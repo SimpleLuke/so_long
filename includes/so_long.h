@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 14:33:09 by llai              #+#    #+#             */
-/*   Updated: 2024/01/06 15:34:45 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/06 19:39:24 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,22 @@
 #define HEIGHT 32
 #define WIDTH 32
 
-enum position {
-    RIGHT
+enum direction {
+    UP,
+	DOWN,
+	LEFT,
+	RIGHT
 };
 
+typedef struct s_plocation {
+	int x;
+	int	y;
+}	t_plocation;
+
 typedef struct s_player {
-    void    *img;
-    char    *addr;
-    int     bits_per_pixel;
-    int     line_length;
-    int     endian;
-    int     position;
+	void		*sprite;
+    int			position;
+	t_plocation	location;
 }   t_player;
 
 typedef struct s_texture {
@@ -80,7 +85,10 @@ int		convert_map(t_game *game, char *map_line);
 
 // Render
 void    render_image(t_game *game);
-void    load_image(t_game *game);
+void	load_image(t_game *game);
+void    load_map_image(t_game *game);
+void	render_player(t_game *game);
+void	load_player_image(t_game *game);
 
 // Draw shapes
 void draw_circle(t_player *data, int center_x, int center_y, int radius, int color);
@@ -95,4 +103,8 @@ int create_trgb(int t, int r, int g, int b);
 int destory_game(t_game *game);
 int esc_close_win(int keycode, t_game *vars);
 int cross_close_win(t_game *vars);
+
+// player
+int	keystroke(int keycode, t_game *game);
+
 #endif // !SO_LONG_H

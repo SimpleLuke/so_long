@@ -12,7 +12,8 @@ SRC = src/main.c \
 	  src/render.c \
 	  src/map.c \
 	  src/map_utils.c \
-	  src/path.c
+	  src/path.c \
+	  src/player.c
 OBJ = $(SRC:.c=.o)
 LIBFT_PATH = ./libft
 LIBFT = $(LIBFT_PATH)/libft.a

@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 14:33:39 by llai              #+#    #+#             */
-/*   Updated: 2024/01/06 13:37:48 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/06 19:48:34 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/so_long.h"
@@ -27,6 +27,7 @@ int	main(int argc, char **argv)
         // ft_printf("MAP: \n%s\n", game.map);
         mlx_hook(game.win, 2, 1L<<0, esc_close_win, &game);
         mlx_hook(game.win, 17, 0, destory_game, &game);
+		mlx_key_hook(game.win, keystroke, &game);
         load_image(&game);
         render_image(&game);
 	    mlx_loop(game.mlx);
