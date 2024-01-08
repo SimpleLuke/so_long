@@ -1,17 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   image.h                                            :+:      :+:    :+:   */
+/*   ft_lstiter_param.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/08 12:35:20 by llai              #+#    #+#             */
-/*   Updated: 2024/01/08 19:29:36 by llai             ###   ########.fr       */
+/*   Created: 2024/01/08 17:56:36 by llai              #+#    #+#             */
+/*   Updated: 2024/01/08 17:57:21 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef IMAGE_H
-# define IMAGE_H
+#include "libft.h"
 
+void		ft_lstiter_param(t_list *lst, void(*f)(void *, void*), void *ptr)
+{
+	t_list	*temp;
 
-#endif // !IMAGE_H
+	temp = lst;
+	while (temp != NULL)
+	{
+		f(temp->content, ptr);
+		temp = temp->next;
+	}
+}

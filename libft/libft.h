@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 19:15:44 by llai              #+#    #+#             */
-/*   Updated: 2024/01/06 15:47:13 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/08 17:51:27 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ void		ft_lstdelone(t_list *lst, void (*del)(void *));
 void		ft_lstclear(t_list **lst, void (*del)(void *));
 void		ft_lstiter(t_list *lst, void (*f)(void *));
 t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+t_list		*ft_lstget(t_list *lst, int index);
+void		ft_lstiter_param(t_list *lst, void(*f)(void *, void*), void *ptr);
 
 /* ************************************************************************** */
 /*  ft_printf: Takes a string of format and arguments,                        */

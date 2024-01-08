@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 14:33:09 by llai              #+#    #+#             */
-/*   Updated: 2024/01/08 15:29:22 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/08 20:15:57 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 
 # include "../mlx_linux/mlx.h"
 # include "../libft/libft.h"
-# include "../includes/image.h"
+# include "image.h"
+# include "sprite.h"
+# include "animation.h"
 # include <stdbool.h>
 
 # define ESC_KEY 0xff1b
@@ -36,12 +38,35 @@ typedef struct s_plocation
 	int	y;
 }	t_plocation;
 
+typedef struct s_img
+{
+
+	void	*img_ptr;
+	char	*addr;
+	int		h;
+	int		w;
+	int		bpp;
+	int		endian;
+	int		line_len;
+}	t_img;
+
 typedef struct s_player
 {
 	t_img		sprite;
 	int			position;
 	t_plocation	location;
 }	t_player;
+
+typedef struct s_sprite
+{
+	t_list	*animations;
+	char	*name;
+	char	*file_path;
+	t_img	sprite_img;
+	int		width;
+	int		height;
+	int		z_index;
+}	t_sprite;
 
 typedef struct s_texture
 {
@@ -52,6 +77,7 @@ typedef struct s_texture
 	t_img	collectible;
 	t_img	map_exit;
 	t_img	player_start;
+	t_sprite	collectible_sprite;
 }	t_texture;
 
 typedef struct s_comp
@@ -62,6 +88,32 @@ typedef struct s_comp
 	int	map_exit;
 	int	player_start;
 }	t_comp;
+
+enum e_entity
+{
+	COLLECTIBLE
+};
+
+typedef struct s_animation
+{
+	t_list			*frames;
+	int				width;
+	int				height;
+	int				delay;
+	int				_tmp_delay;
+	int				current_frame_num;
+	long int		last_updated;
+	long int		frame_count;
+	enum e_entity	entity;
+}	t_animation;
+
+typedef struct sprite_slice
+{
+	int	x;
+	int	y;
+	int	width;
+	int	height;
+} t_sprite_slice;
 
 typedef struct s_game
 {
@@ -74,7 +126,15 @@ typedef struct s_game
 	t_img		base_image;
 	t_texture	texture;
 	t_comp		comp;
+	t_animation	*animation;
 }	t_game;
+
+typedef struct s_animator
+{
+	t_list	*animations;
+	t_game	*game;
+	t_img	*img;
+}	t_animator;
 
 // Initialization
 void	init_game(t_game *game);
@@ -94,6 +154,8 @@ int		convert_map(t_game *game, char *map_line);
 t_img	new_file_img(char *path, t_game *game);
 t_img	new_img(int width, int height, t_game *game);
 void	put_img_to_img(t_img dst, t_img src, int x, int y);
+void	put_pixel_img(t_img img, int x, int y, int color);
+unsigned int	get_pixel_img(t_img img, int x, int y);
 void	render_sprite(t_game *game, char type, int row, int col);
 void	render_image(t_game *game);
 void	load_image(t_game *game);
@@ -101,6 +163,14 @@ void	load_map_image(t_game *game);
 void	render_player(t_game *game);
 void	load_player_image(t_game *game);
 
+// Sprite
+t_sprite	new_sprite(char *name, char *file_path, t_game *game);
+t_animation	*slice_sprite(t_sprite s, t_sprite_slice slice, int frames, int delay, enum e_entity e, t_game *game);
+void		destory_sprite(t_sprite s);
+
+// Animation
+int	update(t_list *list);
+void	update_animation(void *ptr);
 // Draw shapes
 // void	draw_circle(t_player *data, int center_x,
 //	int center_y, int radius, int color);

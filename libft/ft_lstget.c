@@ -1,17 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   image.h                                            :+:      :+:    :+:   */
+/*   ft_lstget.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/08 12:35:20 by llai              #+#    #+#             */
-/*   Updated: 2024/01/08 19:29:36 by llai             ###   ########.fr       */
+/*   Created: 2024/01/08 17:51:55 by llai              #+#    #+#             */
+/*   Updated: 2024/01/08 17:55:51 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef IMAGE_H
-# define IMAGE_H
+#include "libft.h"
 
+t_list	*ft_lstget(t_list *lst, int index)
+{
+	t_list	*n;
+	int		i;
 
-#endif // !IMAGE_H
+	i = 0;
+	n = lst;
+	if (n == NULL)
+		return (NULL);
+	if (n->next == NULL)
+	{
+		if (i >= index)
+			return (n);
+		n = n->next;
+		i++;
+	}
+	return (NULL);
+}

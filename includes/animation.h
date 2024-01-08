@@ -1,17 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   image.h                                            :+:      :+:    :+:   */
+/*   animation.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/08 12:35:20 by llai              #+#    #+#             */
-/*   Updated: 2024/01/08 19:29:36 by llai             ###   ########.fr       */
+/*   Created: 2024/01/08 15:59:00 by llai              #+#    #+#             */
+/*   Updated: 2024/01/08 19:43:38 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef IMAGE_H
-# define IMAGE_H
+#ifndef ANIMATION_H
+# define ANIMATION_H
+
+# include "../libft/libft.h"
 
 
-#endif // !IMAGE_H
+
+#endif // !ANIMATION_H

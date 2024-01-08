@@ -1,7 +1,7 @@
 BIN = bin
 NAME = so_long
 CC = cc
-CFLAG = -Wall -Werror -Wextra -g -03
+CFLAG = -Wall -Werror -Wextra -g
 SRC = src/main.c \
 	  src/init.c \
 	  src/draw_shape.c \
@@ -17,8 +17,10 @@ SRC = src/main.c \
 	  src/path.c \
 	  src/player.c \
 	  src/image.c \
-	  src/debug.c
-OBJ = $(SRC:$(SRC)/%c=$(BIN)/%o)
+	  src/debug.c \
+	  src/sprite.c \
+	  src/animation.c
+OBJ = $(SRC:src/%c=$(BIN)/%o)
 INCS = includes
 LIBFT_PATH = libft
 LIBFT = $(LIBFT_PATH)
