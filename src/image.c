@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 12:32:08 by llai              #+#    #+#             */
-/*   Updated: 2024/01/08 13:35:55 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/08 15:12:29 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,52 @@ t_img	new_file_img(char *path, t_game *game)
 	else
 		image.addr = mlx_get_data_addr(image.img_ptr, &(image.bpp), &(image.line_len), &(image.endian));
 	return (image);
+}
+
+t_img	new_img(int width, int height, t_game *game)
+{
+	t_img	image;
+
+	image.img_ptr = mlx_new_image(game->mlx, width, height);
+	image.addr = mlx_get_data_addr(image.img_ptr, &(image.bpp), &(image.line_len), &(image.endian));
+	image.w = width;
+	image.h = height;
+	return (image);
+}
+
+void	put_pixel_img(t_img img, int x, int y, int color)
+{
+	char	*dst;
+
+	if (color == (int)0xFF000000)
+		return ;
+	dst = img.addr + (y * img.line_len + x * (img.bpp / 8));
+	*(unsigned int *)dst = color;
+}
+
+unsigned int	get_pixel_img(t_img img, int x, int y)
+{
+	return (*(unsigned int *)((img.addr + (y * img.line_len) + (x * img.bpp / 8))));
+}
+
+void	put_img_to_img(t_img dst, t_img src, int x, int y)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < src.w)
+	{
+		j = 0;
+		while (j < src.h)
+		{
+			j = 0;
+			while (j < src.h)
+			{
+				put_pixel_img(dst, x + i, y + j, get_pixel_img(src, i, j));
+				j++;
+			}
+		}
+		i++;
+	}
 }

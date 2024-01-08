@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 14:33:09 by llai              #+#    #+#             */
-/*   Updated: 2024/01/08 14:03:16 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/08 15:29:22 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef struct s_game
 	void		*win;
 	char		**map;
 	t_player	player;
+	t_img		base_image;
 	t_texture	texture;
 	t_comp		comp;
 }	t_game;
@@ -91,6 +92,9 @@ int		convert_map(t_game *game, char *map_line);
 
 // Render
 t_img	new_file_img(char *path, t_game *game);
+t_img	new_img(int width, int height, t_game *game);
+void	put_img_to_img(t_img dst, t_img src, int x, int y);
+void	render_sprite(t_game *game, char type, int row, int col);
 void	render_image(t_game *game);
 void	load_image(t_game *game);
 void	load_map_image(t_game *game);

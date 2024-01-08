@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 15:24:19 by llai              #+#    #+#             */
-/*   Updated: 2024/01/08 13:57:44 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/08 15:22:33 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ void	load_image(t_game *game);
 
 void	render_image(t_game *game)
 {
+	game->base_image = new_img(1920, 1080, game);
 	render_map(game);
 	render_player(game);
+	mlx_put_image_to_window(game->mlx, game->win, game->base_image.img_ptr, 0, 0);
 }
 
 void	load_image(t_game *game)
@@ -37,26 +39,6 @@ void	load_map_image(t_game *game)
 	game->texture.collectible = new_file_img("assets/collectible.xpm", game);
 	game->texture.map_exit = new_file_img("assets/exit.xpm", game);
 	game->texture.player_start = new_file_img("assets/start.xpm", game);
-	// game->texture.wall = mlx_xpm_file_to_image
-	// 	(game->mlx, "assets/pokemon_tree.xpm",
-	// 		&game->texture.width, &game->texture.height);
-	// if (game->texture.wall == NULL)
-	// 	ft_printf("FAIL TO LOAD WALL IMAGE\n");
-	// game->texture.collectible = mlx_xpm_file_to_image
-	// 	(game->mlx, "assets/pokemon_collectible.xpm",
-	// 		&game->texture.width, &game->texture.height);
-	// if (game->texture.collectible == NULL)
-	// 	ft_printf("FAIL TO LOAD COLLECTIBLE IMAGE\n");
-	// game->texture.map_exit = mlx_xpm_file_to_image
-	// 	(game->mlx, "assets/pokemon_exit.xpm",
-	// 		&game->texture.width, &game->texture.height);
-	// if (game->texture.map_exit == NULL)
-	// 	ft_printf("FAIL TO LOAD EXIT IMAGE\n");
-	// game->texture.player_start = mlx_xpm_file_to_image
-	// 	(game->mlx, "assets/pokemon_start.xpm",
-	// 		&game->texture.width, &game->texture.height);
-	// if (game->texture.player_start == NULL)
-	// 	ft_printf("FAIL TO LOAD START IMAGE\n");
 }
 
 void	render_map(t_game *game)
@@ -75,7 +57,7 @@ void	render_map(t_game *game)
 			else if (game->map[i][j] == '0')
 				render_sprite(game, '0', i, j);
 			else if (game->map[i][j] == 'C')
-				render_sprite(game, 'C', i, j);
+				render_sprite(game, '0', i, j);
 			else if (game->map[i][j] == 'P')
 			{
 				render_sprite(game, 'P', i, j);
@@ -91,18 +73,13 @@ void	render_map(t_game *game)
 void	render_sprite(t_game *game, char type, int row, int col)
 {
 	if (type == '1')
-		mlx_put_image_to_window(game->mlx, game->win,
-			game->texture.wall.img_ptr, col * 32, row * 32);
+		put_img_to_img(game->base_image, game->texture.wall, col * 32, row * 32);
 	if (type == '0')
-		mlx_put_image_to_window(game->mlx, game->win,
-			game->texture.space.img_ptr, col * 32, row * 32);
+		put_img_to_img(game->base_image, game->texture.space, col * 32, row * 32);
 	if (type == 'C')
-		mlx_put_image_to_window(game->mlx, game->win,
-			game->texture.collectible.img_ptr, col * 32, row * 32);
+		put_img_to_img(game->base_image, game->texture.collectible, col * 32, row * 32);
 	if (type == 'P')
-		mlx_put_image_to_window(game->mlx, game->win,
-			game->texture.player_start.img_ptr, col * 32, row * 32);
+		put_img_to_img(game->base_image, game->texture.player_start, col * 32, row * 32);
 	if (type == 'E')
-		mlx_put_image_to_window(game->mlx, game->win,
-			game->texture.map_exit.img_ptr, col * 32, row * 32);
+		put_img_to_img(game->base_image, game->texture.map_exit, col * 32, row * 32);
 }

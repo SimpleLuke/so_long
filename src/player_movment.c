@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:55:50 by llai              #+#    #+#             */
-/*   Updated: 2024/01/08 13:58:28 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/08 15:38:25 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,20 @@ void	replace_ground(t_game *game)
 
 	current = game->map[game->player.location.y][game->player.location.x];
 	if (current == 'P')
-		mlx_put_image_to_window(game->mlx, game->win,
-			game->texture.player_start.img_ptr, game->player.location.x * 32,
-			game->player.location.y * 32);
+		render_sprite(game, 'P', game->player.location.y, game->player.location.x);
+		// mlx_put_image_to_window(game->mlx, game->win,
+		// 	game->texture.player_start.img_ptr, game->player.location.x * 32,
+		// 	game->player.location.y * 32);
 	else if (current == 'E')
-		mlx_put_image_to_window(game->mlx, game->win,
-			game->texture.map_exit.img_ptr, game->player.location.x * 32,
-			game->player.location.y * 32);
+		render_sprite(game, 'E', game->player.location.y, game->player.location.x);
+		// mlx_put_image_to_window(game->mlx, game->win,
+		// 	game->texture.map_exit.img_ptr, game->player.location.x * 32,
+		// 	game->player.location.y * 32);
 	else
-		mlx_put_image_to_window(game->mlx, game->win,
-			game->texture.space.img_ptr, game->player.location.x * 32,
-			game->player.location.y * 32);
+		render_sprite(game, '0', game->player.location.y, game->player.location.x);
+		// mlx_put_image_to_window(game->mlx, game->win,
+		// 	game->texture.space.img_ptr, game->player.location.x * 32,
+		// 	game->player.location.y * 32);
 }
 
 void	move_player(t_game *game, enum e_direction dir)
@@ -89,4 +92,5 @@ void	move_player(t_game *game, enum e_direction dir)
 		replace_ground(game);
 		move_right(game);
 	}
+	mlx_put_image_to_window(game->mlx, game->win, game->base_image.img_ptr, 0, 0);
 }
