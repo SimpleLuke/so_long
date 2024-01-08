@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player.c                                           :+:      :+:    :+:   */
+/*   image.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/06 16:25:56 by llai              #+#    #+#             */
-/*   Updated: 2024/01/08 14:03:40 by llai             ###   ########.fr       */
+/*   Created: 2024/01/08 12:35:20 by llai              #+#    #+#             */
+/*   Updated: 2024/01/08 13:55:07 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#ifndef IMAGE_H
+# define IMAGE_H
 
-void	load_player_image(t_game *game);
-
-void	render_player(t_game *game)
+typedef struct s_img
 {
-	mlx_put_image_to_window(game->mlx, game->win,
-		game->player.sprite.img_ptr, game->player.location.x * 32,
-		game->player.location.y * 32);
-}
 
-void	load_player_image(t_game *game)
-{
-	game->player.sprite = new_file_img("assets/player_still.xpm", game);
-}
+	void	*img_ptr;
+	char	*addr;
+	int		h;
+	int		w;
+	int		bpp;
+	int		endian;
+	int		line_len;
+}	t_img;
+
+#endif // !IMAGE_H

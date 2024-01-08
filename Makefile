@@ -15,7 +15,9 @@ SRC = src/main.c \
 	  src/map.c \
 	  src/map_utils.c \
 	  src/path.c \
-	  src/player.c 
+	  src/player.c \
+	  src/image.c \
+	  src/debug.c
 OBJ = $(SRC:$(SRC)/%c=$(BIN)/%o)
 INCS = includes
 LIBFT_PATH = libft

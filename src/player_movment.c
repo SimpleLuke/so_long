@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:55:50 by llai              #+#    #+#             */
-/*   Updated: 2024/01/06 21:04:20 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/08 13:58:28 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,15 @@ void	replace_ground(t_game *game)
 	current = game->map[game->player.location.y][game->player.location.x];
 	if (current == 'P')
 		mlx_put_image_to_window(game->mlx, game->win,
-			game->texture.player_start, game->player.location.x * 32,
+			game->texture.player_start.img_ptr, game->player.location.x * 32,
 			game->player.location.y * 32);
 	else if (current == 'E')
 		mlx_put_image_to_window(game->mlx, game->win,
-			game->texture.map_exit, game->player.location.x * 32,
+			game->texture.map_exit.img_ptr, game->player.location.x * 32,
 			game->player.location.y * 32);
 	else
 		mlx_put_image_to_window(game->mlx, game->win,
-			game->texture.space, game->player.location.x * 32,
+			game->texture.space.img_ptr, game->player.location.x * 32,
 			game->player.location.y * 32);
 }
 

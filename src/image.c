@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player.c                                           :+:      :+:    :+:   */
+/*   image.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/06 16:25:56 by llai              #+#    #+#             */
-/*   Updated: 2024/01/08 14:03:40 by llai             ###   ########.fr       */
+/*   Created: 2024/01/08 12:32:08 by llai              #+#    #+#             */
+/*   Updated: 2024/01/08 13:35:55 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	load_player_image(t_game *game);
-
-void	render_player(t_game *game)
+t_img	new_file_img(char *path, t_game *game)
 {
-	mlx_put_image_to_window(game->mlx, game->win,
-		game->player.sprite.img_ptr, game->player.location.x * 32,
-		game->player.location.y * 32);
-}
+	t_img	image;
 
-void	load_player_image(t_game *game)
-{
-	game->player.sprite = new_file_img("assets/player_still.xpm", game);
+	image.img_ptr = mlx_xpm_file_to_image(game->mlx, path, &image.w, &image.h);
+	if (!image.img_ptr)
+		print_error("File could not be read\n");
+	else
+		image.addr = mlx_get_data_addr(image.img_ptr, &(image.bpp), &(image.line_len), &(image.endian));
+	return (image);
 }

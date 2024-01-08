@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player.c                                           :+:      :+:    :+:   */
+/*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/06 16:25:56 by llai              #+#    #+#             */
-/*   Updated: 2024/01/08 14:03:40 by llai             ###   ########.fr       */
+/*   Created: 2024/01/08 12:26:17 by llai              #+#    #+#             */
+/*   Updated: 2024/01/08 13:34:02 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	load_player_image(t_game *game);
-
-void	render_player(t_game *game)
+int	print_error(char *msg)
 {
-	mlx_put_image_to_window(game->mlx, game->win,
-		game->player.sprite.img_ptr, game->player.location.x * 32,
-		game->player.location.y * 32);
-}
+	int	len;
 
-void	load_player_image(t_game *game)
-{
-	game->player.sprite = new_file_img("assets/player_still.xpm", game);
+	len = ft_strlen(msg);
+	write(2, msg, len);
+	return (len);
 }
