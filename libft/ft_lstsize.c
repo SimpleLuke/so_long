@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 13:06:25 by llai              #+#    #+#             */
-/*   Updated: 2023/11/08 21:08:05 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/09 16:53:44 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_lstsize(t_list *lst)
 	int	count;
 
 	count = 0;
-	if (lst)
+	while (lst)
 	{
 		lst = lst -> next;
 		count++;

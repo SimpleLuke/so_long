@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 13:09:49 by llai              #+#    #+#             */
-/*   Updated: 2023/11/08 14:58:07 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/09 15:48:01 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_list	*ft_lstlast(t_list *lst)
 {
 	if (!lst)
 		return (NULL);
-	while (lst -> next)
+	while (lst != NULL && lst -> next != NULL)
 		lst = lst -> next;
 	return (lst);
 }

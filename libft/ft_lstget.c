@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:51:55 by llai              #+#    #+#             */
-/*   Updated: 2024/01/08 17:55:51 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/09 12:55:29 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ t_list	*ft_lstget(t_list *lst, int index)
 	if (n == NULL)
 		return (NULL);
 	if (n->next == NULL)
+		return (n);
+	while (n != NULL)
 	{
 		if (i >= index)
 			return (n);

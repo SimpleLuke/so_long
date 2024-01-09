@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 16:25:56 by llai              #+#    #+#             */
-/*   Updated: 2024/01/08 15:22:24 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/09 11:28:55 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,5 @@ void	render_player(t_game *game)
 
 void	load_player_image(t_game *game)
 {
-	game->player.sprite = new_file_img("assets/player_still.xpm", game);
+	game->player.sprite = new_file_img("assets/player_still.xpm", game->base_image.win);
 }

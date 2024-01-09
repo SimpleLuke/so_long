@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:55:50 by llai              #+#    #+#             */
-/*   Updated: 2024/01/08 15:38:25 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/09 18:58:39 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,11 @@ void	replace_ground(t_game *game)
 		// mlx_put_image_to_window(game->mlx, game->win,
 		// 	game->texture.map_exit.img_ptr, game->player.location.x * 32,
 		// 	game->player.location.y * 32);
+	else if (current == 'C')
+	{
+		// game->map[game->player.location.y][game->player.location.x] = '0';
+		render_sprite(game, '0', game->player.location.y, game->player.location.x);
+	}
 	else
 		render_sprite(game, '0', game->player.location.y, game->player.location.x);
 		// mlx_put_image_to_window(game->mlx, game->win,
@@ -92,5 +97,5 @@ void	move_player(t_game *game, enum e_direction dir)
 		replace_ground(game);
 		move_right(game);
 	}
-	mlx_put_image_to_window(game->mlx, game->win, game->base_image.img_ptr, 0, 0);
+	mlx_put_image_to_window(game->base_image.win.mlx, game->base_image.win.win_ptr, game->base_image.img_ptr, 0, 0);
 }
