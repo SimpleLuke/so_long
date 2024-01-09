@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:24:07 by llai              #+#    #+#             */
-/*   Updated: 2024/01/09 18:18:22 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/09 19:13:37 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ t_animation	*slice_sprite(t_sprite s, t_sprite_slice slice, int frames, int dela
 	i = 0;
 	while (i < frames)
 	{
-		ft_printf("%d\n", i);
 		add_frame(a, s, slice);
 		slice.x += slice.width;
 		if (slice.x >= s.width)
@@ -83,5 +82,4 @@ void	destory_sprite(t_sprite s)
 {
 	free(s.name);
 	free(s.file_path);
-	// free_images()
 }

@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:55:50 by llai              #+#    #+#             */
-/*   Updated: 2024/01/09 18:58:39 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/09 19:00:10 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,7 @@ void	replace_ground(t_game *game)
 		// 	game->texture.map_exit.img_ptr, game->player.location.x * 32,
 		// 	game->player.location.y * 32);
 	else if (current == 'C')
-	{
-		// game->map[game->player.location.y][game->player.location.x] = '0';
 		render_sprite(game, '0', game->player.location.y, game->player.location.x);
-	}
 	else
 		render_sprite(game, '0', game->player.location.y, game->player.location.x);
 		// mlx_put_image_to_window(game->mlx, game->win,

@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 14:33:09 by llai              #+#    #+#             */
-/*   Updated: 2024/01/09 17:00:28 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/09 19:41:06 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,7 @@ void	my_mlx_pixel_put(t_player *data, int x, int y, int color);
 
 // Map 
 char	*read_map(t_game *game, char *map);
+void	render_map(t_game *game);
 bool	check_path(t_game *game);
 bool	check_rec(t_game *game, char *map_line);
 bool	check_comp(t_game *game);

@@ -19,7 +19,8 @@ SRC = src/main.c \
 	  src/image.c \
 	  src/debug.c \
 	  src/sprite.c \
-	  src/animation.c
+	  src/animation.c \
+	  src/utils.c
 OBJ = $(SRC:src/%c=$(BIN)/%o)
 INCS = includes
 LIBFT_PATH = libft
@@ -73,7 +74,7 @@ fclean: clean
 re: fclean all
 
 test:
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=valgrind-out.txt ./$(NAME)
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=valgrind-out.txt ./$(NAME) ./map/map.ber
 
 show:
 	@printf "UNAME		: $(UNAME)\n"
