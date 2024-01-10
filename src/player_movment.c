@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:55:50 by llai              #+#    #+#             */
-/*   Updated: 2024/01/10 17:29:38 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/10 19:43:39 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,10 @@ int	keystroke(int keycode, t_game *game)
 	else if (keycode == 100 && !is_wall(game, RIGHT))
 		move_player(game, RIGHT);
 	if (is_end_game(game))
+	{
+		ft_printf("YOU WIN!");
 		game->end_exit.is_end = true;
+	}
 	return (0);
 }
 

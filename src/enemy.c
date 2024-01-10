@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:30:12 by llai              #+#    #+#             */
-/*   Updated: 2024/01/10 17:10:06 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/10 19:54:17 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,21 +45,21 @@ enum e_direction	choose_direction(t_game *game, int i, int j, char **map_copy)
 		map_copy[i - 1][j] = 'M';
 		return (UP);
 	}
-	if (r == DOWN && game->map[i + 1][j] != '1' && game->map[i + 1][j] != 'C'&& game->map[i - 1][j] != 'M')
+	if (r == DOWN && game->map[i + 1][j] != '1' && game->map[i + 1][j] != 'C' && game->map[i + 1][j] != 'M')
 	{
 		ft_printf("DOWN\n");
 		map_copy[i][j] = '0';
 		map_copy[i + 1][j] = 'M';
 		return (DOWN);
 	}
-	if (r == LEFT && game->map[i][j - 1] != '1' && game->map[i][j - 1] != 'C'&& game->map[i - 1][j] != 'M')
+	if (r == LEFT && game->map[i][j - 1] != '1' && game->map[i][j - 1] != 'C'&& game->map[i][j - 1] != 'M')
 	{
 		ft_printf("LEFT\n");
 		map_copy[i][j] = '0';
 		map_copy[i][j - 1] = 'M';
 		return (LEFT);
 	}
-	if (r == RIGHT && game->map[i][j + 1] != '1' && game->map[i][j + 1] != 'C'&& game->map[i - 1][j] != 'M')
+	if (r == RIGHT && game->map[i][j + 1] != '1' && game->map[i][j + 1] != 'C'&& game->map[i][j + 1] != 'M')
 	{
 		ft_printf("RIGHT\n");
 		map_copy[i][j] = '0';

@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 15:24:19 by llai              #+#    #+#             */
-/*   Updated: 2024/01/09 19:03:25 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/10 19:42:03 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,6 @@ void	render_sprite(t_game *game, char type, int row, int col)
 		put_img_to_img(game->base_image, game->texture.player_start, col * 32, row * 32);
 	if (type == 'E')
 		put_img_to_img(game->base_image, game->texture.map_exit, col * 32, row * 32);
+	if (type == 'M')
+		put_img_to_img(game->base_image, game->texture.space, col * 32, row * 32);
 }

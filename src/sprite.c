@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:24:07 by llai              #+#    #+#             */
-/*   Updated: 2024/01/10 10:30:47 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/10 19:49:17 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ t_animation	*slice_sprite(t_sprite s, t_sprite_slice slice, int frames, int dela
 	int	i;
 	t_animation	*a;
 
-	a = (t_animation *)ft_calloc(sizeof(t_animation), 1);
+	// a = (t_animation *)ft_calloc(1, sizeof(t_animation));
+	a = (t_animation *)malloc(sizeof(t_animation));
 	if (!a)
 		return NULL;
 	*a = (t_animation){NULL, slice.width, slice.height, delay, 0, 0, 0, 0, e};
