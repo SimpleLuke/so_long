@@ -20,7 +20,8 @@ SRC = src/main.c \
 	  src/debug.c \
 	  src/sprite.c \
 	  src/animation.c \
-	  src/utils.c
+	  src/utils.c \
+	  src/enemy.c
 OBJ = $(SRC:src/%c=$(BIN)/%o)
 INCS = includes
 LIBFT_PATH = libft

@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 14:18:56 by llai              #+#    #+#             */
-/*   Updated: 2024/01/06 19:39:22 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/10 12:36:37 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,12 @@ int	count_comp(t_game *game, int row, int col)
 	else if (game->map[row][col] == 'P')
 		game->comp.player_start++;
 	else if (game->map[row][col] == 'E')
+	{
 		game->comp.map_exit++;
+		game->end_exit.x = col;
+		game->end_exit.y = row;
+		game->end_exit.points = 0;
+	}
 	else
 		return (1);
 	return (0);

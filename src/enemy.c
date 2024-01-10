@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   enemy.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/06 13:13:22 by llai              #+#    #+#             */
-/*   Updated: 2024/01/10 12:17:36 by llai             ###   ########.fr       */
+/*   Created: 2024/01/10 14:30:12 by llai              #+#    #+#             */
+/*   Updated: 2024/01/10 15:00:52 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+#include <stdlib.h>
 
-void	init_game(t_game *game)
+void	put_enemy(t_game *game)
 {
-	game->steps = 0;
-	game->width = 0;
-	game->height = 0;
-	game->comp.space = 0;
-	game->comp.wall = 0;
-	game->comp.collectible = 0;
-	game->comp.map_exit = 0;
-	game->comp.player_start = 0;
-	game->player.position = DOWN;
-}
+	int	i;
+	int	j;
 
-t_win	new_window(int w, int h, char *str)
-{
-	void	*mlx;
-
-	mlx = mlx_init();
-	return ((t_win){mlx, mlx_new_window(mlx, w, h, str), w, h});
+	i = -1;
+	while (++i < game->height)
+	{
+		j = -1;
+		while (++j < game->width)
+		{
+			if (game->map[i][j] == '0' && rand() > (RAND_MAX / 100 * 80))
+				game->map[i][j] = 'M';
+		}
+	}
 }

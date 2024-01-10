@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:55:50 by llai              #+#    #+#             */
-/*   Updated: 2024/01/09 19:00:10 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/10 13:22:53 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,17 @@ bool	is_wall(t_game *game, enum e_direction dir)
 	return (false);
 }
 
+bool	is_end_game(t_game *game)
+{
+	ft_printf("X: %d, %d\n", game->player.location.x, game->end_exit.x);
+	ft_printf("Y: %d, %d\n", game->player.location.y, game->end_exit.y);
+	ft_printf("P: %d, %d\n", game->comp.collectible, game->end_exit.points);
+	if (game->player.location.x == game->end_exit.x && game->player.location.y == game->end_exit.y)
+		if (game->comp.collectible == game->end_exit.points)
+			return (true);
+	return (false);
+}
+
 int	keystroke(int keycode, t_game *game)
 {
 	if (keycode == 119 && !is_wall(game, UP))
@@ -45,6 +56,8 @@ int	keystroke(int keycode, t_game *game)
 		move_player(game, LEFT);
 	else if (keycode == 100 && !is_wall(game, RIGHT))
 		move_player(game, RIGHT);
+	if (is_end_game(game))
+		destory_game(game);
 	return (0);
 }
 
@@ -74,6 +87,7 @@ void	replace_ground(t_game *game)
 
 void	move_player(t_game *game, enum e_direction dir)
 {
+	ft_printf("YOU HAVE MOVED %d STEPS\n", ++game->steps);
 	if (dir == UP)
 	{
 		replace_ground(game);

@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 14:33:09 by llai              #+#    #+#             */
-/*   Updated: 2024/01/10 12:02:19 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/10 14:30:53 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,7 @@ typedef struct s_win
 	int		height;
 }	t_win;
 
-typedef struct s_plocation
-{
+typedef struct s_plocation {
 	int	x;
 	int	y;
 }	t_plocation;
@@ -103,8 +102,15 @@ enum e_entity
 	PLAYER_UP,
 	PLAYER_DOWN,
 	PLAYER_RIGHT,
-	PLAYER_LEFT
+	PLAYER_LEFT,
+	ENEMY_DOWN
 };
+
+typedef struct s_enemy
+{
+	t_sprite			enemy_sprite;
+	enum e_direction	position;
+}	t_enemy;
 
 typedef struct s_animation
 {
@@ -127,18 +133,28 @@ typedef struct sprite_slice
 	int	height;
 } t_sprite_slice;
 
+typedef struct s_exit
+{
+	int	x;
+	int	y;
+	int	points;
+}	t_exit;
+
 typedef struct s_game
 {
 	int			width;
 	int			height;
+	int			steps;
 	// void		*mlx;
 	// void		*win;
 	char		**map;
 	t_player	player;
+	t_enemy		enemy;
 	t_img		base_image;
 	t_texture	texture;
 	t_comp		comp;
 	t_animation	*animation;
+	t_exit		end_exit;
 }	t_game;
 
 typedef struct s_animator
@@ -207,6 +223,9 @@ void	move_up(t_game *game);
 void	move_down(t_game *game);
 void	move_left(t_game *game);
 void	move_right(t_game *game);
+
+// Enemy
+void	put_enemy(t_game *game);
 
 // Debug
 int		print_error(char *msg);

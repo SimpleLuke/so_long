@@ -6,17 +6,19 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 14:33:39 by llai              #+#    #+#             */
-/*   Updated: 2024/01/10 12:06:15 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/10 14:39:17 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/so_long.h"
 #include <stdlib.h>
+#include <time.h>
 
 int	main(int argc, char **argv)
 {
 	t_game	game;
 	t_win	win;
 
+	srand(time(NULL));
 	if (argc == 2)
 	{
 		init_game(&game);
@@ -34,6 +36,7 @@ int	main(int argc, char **argv)
 		t_sprite s3 = new_sprite("player_up", "assets/player_up.xpm", &win);
 		t_sprite s4 = new_sprite("player_left", "assets/player_left.xpm", &win);
 		t_sprite s5 = new_sprite("player_right", "assets/player_right.xpm", &win);
+		t_sprite s6 = new_sprite("enemy_down", "assets/enemy_down.xpm", &win);
 		// put_img_to_img(game.base_image, game.texture.collectible_sprite.sprite_img, 0, 0);
 		// mlx_put_image_to_window(win.mlx, win.win_ptr, game.texture.collectible_sprite.sprite_img.img_ptr, 0, 0);
 		// t_sprite s1 = game.texture.collectible_sprite;
@@ -47,8 +50,9 @@ int	main(int argc, char **argv)
 		ft_lstadd_back(&game.texture.collectible_sprite.animations, ft_lstnew(slice_sprite(s3, slice1, 4, 0, PLAYER_UP)));
 		ft_lstadd_back(&game.texture.collectible_sprite.animations, ft_lstnew(slice_sprite(s4, slice1, 2, 0, PLAYER_LEFT)));
 		ft_lstadd_back(&game.texture.collectible_sprite.animations, ft_lstnew(slice_sprite(s5, slice1, 2, 0, PLAYER_RIGHT)));
+		ft_lstadd_back(&game.texture.collectible_sprite.animations, ft_lstnew(slice_sprite(s6, slice1, 2, 0, ENEMY_DOWN)));
 		// t_list *list = game.texture.collectible_sprite.animations;
-		ft_printf("Sprite %s [%d %d], loaded %d animations\n", game.texture.collectible_sprite.name, game.texture.collectible_sprite.width, game.texture.collectible_sprite.height, ft_lstsize(game.texture.collectible_sprite.animations));
+		// ft_printf("Sprite %s [%d %d], loaded %d animations\n", game.texture.collectible_sprite.name, game.texture.collectible_sprite.width, game.texture.collectible_sprite.height, ft_lstsize(game.texture.collectible_sprite.animations));
 		// ft_printf("check:%p\n", game.texture.collectible_sprite.animations->content);
 		// t_list *list = ((t_animation *)game.texture.collectible_sprite.animations->content)->frames;
 		// mlx_loop_hook(win.mlx, update, game.texture.collectible_sprite.animations);

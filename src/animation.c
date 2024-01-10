@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:47:39 by llai              #+#    #+#             */
-/*   Updated: 2024/01/10 12:03:24 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/10 15:00:00 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	update(t_game *game)
 	updated_at = timestamp_in_ms();
 	list = game->texture.collectible_sprite.animations;
 	if (!list)
-		return (1);
+		return (-1);
 	// ft_lstiter(list, update_animation);
 	ft_lstiter_param(list, update_animation, game);
 	return (0);
@@ -43,7 +43,10 @@ void	render_collectible_sprite(t_game *game, t_img *img)
 
 	i = -1;
 	if (game->map[game->player.location.y][game->player.location.x] == 'C')
+	{
+		game->end_exit.points += 1;
 		game->map[game->player.location.y][game->player.location.x] = '0';
+	}
 	while (++i < game->height)
 	{
 		j = -1;
@@ -58,7 +61,26 @@ void	render_collectible_sprite(t_game *game, t_img *img)
 				// render_sprite(game, 'C', i, j);
 		}
 	}
+}
 
+void	render_enemy_sprite(t_game *game, t_img *img)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < game->height)
+	{
+		j = -1;
+		while (++j < game->width)
+		{
+			if (game->map[i][j] == 'M')
+			{
+				put_img_to_img(game->base_image, game->texture.space, j * 32, i * 32);
+				put_img_to_img(game->base_image, *img, j * 32, i * 32);
+			}
+		}
+	}
 }
 
 void	render_player_sprite(t_game *game, t_img *img)
@@ -92,7 +114,7 @@ void	update_animation(void *list_p, void *game_p)
 		// a->current_frame_num %= 6;
 	list = ft_lstget(a->frames, a->current_frame_num);
 	img = (t_img *)list->content;
-		// put_img_to_img(game->base_image, *img, 0, 0);
+		// put_img_to_img(game->base_image, *img, -1, 0);
 		// mlx_put_image_to_window(game->mlx, game->win, game->base_image.img_ptr, 0, 0);
 		// ft_printf("CALL: %d\n", a->current_frame_num);
 		// ft_printf("FRAMES: %d\n", ft_lstsize(a->frames));
@@ -107,6 +129,8 @@ void	update_animation(void *list_p, void *game_p)
 		render_player_sprite(game, img);
 	else if (a->entity == PLAYER_RIGHT && game->player.position == RIGHT)
 		render_player_sprite(game, img);
+	else if (a->entity == ENEMY_DOWN)
+		render_enemy_sprite(game, img);
 		// put_img_to_img(game->base_image, *img, 0, 0);
 	mlx_put_image_to_window(img->win.mlx, img->win.win_ptr, game->base_image.img_ptr, 0, 0);
 	// }
