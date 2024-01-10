@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 13:13:22 by llai              #+#    #+#             */
-/*   Updated: 2024/01/09 11:21:54 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/10 12:06:56 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	init_game(t_game *game)
 	game->comp.collectible = 0;
 	game->comp.map_exit = 0;
 	game->comp.player_start = 0;
+	game->player.position = DOWN;
 }
 
 t_win	new_window(int w, int h, char *str)
