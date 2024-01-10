@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 14:18:56 by llai              #+#    #+#             */
-/*   Updated: 2024/01/10 12:36:37 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/10 17:25:06 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ int	count_comp(t_game *game, int row, int col)
 		game->end_exit.x = col;
 		game->end_exit.y = row;
 		game->end_exit.points = 0;
+		game->end_exit.is_end = false;
 	}
 	else
 		return (1);

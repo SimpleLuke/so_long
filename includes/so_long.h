@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 14:33:09 by llai              #+#    #+#             */
-/*   Updated: 2024/01/10 14:30:53 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/10 17:23:50 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ typedef struct s_exit
 	int	x;
 	int	y;
 	int	points;
+	bool	is_end;
 }	t_exit;
 
 typedef struct s_game
@@ -226,6 +227,7 @@ void	move_right(t_game *game);
 
 // Enemy
 void	put_enemy(t_game *game);
+void	move_enemy(t_game *game);
 
 // Debug
 int		print_error(char *msg);

@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 14:33:39 by llai              #+#    #+#             */
-/*   Updated: 2024/01/10 14:39:17 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/10 17:15:02 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/so_long.h"
@@ -56,10 +56,10 @@ int	main(int argc, char **argv)
 		// ft_printf("check:%p\n", game.texture.collectible_sprite.animations->content);
 		// t_list *list = ((t_animation *)game.texture.collectible_sprite.animations->content)->frames;
 		// mlx_loop_hook(win.mlx, update, game.texture.collectible_sprite.animations);
-		mlx_loop_hook(win.mlx, update, &game);
 		mlx_hook(win.win_ptr, 2, 1L << 0, esc_close_win, &game);
 		mlx_hook(win.win_ptr, 17, 0, destory_game, &game);
 		mlx_key_hook(win.win_ptr, keystroke, &game);
+		mlx_loop_hook(win.mlx, update, &game);
 		mlx_loop(game.base_image.win.mlx);
 	}
 	else

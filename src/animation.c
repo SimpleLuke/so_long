@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:47:39 by llai              #+#    #+#             */
-/*   Updated: 2024/01/10 15:00:00 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/10 17:31:26 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@ int	update(t_game *game)
 		return (-1);
 	// ft_lstiter(list, update_animation);
 	ft_lstiter_param(list, update_animation, game);
+	if (game->map[game->player.location.y][game->player.location.x] == 'M' && !game->end_exit.is_end)
+	{
+		ft_printf("YOU LOST\n");
+		game->end_exit.is_end = true;
+	}
 	return (0);
 }
 
@@ -83,6 +88,23 @@ void	render_enemy_sprite(t_game *game, t_img *img)
 	}
 }
 
+void	render_space_sprite(t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < game->height)
+	{
+		j = -1;
+		while (++j < game->width)
+		{
+			if (game->map[i][j] == '0' && i != game->player.location.y && j != game->player.location.x)
+				put_img_to_img(game->base_image, game->texture.space, j * 32, i * 32);
+		}
+	}
+}
+
 void	render_player_sprite(t_game *game, t_img *img)
 {
 	int	x;
@@ -119,6 +141,7 @@ void	update_animation(void *list_p, void *game_p)
 		// ft_printf("CALL: %d\n", a->current_frame_num);
 		// ft_printf("FRAMES: %d\n", ft_lstsize(a->frames));
 		// mlx_put_image_to_window(img->win.mlx, img->win.win_ptr, img->img_ptr, 0, 0);
+	// render_space_sprite(game);
 	if (a->entity == COLLECTIBLE)
 		render_collectible_sprite(game, img);
 	else if (a->entity == PLAYER_DOWN && game->player.position == DOWN)

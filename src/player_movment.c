@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:55:50 by llai              #+#    #+#             */
-/*   Updated: 2024/01/10 13:22:53 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/10 17:29:38 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ bool	is_end_game(t_game *game)
 
 int	keystroke(int keycode, t_game *game)
 {
+	if (game->end_exit.is_end)
+		return (0);
 	if (keycode == 119 && !is_wall(game, UP))
 		move_player(game, UP);
 	else if (keycode == 115 && !is_wall(game, DOWN))
@@ -57,7 +59,7 @@ int	keystroke(int keycode, t_game *game)
 	else if (keycode == 100 && !is_wall(game, RIGHT))
 		move_player(game, RIGHT);
 	if (is_end_game(game))
-		destory_game(game);
+		game->end_exit.is_end = true;
 	return (0);
 }
 
@@ -108,5 +110,6 @@ void	move_player(t_game *game, enum e_direction dir)
 		replace_ground(game);
 		move_right(game);
 	}
+	move_enemy(game);
 	mlx_put_image_to_window(game->base_image.win.mlx, game->base_image.win.win_ptr, game->base_image.img_ptr, 0, 0);
 }
