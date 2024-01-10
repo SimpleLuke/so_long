@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:47:39 by llai              #+#    #+#             */
-/*   Updated: 2024/01/10 10:30:17 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/10 12:03:24 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,18 @@ void	render_collectible_sprite(t_game *game, t_img *img)
 
 }
 
+void	render_player_sprite(t_game *game, t_img *img)
+{
+	int	x;
+	int	y;
+
+	x = game->player.location.x;
+	y = game->player.location.y;
+	put_img_to_img(game->base_image, game->texture.space, x * 32, y * 32);
+	put_img_to_img(game->base_image, *img, x * 32, y * 32);
+
+}
+
 void	update_animation(void *list_p, void *game_p)
 {
 	t_game		*game;
@@ -85,7 +97,16 @@ void	update_animation(void *list_p, void *game_p)
 		// ft_printf("CALL: %d\n", a->current_frame_num);
 		// ft_printf("FRAMES: %d\n", ft_lstsize(a->frames));
 		// mlx_put_image_to_window(img->win.mlx, img->win.win_ptr, img->img_ptr, 0, 0);
-	render_collectible_sprite(game, img);
+	if (a->entity == COLLECTIBLE)
+		render_collectible_sprite(game, img);
+	else if (a->entity == PLAYER_DOWN && game->player.position == DOWN)
+		render_player_sprite(game, img);
+	else if (a->entity == PLAYER_UP && game->player.position == UP)
+		render_player_sprite(game, img);
+	else if (a->entity == PLAYER_LEFT && game->player.position == LEFT)
+		render_player_sprite(game, img);
+	else if (a->entity == PLAYER_RIGHT && game->player.position == RIGHT)
+		render_player_sprite(game, img);
 		// put_img_to_img(game->base_image, *img, 0, 0);
 	mlx_put_image_to_window(img->win.mlx, img->win.win_ptr, game->base_image.img_ptr, 0, 0);
 	// }

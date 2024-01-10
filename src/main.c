@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 14:33:39 by llai              #+#    #+#             */
-/*   Updated: 2024/01/09 22:14:11 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/10 12:06:15 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/so_long.h"
@@ -29,7 +29,11 @@ int	main(int argc, char **argv)
 		// 	(game.mlx, game.width * 32, game.height * 32, "so_long");
 		load_image(&game);
 		render_image(&game);
-		game.texture.collectible_sprite = new_sprite("ball", "assets/collectible-sheet.xpm", &win);
+		t_sprite s1 = new_sprite("ball", "assets/collectible-sheet.xpm", &win);
+		t_sprite s2 = new_sprite("player_down", "assets/player_down.xpm", &win);
+		t_sprite s3 = new_sprite("player_up", "assets/player_up.xpm", &win);
+		t_sprite s4 = new_sprite("player_left", "assets/player_left.xpm", &win);
+		t_sprite s5 = new_sprite("player_right", "assets/player_right.xpm", &win);
 		// put_img_to_img(game.base_image, game.texture.collectible_sprite.sprite_img, 0, 0);
 		// mlx_put_image_to_window(win.mlx, win.win_ptr, game.texture.collectible_sprite.sprite_img.img_ptr, 0, 0);
 		// t_sprite s1 = game.texture.collectible_sprite;
@@ -38,7 +42,11 @@ int	main(int argc, char **argv)
 		// 	destory_sprite(game.texture.collectible_sprite);
 		// }
 		t_sprite_slice	slice1 = (t_sprite_slice){0, 0, 32, 32};
-		ft_lstadd_back(&game.texture.collectible_sprite.animations, ft_lstnew(slice_sprite(game.texture.collectible_sprite, slice1, 6, 2999, 0)));
+		ft_lstadd_back(&game.texture.collectible_sprite.animations, ft_lstnew(slice_sprite(s1, slice1, 6, 0, COLLECTIBLE)));
+		ft_lstadd_back(&game.texture.collectible_sprite.animations, ft_lstnew(slice_sprite(s2, slice1, 4, 0, PLAYER_DOWN)));
+		ft_lstadd_back(&game.texture.collectible_sprite.animations, ft_lstnew(slice_sprite(s3, slice1, 4, 0, PLAYER_UP)));
+		ft_lstadd_back(&game.texture.collectible_sprite.animations, ft_lstnew(slice_sprite(s4, slice1, 2, 0, PLAYER_LEFT)));
+		ft_lstadd_back(&game.texture.collectible_sprite.animations, ft_lstnew(slice_sprite(s5, slice1, 2, 0, PLAYER_RIGHT)));
 		// t_list *list = game.texture.collectible_sprite.animations;
 		ft_printf("Sprite %s [%d %d], loaded %d animations\n", game.texture.collectible_sprite.name, game.texture.collectible_sprite.width, game.texture.collectible_sprite.height, ft_lstsize(game.texture.collectible_sprite.animations));
 		// ft_printf("check:%p\n", game.texture.collectible_sprite.animations->content);

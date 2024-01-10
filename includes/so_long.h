@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 14:33:09 by llai              #+#    #+#             */
-/*   Updated: 2024/01/09 19:41:06 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/10 12:02:19 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct s_img
 typedef struct s_player
 {
 	t_img		sprite;
-	int			position;
+	enum e_direction	position;
 	t_plocation	location;
 }	t_player;
 
@@ -99,7 +99,11 @@ typedef struct s_comp
 
 enum e_entity
 {
-	COLLECTIBLE
+	COLLECTIBLE,
+	PLAYER_UP,
+	PLAYER_DOWN,
+	PLAYER_RIGHT,
+	PLAYER_LEFT
 };
 
 typedef struct s_animation
