@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:47:39 by llai              #+#    #+#             */
-/*   Updated: 2024/01/09 19:45:26 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/10 10:20:22 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,18 @@
 uint64_t	timestamp_in_ms(void);
 uint64_t	updated_at = 0;
 
-int			fps = 32;
+int			fps = 16;
 
 int	update(t_game *game)
 {
 	t_list	*list;
 
 	// ft_printf("timestamp: %d\t update: %d\n", timestamp_in_ms(), updated_at);
-	// if ((timestamp_in_ms() - updated_at) < (uint64_t)(1000 / fps))
-	// 	return (0);
+	// ft_printf("left: %d\t right: %d\n", timestamp_in_ms() - updated_at, 999 / fps);
+	if ((timestamp_in_ms() - updated_at) < (uint64_t)(1000 / fps))
+		return (0);
 	// ft_printf("YES\n");
-	// updated_at = timestamp_in_ms();
+	updated_at = timestamp_in_ms();
 	list = game->texture.collectible_sprite.animations;
 	if (!list)
 		return (1);
@@ -70,21 +71,21 @@ void	update_animation(void *list_p, void *game_p)
 	a = (t_animation *)list_p;
 	if (!a)
 		return ;
-	if (a->_tmp_delay++ == a->delay)
-	{
-		a->_tmp_delay = 0;
-		a->current_frame_num++;
-		a->current_frame_num %= ft_lstsize(a->frames);
+	// if (a->_tmp_delay++ == a->delay)
+	// {
+		// a->_tmp_delay = 0;
+	a->current_frame_num++;
+	a->current_frame_num %= ft_lstsize(a->frames);
 		// a->current_frame_num %= 6;
-		list = ft_lstget(a->frames, a->current_frame_num);
-		img = (t_img *)list->content;
+	list = ft_lstget(a->frames, a->current_frame_num);
+	img = (t_img *)list->content;
 		// put_img_to_img(game->base_image, *img, 0, 0);
 		// mlx_put_image_to_window(game->mlx, game->win, game->base_image.img_ptr, 0, 0);
 		// ft_printf("CALL: %d\n", a->current_frame_num);
 		// ft_printf("FRAMES: %d\n", ft_lstsize(a->frames));
 		// mlx_put_image_to_window(img->win.mlx, img->win.win_ptr, img->img_ptr, 0, 0);
-		render_collectible_sprite(game, img);
+	render_collectible_sprite(game, img);
 		// put_img_to_img(game->base_image, *img, 0, 0);
-		mlx_put_image_to_window(img->win.mlx, img->win.win_ptr, game->base_image.img_ptr, 0, 0);
-	}
+	mlx_put_image_to_window(img->win.mlx, img->win.win_ptr, game->base_image.img_ptr, 0, 0);
+	// }
 }

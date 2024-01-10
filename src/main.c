@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 14:33:39 by llai              #+#    #+#             */
-/*   Updated: 2024/01/09 19:39:39 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/09 22:14:11 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/so_long.h"
@@ -38,7 +38,7 @@ int	main(int argc, char **argv)
 		// 	destory_sprite(game.texture.collectible_sprite);
 		// }
 		t_sprite_slice	slice1 = (t_sprite_slice){0, 0, 32, 32};
-		ft_lstadd_back(&game.texture.collectible_sprite.animations, ft_lstnew(slice_sprite(game.texture.collectible_sprite, slice1, 6, 3000, 0)));
+		ft_lstadd_back(&game.texture.collectible_sprite.animations, ft_lstnew(slice_sprite(game.texture.collectible_sprite, slice1, 6, 2999, 0)));
 		// t_list *list = game.texture.collectible_sprite.animations;
 		ft_printf("Sprite %s [%d %d], loaded %d animations\n", game.texture.collectible_sprite.name, game.texture.collectible_sprite.width, game.texture.collectible_sprite.height, ft_lstsize(game.texture.collectible_sprite.animations));
 		// ft_printf("check:%p\n", game.texture.collectible_sprite.animations->content);
