@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:55:50 by llai              #+#    #+#             */
-/*   Updated: 2024/01/10 19:43:39 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/10 20:44:18 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ bool	is_wall(t_game *game, enum e_direction dir)
 
 bool	is_end_game(t_game *game)
 {
-	ft_printf("X: %d, %d\n", game->player.location.x, game->end_exit.x);
-	ft_printf("Y: %d, %d\n", game->player.location.y, game->end_exit.y);
-	ft_printf("P: %d, %d\n", game->comp.collectible, game->end_exit.points);
+	// ft_printf("X: %d, %d\n", game->player.location.x, game->end_exit.x);
+	// ft_printf("Y: %d, %d\n", game->player.location.y, game->end_exit.y);
+	// ft_printf("P: %d, %d\n", game->comp.collectible, game->end_exit.points);
 	if (game->player.location.x == game->end_exit.x && game->player.location.y == game->end_exit.y)
 		if (game->comp.collectible == game->end_exit.points)
 			return (true);
@@ -63,6 +63,22 @@ int	keystroke(int keycode, t_game *game)
 		ft_printf("YOU WIN!");
 		game->end_exit.is_end = true;
 	}
+	int	i;
+	int	j;
+	int	count;
+
+	count = 0;
+	i = -1;
+	while (++i < game->height)
+	{
+		j = -1;
+		while (++j < game->width)
+		{
+			if (game->map[i][j] == 'M')
+				count++;
+		}
+	}
+	ft_printf("ENEMY:%d\n", count);
 	return (0);
 }
 
