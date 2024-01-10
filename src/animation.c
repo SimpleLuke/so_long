@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:47:39 by llai              #+#    #+#             */
-/*   Updated: 2024/01/10 10:20:22 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/10 10:30:17 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	render_collectible_sprite(t_game *game, t_img *img)
 			if (game->map[i][j] == 'C')
 			{
 				// render_sprite(game, '0', i * 32, j * 32);
+				put_img_to_img(game->base_image, game->texture.space, j * 32, i * 32);
 				put_img_to_img(game->base_image, *img, j * 32, i * 32);
 			}
 				// render_sprite(game, 'C', i, j);
