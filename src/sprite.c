@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:24:07 by llai              #+#    #+#             */
-/*   Updated: 2024/01/10 19:49:17 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/10 20:03:25 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	add_frame(t_animation *a, t_sprite s, t_sprite_slice slice)
 	int		i;
 	int		j;
 
-	frame = (t_img *)ft_calloc(sizeof(t_img), 1);
+	// frame = (t_img *)ft_calloc(sizeof(t_img), 1);
+	frame = (t_img *)ft_calloc(1, sizeof(t_img));
 	if (!frame)
 		return ;
 	*frame = new_img(slice.width, slice.height, s.sprite_img.win);

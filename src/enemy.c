@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:30:12 by llai              #+#    #+#             */
-/*   Updated: 2024/01/10 19:54:17 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/10 20:00:20 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	put_enemy(t_game *game)
 		j = -1;
 		while (++j < game->width)
 		{
-			if (game->map[i][j] == '0' && rand() > (RAND_MAX / 100 * 99))
+			if (game->map[i][j] == '0' && rand() > (RAND_MAX / 100 * 80))
 				game->map[i][j] = 'M';
 		}
 	}

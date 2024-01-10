@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 15:24:19 by llai              #+#    #+#             */
-/*   Updated: 2024/01/10 19:42:03 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/10 19:58:58 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ void	render_map(t_game *game)
 			}
 			else if (game->map[i][j] == 'E')
 				render_sprite(game, 'E', i, j);
+			else if (game->map[i][j] == 'M')
+				render_sprite(game, 'M', i, j);
 		}
 	}
 }
