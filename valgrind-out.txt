@@ -1,1288 +1,1283 @@
-==3853889== Memcheck, a memory error detector
-==3853889== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==3853889== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
-==3853889== Command: ./so_long ./map/map.ber
-==3853889== Parent PID: 3853887
-==3853889== 
---3853889-- 
---3853889-- Valgrind options:
---3853889--    --leak-check=full
---3853889--    --show-leak-kinds=all
---3853889--    --track-origins=yes
---3853889--    --verbose
---3853889--    --log-file=valgrind-out.txt
---3853889-- Contents of /proc/version:
---3853889--   Linux version 5.15.0-91-generic (buildd@lcy02-amd64-045) (gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #101-Ubuntu SMP Tue Nov 14 13:30:08 UTC 2023
---3853889-- 
---3853889-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
---3853889-- Page sizes: currently 4096, max supported 4096
---3853889-- Valgrind library directory: /usr/libexec/valgrind
---3853889-- Reading syms from /nfs/homes/llai/42/so_long/so_long
---3853889-- Reading syms from /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
---3853889--   Considering /usr/lib/debug/.build-id/cc/cdd41e22e25f77a8cda3d045c57ffdb01a9793.debug ..
---3853889--   .. build-id is valid
---3853889-- Reading syms from /usr/libexec/valgrind/memcheck-amd64-linux
---3853889--    object doesn't have a symbol table
---3853889--    object doesn't have a dynamic symbol table
---3853889-- Scheduler: using generic scheduler lock implementation.
---3853889-- Reading suppressions file: /usr/libexec/valgrind/default.supp
-==3853889== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-3853889-by-llai-on-???
-==3853889== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-3853889-by-llai-on-???
-==3853889== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-3853889-by-llai-on-???
-==3853889== 
-==3853889== TO CONTROL THIS PROCESS USING vgdb (which you probably
-==3853889== don't want to do, unless you know exactly what you're doing,
-==3853889== or are doing some strange experiment):
-==3853889==   /usr/bin/vgdb --pid=3853889 ...command...
-==3853889== 
-==3853889== TO DEBUG THIS PROCESS USING GDB: start GDB like this
-==3853889==   /path/to/gdb ./so_long
-==3853889== and then give GDB the following command
-==3853889==   target remote | /usr/bin/vgdb --pid=3853889
-==3853889== --pid is optional if only one valgrind process is running
-==3853889== 
---3853889-- REDIR: 0x402aa40 (ld-linux-x86-64.so.2:strlen) redirected to 0x580bcec2 (???)
---3853889-- REDIR: 0x402a810 (ld-linux-x86-64.so.2:index) redirected to 0x580bcedc (???)
---3853889-- Reading syms from /usr/libexec/valgrind/vgpreload_core-amd64-linux.so
---3853889--    object doesn't have a symbol table
---3853889-- Reading syms from /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so
---3853889--    object doesn't have a symbol table
-==3853889== WARNING: new redirection conflicts with existing -- ignoring it
---3853889--     old: 0x0402aa40 (strlen              ) R-> (0000.0) 0x580bcec2 ???
---3853889--     new: 0x0402aa40 (strlen              ) R-> (2007.0) 0x0484ee30 strlen
---3853889-- REDIR: 0x4027220 (ld-linux-x86-64.so.2:strcmp) redirected to 0x484fcd0 (strcmp)
---3853889-- REDIR: 0x402afa0 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4853840 (mempcpy)
---3853889-- Reading syms from /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0
---3853889--    object doesn't have a symbol table
---3853889-- Reading syms from /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
---3853889--    object doesn't have a symbol table
---3853889-- Reading syms from /usr/lib/x86_64-linux-gnu/libc.so.6
---3853889--   Considering /usr/lib/debug/.build-id/20/3de0ae33b53fee1578b117cb4123e85d0534f0.debug ..
---3853889--   .. build-id is valid
-==3853889== WARNING: new redirection conflicts with existing -- ignoring it
---3853889--     old: 0x04a6bc60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---3853889--     new: 0x04a6bc60 (memalign            ) R-> (1017.0) 0x0484e050 aligned_alloc
-==3853889== WARNING: new redirection conflicts with existing -- ignoring it
---3853889--     old: 0x04a6bc60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---3853889--     new: 0x04a6bc60 (memalign            ) R-> (1017.0) 0x0484e020 aligned_alloc
-==3853889== WARNING: new redirection conflicts with existing -- ignoring it
---3853889--     old: 0x04a6bc60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---3853889--     new: 0x04a6bc60 (memalign            ) R-> (1017.0) 0x0484e050 aligned_alloc
-==3853889== WARNING: new redirection conflicts with existing -- ignoring it
---3853889--     old: 0x04a6bc60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---3853889--     new: 0x04a6bc60 (memalign            ) R-> (1017.0) 0x0484e020 aligned_alloc
---3853889-- Reading syms from /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
---3853889--    object doesn't have a symbol table
---3853889-- Reading syms from /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
---3853889--    object doesn't have a symbol table
---3853889-- Reading syms from /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
---3853889--    object doesn't have a symbol table
---3853889-- Reading syms from /usr/lib/x86_64-linux-gnu/libbsd.so.0.11.5
---3853889--    object doesn't have a symbol table
---3853889-- Reading syms from /usr/lib/x86_64-linux-gnu/libmd.so.0.0.5
---3853889--    object doesn't have a symbol table
---3853889-- REDIR: 0x4a6e720 (libc.so.6:strnlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---3853889-- REDIR: 0x4a6e9e0 (libc.so.6:strpbrk) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---3853889-- REDIR: 0x4a6e2e0 (libc.so.6:strcmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---3853889-- REDIR: 0x4a8ccd0 (libc.so.6:wcsnlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---3853889-- REDIR: 0x4a6f6d0 (libc.so.6:memset) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---3853889-- REDIR: 0x4a8b540 (libc.so.6:wcslen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---3853889-- REDIR: 0x4a6fc10 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---3853889-- REDIR: 0x4a8b370 (libc.so.6:wcschr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---3853889-- REDIR: 0x4a6e260 (libc.so.6:index) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---3853889-- REDIR: 0x4a6e960 (libc.so.6:rindex) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---3853889-- REDIR: 0x4a6f5a0 (libc.so.6:memmove) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
-==3853889== Preferring higher priority redirection:
---3853889--     old: 0x04b665c0 (__memcpy_avx_unalign) R-> (2018.0) 0x04850f90 __memcpy_avx_unaligned_erms
---3853889--     new: 0x04b665c0 (__memcpy_avx_unalign) R-> (2018.1) 0x04852880 memmove
---3853889-- REDIR: 0x4a8b3f0 (libc.so.6:wcscmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---3853889-- REDIR: 0x4a6f9e0 (libc.so.6:stpncpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---3853889-- REDIR: 0x4a8b9b0 (libc.so.6:wmemchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---3853889-- REDIR: 0x4a6e830 (libc.so.6:strncmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---3853889-- REDIR: 0x4a6fa70 (libc.so.6:strcasecmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---3853889-- REDIR: 0x4a6e420 (libc.so.6:strcspn) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---3853889-- REDIR: 0x4a8b470 (libc.so.6:wcscpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---3853889-- REDIR: 0x4a6e1d0 (libc.so.6:strcat) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---3853889-- REDIR: 0x4a6fb60 (libc.so.6:strncasecmp_l) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---3853889-- REDIR: 0x4a6f480 (libc.so.6:bcmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---3853889-- REDIR: 0x4a77570 (libc.so.6:memrchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---3853889-- REDIR: 0x4a71010 (libc.so.6:strchrnul) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---3853889-- REDIR: 0x4a6e390 (libc.so.6:strcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---3853889-- REDIR: 0x4a6fb10 (libc.so.6:strcasecmp_l) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---3853889-- REDIR: 0x4a6e6a0 (libc.so.6:strlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---3853889-- REDIR: 0x4a6e8d0 (libc.so.6:strncpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---3853889-- REDIR: 0x4a6f950 (libc.so.6:stpcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---3853889-- REDIR: 0x4a6f3f0 (libc.so.6:memchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---3853889-- REDIR: 0x4a6eb00 (libc.so.6:strspn) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---3853889-- REDIR: 0x4a6f7d0 (libc.so.6:mempcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---3853889-- REDIR: 0x4a6fac0 (libc.so.6:strncasecmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---3853889-- REDIR: 0x4a70f80 (libc.so.6:rawmemchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---3853889-- REDIR: 0x4b63410 (libc.so.6:__strrchr_avx2) redirected to 0x484e810 (rindex)
---3853889-- REDIR: 0x4a6b0a0 (libc.so.6:malloc) redirected to 0x4848820 (malloc)
---3853889-- REDIR: 0x4a6b3e0 (libc.so.6:free) redirected to 0x484b210 (free)
---3853889-- REDIR: 0x4b635e0 (libc.so.6:__strlen_avx2) redirected to 0x484ed10 (strlen)
---3853889-- REDIR: 0x4b5eb80 (libc.so.6:__strncmp_avx2) redirected to 0x484f3e0 (strncmp)
---3853889-- REDIR: 0x4a6c520 (libc.so.6:calloc) redirected to 0x484d9d0 (calloc)
---3853889-- REDIR: 0x4b665c0 (libc.so.6:__memcpy_avx_unaligned_erms) redirected to 0x4852880 (memmove)
---3853889-- REDIR: 0x4b63200 (libc.so.6:__strchrnul_avx2) redirected to 0x4853330 (strchrnul)
---3853889-- REDIR: 0x4afa5f0 (libc.so.6:__strcpy_chk) redirected to 0x48533a0 (__strcpy_chk)
---3853889-- REDIR: 0x4a6efc0 (libc.so.6:__GI_strstr) redirected to 0x4853ae0 (__strstr_sse2)
---3853889-- REDIR: 0x4b5f880 (libc.so.6:__memcmp_avx2_movbe) redirected to 0x4852010 (bcmp)
---3853889-- REDIR: 0x4b66d80 (libc.so.6:__memset_avx2_unaligned_erms) redirected to 0x4852770 (memset)
---3853889-- REDIR: 0x4a6b740 (libc.so.6:realloc) redirected to 0x484dc50 (realloc)
---3853889-- REDIR: 0x4b64e40 (libc.so.6:__strncpy_avx2) redirected to 0x484efe0 (strncpy)
---3853889-- REDIR: 0x4b5e740 (libc.so.6:__strcmp_avx2) redirected to 0x484fbd0 (strcmp)
---3853889-- REDIR: 0x4b64ab0 (libc.so.6:__strcpy_avx2) redirected to 0x484ee60 (strcpy)
---3853889-- REDIR: 0x4b5ff30 (libc.so.6:__strcasecmp_avx) redirected to 0x484f560 (strcasecmp)
-==3853889== Conditional jump or move depends on uninitialised value(s)
-==3853889==    at 0x113611: ft_lstadd_back (ft_lstadd_back.c:29)
-==3853889==    by 0x10EC32: main (main.c:48)
-==3853889==  Uninitialised value was created by a stack allocation
-==3853889==    at 0x10E971: main (main.c:17)
-==3853889== 
-==3853889== 
-==3853889== HEAP SUMMARY:
-==3853889==     in use at exit: 118,599 bytes in 241 blocks
-==3853889==   total heap usage: 218,400 allocs, 218,159 frees, 5,384,795 bytes allocated
-==3853889== 
-==3853889== Searching for pointers to 241 not-freed blocks
-==3853889== Checked 899,624 bytes
-==3853889== 
-==3853889== 3 bytes in 1 blocks are still reachable in loss record 1 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x4A6E58E: strdup (strdup.c:42)
-==3853889==    by 0x48B5B45: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x113D57: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F0C9: new_window (init.c:32)
-==3853889==    by 0x10EA0C: main (main.c:26)
-==3853889== 
-==3853889== 5 bytes in 1 blocks are still reachable in loss record 2 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x112772: ft_strdup (ft_strdup.c:29)
-==3853889==    by 0x11126F: new_sprite (sprite.c:20)
-==3853889==    by 0x10EAA5: main (main.c:34)
-==3853889== 
-==3853889== 8 bytes in 1 blocks are still reachable in loss record 3 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x4A6E58E: strdup (strdup.c:42)
-==3853889==    by 0x48B29AE: XInitExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x4877820: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x487C9E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x113B83: mlx_int_deal_shm (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x113E11: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F0C9: new_window (init.c:32)
-==3853889==    by 0x10EA0C: main (main.c:26)
-==3853889== 
-==3853889== 8 bytes in 1 blocks are still reachable in loss record 4 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x4875B34: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x48779DF: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x487C9E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x113B83: mlx_int_deal_shm (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x113E11: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F0C9: new_window (init.c:32)
-==3853889==    by 0x10EA0C: main (main.c:26)
-==3853889== 
-==3853889== 10 bytes in 1 blocks are still reachable in loss record 5 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x4A6E58E: strdup (strdup.c:42)
-==3853889==    by 0x48B29AE: XInitExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x491C213: XkbUseExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x48B66A8: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x113D57: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F0C9: new_window (init.c:32)
-==3853889==    by 0x10EA0C: main (main.c:26)
-==3853889== 
-==3853889== 10 bytes in 1 blocks are still reachable in loss record 6 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x112772: ft_strdup (ft_strdup.c:29)
-==3853889==    by 0x11126F: new_sprite (sprite.c:20)
-==3853889==    by 0x10EAF3: main (main.c:36)
-==3853889== 
-==3853889== 11 bytes in 1 blocks are still reachable in loss record 7 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x112772: ft_strdup (ft_strdup.c:29)
-==3853889==    by 0x11126F: new_sprite (sprite.c:20)
-==3853889==    by 0x10EB68: main (main.c:39)
-==3853889== 
-==3853889== 12 bytes in 1 blocks are still reachable in loss record 8 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x112772: ft_strdup (ft_strdup.c:29)
-==3853889==    by 0x11126F: new_sprite (sprite.c:20)
-==3853889==    by 0x10EACC: main (main.c:35)
-==3853889== 
-==3853889== 12 bytes in 1 blocks are still reachable in loss record 9 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x112772: ft_strdup (ft_strdup.c:29)
-==3853889==    by 0x11126F: new_sprite (sprite.c:20)
-==3853889==    by 0x10EB1A: main (main.c:37)
-==3853889== 
-==3853889== 13 bytes in 1 blocks are still reachable in loss record 10 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x112772: ft_strdup (ft_strdup.c:29)
-==3853889==    by 0x11126F: new_sprite (sprite.c:20)
-==3853889==    by 0x10EB41: main (main.c:38)
-==3853889== 
-==3853889== 16 bytes in 1 blocks are still reachable in loss record 11 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x4BFD2EE: xcb_connect_to_fd (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
-==3853889==    by 0x4BFDE6B: xcb_connect_to_display_with_auth_info (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
-==3853889==    by 0x48C5EE9: _XConnectXCB (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x48B5B68: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x113D57: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F0C9: new_window (init.c:32)
-==3853889==    by 0x10EA0C: main (main.c:26)
-==3853889== 
-==3853889== 16 bytes in 1 blocks are still reachable in loss record 12 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x11358B: ft_lstnew (ft_lstnew.c:29)
-==3853889==    by 0x10EC17: main (main.c:48)
-==3853889== 
-==3853889== 16 bytes in 1 blocks are still reachable in loss record 13 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x11358B: ft_lstnew (ft_lstnew.c:29)
-==3853889==    by 0x10ECB9: main (main.c:49)
-==3853889== 
-==3853889== 16 bytes in 1 blocks are still reachable in loss record 14 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x11358B: ft_lstnew (ft_lstnew.c:29)
-==3853889==    by 0x10ED5B: main (main.c:50)
-==3853889== 
-==3853889== 16 bytes in 1 blocks are still reachable in loss record 15 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x11358B: ft_lstnew (ft_lstnew.c:29)
-==3853889==    by 0x10EDFD: main (main.c:51)
-==3853889== 
-==3853889== 16 bytes in 1 blocks are still reachable in loss record 16 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x11358B: ft_lstnew (ft_lstnew.c:29)
-==3853889==    by 0x10EE9F: main (main.c:52)
-==3853889== 
-==3853889== 16 bytes in 1 blocks are still reachable in loss record 17 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x11358B: ft_lstnew (ft_lstnew.c:29)
-==3853889==    by 0x10EF41: main (main.c:53)
-==3853889== 
-==3853889== 21 bytes in 1 blocks are still reachable in loss record 18 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48B603E: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x113D57: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F0C9: new_window (init.c:32)
-==3853889==    by 0x10EA0C: main (main.c:26)
-==3853889== 
-==3853889== 21 bytes in 1 blocks are still reachable in loss record 19 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x112772: ft_strdup (ft_strdup.c:29)
-==3853889==    by 0x111281: new_sprite (sprite.c:20)
-==3853889==    by 0x10EAF3: main (main.c:36)
-==3853889== 
-==3853889== 22 bytes in 1 blocks are still reachable in loss record 20 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x112772: ft_strdup (ft_strdup.c:29)
-==3853889==    by 0x111281: new_sprite (sprite.c:20)
-==3853889==    by 0x10EB68: main (main.c:39)
-==3853889== 
-==3853889== 23 bytes in 1 blocks are still reachable in loss record 21 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x112772: ft_strdup (ft_strdup.c:29)
-==3853889==    by 0x111281: new_sprite (sprite.c:20)
-==3853889==    by 0x10EACC: main (main.c:35)
-==3853889== 
-==3853889== 23 bytes in 1 blocks are still reachable in loss record 22 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x112772: ft_strdup (ft_strdup.c:29)
-==3853889==    by 0x111281: new_sprite (sprite.c:20)
-==3853889==    by 0x10EB1A: main (main.c:37)
-==3853889== 
-==3853889== 24 bytes in 1 blocks are still reachable in loss record 23 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x4877041: XextCreateExtension (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x48774CC: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x48779C8: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x487C9E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x113B83: mlx_int_deal_shm (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x113E11: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F0C9: new_window (init.c:32)
-==3853889==    by 0x10EA0C: main (main.c:26)
-==3853889== 
-==3853889== 24 bytes in 1 blocks are still reachable in loss record 24 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x4A6E58E: strdup (strdup.c:42)
-==3853889==    by 0x48B29AE: XInitExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x4877820: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x487750A: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x48779C8: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x487C9E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x113B83: mlx_int_deal_shm (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x113E11: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F0C9: new_window (init.c:32)
-==3853889==    by 0x10EA0C: main (main.c:26)
-==3853889== 
-==3853889== 24 bytes in 1 blocks are still reachable in loss record 25 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48779F5: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x487C9E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x113B83: mlx_int_deal_shm (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x113E11: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F0C9: new_window (init.c:32)
-==3853889==    by 0x10EA0C: main (main.c:26)
-==3853889== 
-==3853889== 24 bytes in 1 blocks are still reachable in loss record 26 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x112772: ft_strdup (ft_strdup.c:29)
-==3853889==    by 0x111281: new_sprite (sprite.c:20)
-==3853889==    by 0x10EB41: main (main.c:38)
-==3853889== 
-==3853889== 24 bytes in 1 blocks are still reachable in loss record 27 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48C3A65: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x48CC2C6: _XReply (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x48CC77E: XSync (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x1140E7: mlx_loop (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F005: main (main.c:63)
-==3853889== 
-==3853889== 29 bytes in 1 blocks are still reachable in loss record 28 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48AF0CD: _XUpdateAtomCache (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x48B1929: XInternAtom (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x113E02: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F0C9: new_window (init.c:32)
-==3853889==    by 0x10EA0C: main (main.c:26)
-==3853889== 
-==3853889== 29 bytes in 1 blocks are still reachable in loss record 29 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x112772: ft_strdup (ft_strdup.c:29)
-==3853889==    by 0x111281: new_sprite (sprite.c:20)
-==3853889==    by 0x10EAA5: main (main.c:34)
-==3853889== 
-==3853889== 32 bytes in 1 blocks are still reachable in loss record 30 of 128
-==3853889==    at 0x48487A9: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x4C0115E: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
-==3853889==    by 0x4C01237: xcb_get_extension_data (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
-==3853889==    by 0x4C012EE: xcb_prefetch_maximum_request_length (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
-==3853889==    by 0x4C01364: xcb_get_maximum_request_length (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
-==3853889==    by 0x48B652B: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x113D57: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F0C9: new_window (init.c:32)
-==3853889==    by 0x10EA0C: main (main.c:26)
-==3853889== 
-==3853889== 32 bytes in 1 blocks are still reachable in loss record 31 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x4BFA1B7: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
-==3853889==    by 0x4BFAA08: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
-==3853889==    by 0x4BFAEB0: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
-==3853889==    by 0x4BFBE44: xcb_wait_for_reply (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
-==3853889==    by 0x4C01292: xcb_get_extension_data (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
-==3853889==    by 0x4C012EE: xcb_prefetch_maximum_request_length (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
-==3853889==    by 0x4C01364: xcb_get_maximum_request_length (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
-==3853889==    by 0x48B652B: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x113D57: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F0C9: new_window (init.c:32)
-==3853889==    by 0x10EA0C: main (main.c:26)
-==3853889== 
-==3853889== 32 bytes in 1 blocks are still reachable in loss record 32 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48777FF: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x487C9E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x113B83: mlx_int_deal_shm (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x113E11: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F0C9: new_window (init.c:32)
-==3853889==    by 0x10EA0C: main (main.c:26)
-==3853889== 
-==3853889== 32 bytes in 1 blocks are still reachable in loss record 33 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48777FF: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x487750A: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x48779C8: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x487C9E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x113B83: mlx_int_deal_shm (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x113E11: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F0C9: new_window (init.c:32)
-==3853889==    by 0x10EA0C: main (main.c:26)
-==3853889== 
-==3853889== 32 bytes in 2 blocks are still reachable in loss record 34 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x11358B: ft_lstnew (ft_lstnew.c:29)
-==3853889==    by 0x111498: add_frame (sprite.c:46)
-==3853889==    by 0x1115BF: slice_sprite (sprite.c:62)
-==3853889==    by 0x10EDF1: main (main.c:51)
-==3853889== 
-==3853889== 32 bytes in 2 blocks are still reachable in loss record 35 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x11358B: ft_lstnew (ft_lstnew.c:29)
-==3853889==    by 0x111498: add_frame (sprite.c:46)
-==3853889==    by 0x1115BF: slice_sprite (sprite.c:62)
-==3853889==    by 0x10EE93: main (main.c:52)
-==3853889== 
-==3853889== 32 bytes in 2 blocks are still reachable in loss record 36 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x11358B: ft_lstnew (ft_lstnew.c:29)
-==3853889==    by 0x111498: add_frame (sprite.c:46)
-==3853889==    by 0x1115BF: slice_sprite (sprite.c:62)
-==3853889==    by 0x10EF35: main (main.c:53)
-==3853889== 
-==3853889== 33 bytes in 1 blocks are still reachable in loss record 37 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48AF0CD: _XUpdateAtomCache (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x48B1929: XInternAtom (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x113DEB: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F0C9: new_window (init.c:32)
-==3853889==    by 0x10EA0C: main (main.c:26)
-==3853889== 
-==3853889== 40 bytes in 1 blocks are still reachable in loss record 38 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x1104D1: convert_map (map_utils.c:33)
-==3853889==    by 0x110342: read_map (map.c:51)
-==3853889==    by 0x10E9E0: main (main.c:25)
-==3853889== 
-==3853889== 40 bytes in 1 blocks are still reachable in loss record 39 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48C61F1: _XPollfdCacheInit (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x48B5E71: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x113D57: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F0C9: new_window (init.c:32)
-==3853889==    by 0x10EA0C: main (main.c:26)
-==3853889== 
-==3853889== 48 bytes in 1 blocks are still reachable in loss record 40 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48C5E71: _XConnectXCB (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x48B5B68: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x113D57: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F0C9: new_window (init.c:32)
-==3853889==    by 0x10EA0C: main (main.c:26)
-==3853889== 
-==3853889== 48 bytes in 1 blocks are still reachable in loss record 41 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48C5E87: _XConnectXCB (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x48B5B68: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x113D57: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F0C9: new_window (init.c:32)
-==3853889==    by 0x10EA0C: main (main.c:26)
-==3853889== 
-==3853889== 48 bytes in 1 blocks are still reachable in loss record 42 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x49144C0: XkbGetMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x4914542: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x49148AF: XkbKeycodeToKeysym (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x115937: mlx_int_param_KeyPress (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114155: mlx_loop (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F005: main (main.c:63)
-==3853889== 
-==3853889== 56 bytes in 1 blocks are still reachable in loss record 43 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x1114FE: slice_sprite (sprite.c:55)
-==3853889==    by 0x10EC0B: main (main.c:48)
-==3853889== 
-==3853889== 56 bytes in 1 blocks are still reachable in loss record 44 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x1114FE: slice_sprite (sprite.c:55)
-==3853889==    by 0x10ECAD: main (main.c:49)
-==3853889== 
-==3853889== 56 bytes in 1 blocks are still reachable in loss record 45 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x1114FE: slice_sprite (sprite.c:55)
-==3853889==    by 0x10ED4F: main (main.c:50)
-==3853889== 
-==3853889== 56 bytes in 1 blocks are still reachable in loss record 46 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x1114FE: slice_sprite (sprite.c:55)
-==3853889==    by 0x10EDF1: main (main.c:51)
-==3853889== 
-==3853889== 56 bytes in 1 blocks are still reachable in loss record 47 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x1114FE: slice_sprite (sprite.c:55)
-==3853889==    by 0x10EE93: main (main.c:52)
-==3853889== 
-==3853889== 56 bytes in 1 blocks are still reachable in loss record 48 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x1114FE: slice_sprite (sprite.c:55)
-==3853889==    by 0x10EF35: main (main.c:53)
-==3853889== 
-==3853889== 64 bytes in 4 blocks are still reachable in loss record 49 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x11358B: ft_lstnew (ft_lstnew.c:29)
-==3853889==    by 0x111498: add_frame (sprite.c:46)
-==3853889==    by 0x1115BF: slice_sprite (sprite.c:62)
-==3853889==    by 0x10ECAD: main (main.c:49)
-==3853889== 
-==3853889== 64 bytes in 4 blocks are still reachable in loss record 50 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x11358B: ft_lstnew (ft_lstnew.c:29)
-==3853889==    by 0x111498: add_frame (sprite.c:46)
-==3853889==    by 0x1115BF: slice_sprite (sprite.c:62)
-==3853889==    by 0x10ED4F: main (main.c:50)
-==3853889== 
-==3853889== 65 bytes in 5 blocks are still reachable in loss record 51 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x11050A: convert_map (map_utils.c:35)
-==3853889==    by 0x110342: read_map (map.c:51)
-==3853889==    by 0x10E9E0: main (main.c:25)
-==3853889== 
-==3853889== 72 bytes in 1 blocks are still reachable in loss record 52 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48B5F20: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x113D57: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F0C9: new_window (init.c:32)
-==3853889==    by 0x10EA0C: main (main.c:26)
-==3853889== 
-==3853889== 72 bytes in 1 blocks are still reachable in loss record 53 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x49144A4: XkbGetMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x4914542: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x49148AF: XkbKeycodeToKeysym (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x115937: mlx_int_param_KeyPress (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114155: mlx_loop (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F005: main (main.c:63)
-==3853889== 
-==3853889== 88 bytes in 1 blocks are still reachable in loss record 54 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x11441B: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114742: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115027: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115454: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x110EEA: new_file_img (image.c:20)
-==3853889==    by 0x10FA05: load_map_image (render.c:37)
-==3853889==    by 0x10F9A2: load_image (render.c:31)
-==3853889==    by 0x10EA6F: main (main.c:32)
-==3853889== 
-==3853889== 88 bytes in 1 blocks are still reachable in loss record 55 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x11441B: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114742: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115027: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115454: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x110EEA: new_file_img (image.c:20)
-==3853889==    by 0x10FA95: load_map_image (render.c:38)
-==3853889==    by 0x10F9A2: load_image (render.c:31)
-==3853889==    by 0x10EA6F: main (main.c:32)
-==3853889== 
-==3853889== 88 bytes in 1 blocks are still reachable in loss record 56 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x11441B: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114742: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115027: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115454: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x110EEA: new_file_img (image.c:20)
-==3853889==    by 0x10FB25: load_map_image (render.c:39)
-==3853889==    by 0x10F9A2: load_image (render.c:31)
-==3853889==    by 0x10EA6F: main (main.c:32)
-==3853889== 
-==3853889== 88 bytes in 1 blocks are still reachable in loss record 57 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x11441B: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114742: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115027: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115454: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x110EEA: new_file_img (image.c:20)
-==3853889==    by 0x10FBB5: load_map_image (render.c:40)
-==3853889==    by 0x10F9A2: load_image (render.c:31)
-==3853889==    by 0x10EA6F: main (main.c:32)
-==3853889== 
-==3853889== 88 bytes in 1 blocks are still reachable in loss record 58 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x11441B: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114742: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115027: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115454: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x110EEA: new_file_img (image.c:20)
-==3853889==    by 0x10FC45: load_map_image (render.c:41)
-==3853889==    by 0x10F9A2: load_image (render.c:31)
-==3853889==    by 0x10EA6F: main (main.c:32)
-==3853889== 
-==3853889== 88 bytes in 1 blocks are still reachable in loss record 59 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x11441B: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114742: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115027: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115454: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x110EEA: new_file_img (image.c:20)
-==3853889==    by 0x110E2F: load_player_image (player.c:27)
-==3853889==    by 0x10F9AE: load_image (render.c:32)
-==3853889==    by 0x10EA6F: main (main.c:32)
-==3853889== 
-==3853889== 88 bytes in 1 blocks are still reachable in loss record 60 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x11441B: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114742: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x110FE3: new_img (image.c:33)
-==3853889==    by 0x10F8C3: render_image (render.c:23)
-==3853889==    by 0x10EA7E: main (main.c:33)
-==3853889== 
-==3853889== 88 bytes in 1 blocks are still reachable in loss record 61 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x11441B: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114742: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115027: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115454: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x110EEA: new_file_img (image.c:20)
-==3853889==    by 0x11125C: new_sprite (sprite.c:19)
-==3853889==    by 0x10EAA5: main (main.c:34)
-==3853889== 
-==3853889== 88 bytes in 1 blocks are still reachable in loss record 62 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x11441B: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114742: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115027: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115454: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x110EEA: new_file_img (image.c:20)
-==3853889==    by 0x11125C: new_sprite (sprite.c:19)
-==3853889==    by 0x10EACC: main (main.c:35)
-==3853889== 
-==3853889== 88 bytes in 1 blocks are still reachable in loss record 63 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x11441B: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114742: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115027: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115454: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x110EEA: new_file_img (image.c:20)
-==3853889==    by 0x11125C: new_sprite (sprite.c:19)
-==3853889==    by 0x10EAF3: main (main.c:36)
-==3853889== 
-==3853889== 88 bytes in 1 blocks are still reachable in loss record 64 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x11441B: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114742: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115027: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115454: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x110EEA: new_file_img (image.c:20)
-==3853889==    by 0x11125C: new_sprite (sprite.c:19)
-==3853889==    by 0x10EB1A: main (main.c:37)
-==3853889== 
-==3853889== 88 bytes in 1 blocks are still reachable in loss record 65 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x11441B: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114742: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115027: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115454: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x110EEA: new_file_img (image.c:20)
-==3853889==    by 0x11125C: new_sprite (sprite.c:19)
-==3853889==    by 0x10EB41: main (main.c:38)
-==3853889== 
-==3853889== 88 bytes in 1 blocks are still reachable in loss record 66 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x11441B: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114742: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115027: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115454: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x110EEA: new_file_img (image.c:20)
-==3853889==    by 0x11125C: new_sprite (sprite.c:19)
-==3853889==    by 0x10EB68: main (main.c:39)
-==3853889== 
-==3853889== 96 bytes in 6 blocks are still reachable in loss record 67 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x11358B: ft_lstnew (ft_lstnew.c:29)
-==3853889==    by 0x111498: add_frame (sprite.c:46)
-==3853889==    by 0x1115BF: slice_sprite (sprite.c:62)
-==3853889==    by 0x10EC0B: main (main.c:48)
-==3853889== 
-==3853889== 112 bytes in 1 blocks are still reachable in loss record 68 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48C5D72: _XConnectXCB (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x48B5B68: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x113D57: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F0C9: new_window (init.c:32)
-==3853889==    by 0x10EA0C: main (main.c:26)
-==3853889== 
-==3853889== 112 bytes in 1 blocks are still reachable in loss record 69 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48B6200: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x113D57: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F0C9: new_window (init.c:32)
-==3853889==    by 0x10EA0C: main (main.c:26)
-==3853889== 
-==3853889== 128 bytes in 1 blocks are still reachable in loss record 70 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48B612E: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x113D57: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F0C9: new_window (init.c:32)
-==3853889==    by 0x10EA0C: main (main.c:26)
-==3853889== 
-==3853889== 128 bytes in 1 blocks are still reachable in loss record 71 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48B299E: XInitExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x491C213: XkbUseExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x48B66A8: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x113D57: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F0C9: new_window (init.c:32)
-==3853889==    by 0x10EA0C: main (main.c:26)
-==3853889== 
-==3853889== 128 bytes in 1 blocks are still reachable in loss record 72 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48B299E: XInitExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x4877820: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x487C9E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x113B83: mlx_int_deal_shm (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x113E11: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F0C9: new_window (init.c:32)
-==3853889==    by 0x10EA0C: main (main.c:26)
-==3853889== 
-==3853889== 128 bytes in 1 blocks are still reachable in loss record 73 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48B299E: XInitExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x4877820: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x487750A: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x48779C8: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x487C9E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x113B83: mlx_int_deal_shm (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x113E11: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F0C9: new_window (init.c:32)
-==3853889==    by 0x10EA0C: main (main.c:26)
-==3853889== 
-==3853889== 128 bytes in 2 blocks are still reachable in loss record 74 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x112718: ft_calloc (ft_calloc.c:31)
-==3853889==    by 0x11137B: add_frame (sprite.c:29)
-==3853889==    by 0x1115BF: slice_sprite (sprite.c:62)
-==3853889==    by 0x10EDF1: main (main.c:51)
-==3853889== 
-==3853889== 128 bytes in 2 blocks are still reachable in loss record 75 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x112718: ft_calloc (ft_calloc.c:31)
-==3853889==    by 0x11137B: add_frame (sprite.c:29)
-==3853889==    by 0x1115BF: slice_sprite (sprite.c:62)
-==3853889==    by 0x10EE93: main (main.c:52)
-==3853889== 
-==3853889== 128 bytes in 2 blocks are still reachable in loss record 76 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x112718: ft_calloc (ft_calloc.c:31)
-==3853889==    by 0x11137B: add_frame (sprite.c:29)
-==3853889==    by 0x1115BF: slice_sprite (sprite.c:62)
-==3853889==    by 0x10EF35: main (main.c:53)
-==3853889== 
-==3853889== 136 bytes in 1 blocks are still reachable in loss record 77 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x113D3F: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F0C9: new_window (init.c:32)
-==3853889==    by 0x10EA0C: main (main.c:26)
-==3853889== 
-==3853889== 136 bytes in 1 blocks are still reachable in loss record 78 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48760C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x114446: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114742: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115027: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115454: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x110EEA: new_file_img (image.c:20)
-==3853889==    by 0x10FA05: load_map_image (render.c:37)
-==3853889==    by 0x10F9A2: load_image (render.c:31)
-==3853889==    by 0x10EA6F: main (main.c:32)
-==3853889== 
-==3853889== 136 bytes in 1 blocks are still reachable in loss record 79 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48760C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x114446: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114742: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115027: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115454: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x110EEA: new_file_img (image.c:20)
-==3853889==    by 0x10FA95: load_map_image (render.c:38)
-==3853889==    by 0x10F9A2: load_image (render.c:31)
-==3853889==    by 0x10EA6F: main (main.c:32)
-==3853889== 
-==3853889== 136 bytes in 1 blocks are still reachable in loss record 80 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48760C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x114446: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114742: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115027: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115454: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x110EEA: new_file_img (image.c:20)
-==3853889==    by 0x10FB25: load_map_image (render.c:39)
-==3853889==    by 0x10F9A2: load_image (render.c:31)
-==3853889==    by 0x10EA6F: main (main.c:32)
-==3853889== 
-==3853889== 136 bytes in 1 blocks are still reachable in loss record 81 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48760C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x114446: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114742: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115027: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115454: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x110EEA: new_file_img (image.c:20)
-==3853889==    by 0x10FBB5: load_map_image (render.c:40)
-==3853889==    by 0x10F9A2: load_image (render.c:31)
-==3853889==    by 0x10EA6F: main (main.c:32)
-==3853889== 
-==3853889== 136 bytes in 1 blocks are still reachable in loss record 82 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48760C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x114446: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114742: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115027: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115454: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x110EEA: new_file_img (image.c:20)
-==3853889==    by 0x10FC45: load_map_image (render.c:41)
-==3853889==    by 0x10F9A2: load_image (render.c:31)
-==3853889==    by 0x10EA6F: main (main.c:32)
-==3853889== 
-==3853889== 136 bytes in 1 blocks are still reachable in loss record 83 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48760C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x114446: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114742: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115027: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115454: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x110EEA: new_file_img (image.c:20)
-==3853889==    by 0x110E2F: load_player_image (player.c:27)
-==3853889==    by 0x10F9AE: load_image (render.c:32)
-==3853889==    by 0x10EA6F: main (main.c:32)
-==3853889== 
-==3853889== 136 bytes in 1 blocks are still reachable in loss record 84 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48760C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x114446: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114742: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x110FE3: new_img (image.c:33)
-==3853889==    by 0x10F8C3: render_image (render.c:23)
-==3853889==    by 0x10EA7E: main (main.c:33)
-==3853889== 
-==3853889== 136 bytes in 1 blocks are still reachable in loss record 85 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48760C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x114446: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114742: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115027: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115454: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x110EEA: new_file_img (image.c:20)
-==3853889==    by 0x11125C: new_sprite (sprite.c:19)
-==3853889==    by 0x10EAA5: main (main.c:34)
-==3853889== 
-==3853889== 136 bytes in 1 blocks are still reachable in loss record 86 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48760C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x114446: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114742: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115027: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115454: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x110EEA: new_file_img (image.c:20)
-==3853889==    by 0x11125C: new_sprite (sprite.c:19)
-==3853889==    by 0x10EACC: main (main.c:35)
-==3853889== 
-==3853889== 136 bytes in 1 blocks are still reachable in loss record 87 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48760C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x114446: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114742: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115027: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115454: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x110EEA: new_file_img (image.c:20)
-==3853889==    by 0x11125C: new_sprite (sprite.c:19)
-==3853889==    by 0x10EAF3: main (main.c:36)
-==3853889== 
-==3853889== 136 bytes in 1 blocks are still reachable in loss record 88 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48760C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x114446: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114742: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115027: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115454: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x110EEA: new_file_img (image.c:20)
-==3853889==    by 0x11125C: new_sprite (sprite.c:19)
-==3853889==    by 0x10EB1A: main (main.c:37)
-==3853889== 
-==3853889== 136 bytes in 1 blocks are still reachable in loss record 89 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48760C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x114446: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114742: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115027: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115454: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x110EEA: new_file_img (image.c:20)
-==3853889==    by 0x11125C: new_sprite (sprite.c:19)
-==3853889==    by 0x10EB41: main (main.c:38)
-==3853889== 
-==3853889== 136 bytes in 1 blocks are still reachable in loss record 90 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48760C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x114446: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114742: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115027: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115454: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x110EEA: new_file_img (image.c:20)
-==3853889==    by 0x11125C: new_sprite (sprite.c:19)
-==3853889==    by 0x10EB68: main (main.c:39)
-==3853889== 
-==3853889== 149 bytes in 1 blocks are still reachable in loss record 91 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48B6710: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x113D57: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F0C9: new_window (init.c:32)
-==3853889==    by 0x10EA0C: main (main.c:26)
-==3853889== 
-==3853889== 152 bytes in 1 blocks are still reachable in loss record 92 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x491C40E: XkbUseExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x48B66A8: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x113D57: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F0C9: new_window (init.c:32)
-==3853889==    by 0x10EA0C: main (main.c:26)
-==3853889== 
-==3853889== 160 bytes in 1 blocks are still reachable in loss record 93 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48A49EF: XCreateGC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x48B65A4: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x113D57: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F0C9: new_window (init.c:32)
-==3853889==    by 0x10EA0C: main (main.c:26)
-==3853889== 
-==3853889== 168 bytes in 1 blocks are still reachable in loss record 94 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48B60B2: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x113D57: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F0C9: new_window (init.c:32)
-==3853889==    by 0x10EA0C: main (main.c:26)
-==3853889== 
-==3853889== 176 bytes in 2 blocks are still reachable in loss record 95 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x11441B: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114742: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x110FE3: new_img (image.c:33)
-==3853889==    by 0x1113B2: add_frame (sprite.c:32)
-==3853889==    by 0x1115BF: slice_sprite (sprite.c:62)
-==3853889==    by 0x10EDF1: main (main.c:51)
-==3853889== 
-==3853889== 176 bytes in 2 blocks are still reachable in loss record 96 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x11441B: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114742: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x110FE3: new_img (image.c:33)
-==3853889==    by 0x1113B2: add_frame (sprite.c:32)
-==3853889==    by 0x1115BF: slice_sprite (sprite.c:62)
-==3853889==    by 0x10EE93: main (main.c:52)
-==3853889== 
-==3853889== 176 bytes in 2 blocks are still reachable in loss record 97 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x11441B: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114742: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x110FE3: new_img (image.c:33)
-==3853889==    by 0x1113B2: add_frame (sprite.c:32)
-==3853889==    by 0x1115BF: slice_sprite (sprite.c:62)
-==3853889==    by 0x10EF35: main (main.c:53)
-==3853889== 
-==3853889== 208 bytes in 1 blocks are still reachable in loss record 98 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x4875AE9: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x48779DF: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x487C9E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x113B83: mlx_int_deal_shm (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x113E11: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F0C9: new_window (init.c:32)
-==3853889==    by 0x10EA0C: main (main.c:26)
-==3853889== 
-==3853889== 208 bytes in 1 blocks are still reachable in loss record 99 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48C7FAE: _XEnq (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x48CABB6: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x48CBEC0: _XReadEvents (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x48CC205: XWindowEvent (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x1142B5: mlx_int_wait_first_expose (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x113FCE: mlx_new_window (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F0E3: new_window (init.c:33)
-==3853889==    by 0x10EA0C: main (main.c:26)
-==3853889== 
-==3853889== 208 bytes in 1 blocks are still reachable in loss record 100 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48C7FAE: _XEnq (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x48CABB6: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x48CBEC0: _XReadEvents (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x48CC1D0: XWindowEvent (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x1142B5: mlx_int_wait_first_expose (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x113FCE: mlx_new_window (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F0E3: new_window (init.c:33)
-==3853889==    by 0x10EA0C: main (main.c:26)
-==3853889== 
-==3853889== 208 bytes in 1 blocks are still reachable in loss record 101 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48C7FAE: _XEnq (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x48CABB6: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x48CC40C: _XReply (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x48CC77E: XSync (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x114510: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114742: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115027: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115454: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x110EEA: new_file_img (image.c:20)
-==3853889==    by 0x11125C: new_sprite (sprite.c:19)
-==3853889==    by 0x10EAA5: main (main.c:34)
-==3853889== 
-==3853889== 256 bytes in 1 blocks are still reachable in loss record 102 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x491955D: XkbAllocClientMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x49140DE: _XkbReadGetMapReply (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x491441E: XkbGetUpdatedMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x49144F4: XkbGetMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x4914542: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x49148AF: XkbKeycodeToKeysym (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x115937: mlx_int_param_KeyPress (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114155: mlx_loop (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F005: main (main.c:63)
-==3853889== 
-==3853889== 256 bytes in 4 blocks are still reachable in loss record 103 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x112718: ft_calloc (ft_calloc.c:31)
-==3853889==    by 0x11137B: add_frame (sprite.c:29)
-==3853889==    by 0x1115BF: slice_sprite (sprite.c:62)
-==3853889==    by 0x10ECAD: main (main.c:49)
-==3853889== 
-==3853889== 256 bytes in 4 blocks are still reachable in loss record 104 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x112718: ft_calloc (ft_calloc.c:31)
-==3853889==    by 0x11137B: add_frame (sprite.c:29)
-==3853889==    by 0x1115BF: slice_sprite (sprite.c:62)
-==3853889==    by 0x10ED4F: main (main.c:50)
-==3853889== 
-==3853889== 272 bytes in 2 blocks are still reachable in loss record 105 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48760C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x114446: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114742: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x110FE3: new_img (image.c:33)
-==3853889==    by 0x1113B2: add_frame (sprite.c:32)
-==3853889==    by 0x1115BF: slice_sprite (sprite.c:62)
-==3853889==    by 0x10EDF1: main (main.c:51)
-==3853889== 
-==3853889== 272 bytes in 2 blocks are still reachable in loss record 106 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48760C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x114446: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114742: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x110FE3: new_img (image.c:33)
-==3853889==    by 0x1113B2: add_frame (sprite.c:32)
-==3853889==    by 0x1115BF: slice_sprite (sprite.c:62)
-==3853889==    by 0x10EE93: main (main.c:52)
-==3853889== 
-==3853889== 272 bytes in 2 blocks are still reachable in loss record 107 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48760C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x114446: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114742: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x110FE3: new_img (image.c:33)
-==3853889==    by 0x1113B2: add_frame (sprite.c:32)
-==3853889==    by 0x1115BF: slice_sprite (sprite.c:62)
-==3853889==    by 0x10EF35: main (main.c:53)
-==3853889== 
-==3853889== 344 bytes in 6 blocks are still reachable in loss record 108 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x49138F5: _XkbReadGetMapReply (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x491441E: XkbGetUpdatedMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x49144F4: XkbGetMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x4914542: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x49148AF: XkbKeycodeToKeysym (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x115937: mlx_int_param_KeyPress (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114155: mlx_loop (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F005: main (main.c:63)
-==3853889== 
-==3853889== 352 bytes in 4 blocks are still reachable in loss record 109 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x11441B: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114742: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x110FE3: new_img (image.c:33)
-==3853889==    by 0x1113B2: add_frame (sprite.c:32)
-==3853889==    by 0x1115BF: slice_sprite (sprite.c:62)
-==3853889==    by 0x10ECAD: main (main.c:49)
-==3853889== 
-==3853889== 352 bytes in 4 blocks are still reachable in loss record 110 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x11441B: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114742: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x110FE3: new_img (image.c:33)
-==3853889==    by 0x1113B2: add_frame (sprite.c:32)
-==3853889==    by 0x1115BF: slice_sprite (sprite.c:62)
-==3853889==    by 0x10ED4F: main (main.c:50)
-==3853889== 
-==3853889== 384 bytes in 6 blocks are still reachable in loss record 111 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x112718: ft_calloc (ft_calloc.c:31)
-==3853889==    by 0x11137B: add_frame (sprite.c:29)
-==3853889==    by 0x1115BF: slice_sprite (sprite.c:62)
-==3853889==    by 0x10EC0B: main (main.c:48)
-==3853889== 
-==3853889== 512 bytes in 1 blocks are still reachable in loss record 112 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48B146A: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x48B184E: XInternAtom (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x113DEB: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F0C9: new_window (init.c:32)
-==3853889==    by 0x10EA0C: main (main.c:26)
-==3853889== 
-==3853889== 528 bytes in 6 blocks are still reachable in loss record 113 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x11441B: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114742: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x110FE3: new_img (image.c:33)
-==3853889==    by 0x1113B2: add_frame (sprite.c:32)
-==3853889==    by 0x1115BF: slice_sprite (sprite.c:62)
-==3853889==    by 0x10EC0B: main (main.c:48)
-==3853889== 
-==3853889== 544 bytes in 4 blocks are still reachable in loss record 114 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48760C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x114446: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114742: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x110FE3: new_img (image.c:33)
-==3853889==    by 0x1113B2: add_frame (sprite.c:32)
-==3853889==    by 0x1115BF: slice_sprite (sprite.c:62)
-==3853889==    by 0x10ECAD: main (main.c:49)
-==3853889== 
-==3853889== 544 bytes in 4 blocks are still reachable in loss record 115 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48760C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x114446: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114742: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x110FE3: new_img (image.c:33)
-==3853889==    by 0x1113B2: add_frame (sprite.c:32)
-==3853889==    by 0x1115BF: slice_sprite (sprite.c:62)
-==3853889==    by 0x10ED4F: main (main.c:50)
-==3853889== 
-==3853889== 816 bytes in 6 blocks are still reachable in loss record 116 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48760C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==3853889==    by 0x114446: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114742: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x110FE3: new_img (image.c:33)
-==3853889==    by 0x1113B2: add_frame (sprite.c:32)
-==3853889==    by 0x1115BF: slice_sprite (sprite.c:62)
-==3853889==    by 0x10EC0B: main (main.c:48)
-==3853889== 
-==3853889== 832 bytes in 4 blocks are still reachable in loss record 117 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48C7FAE: _XEnq (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x48CABB6: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x48CC40C: _XReply (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x48CC77E: XSync (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x114510: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114742: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115027: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x115454: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x110EEA: new_file_img (image.c:20)
-==3853889==    by 0x10FA05: load_map_image (render.c:37)
-==3853889==    by 0x10F9A2: load_image (render.c:31)
-==3853889== 
-==3853889== 1,120 bytes in 1 blocks are still reachable in loss record 118 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x4919619: XkbAllocClientMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x4913EB7: _XkbReadGetMapReply (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x491441E: XkbGetUpdatedMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x49144F4: XkbGetMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x4914542: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x49148AF: XkbKeycodeToKeysym (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x115937: mlx_int_param_KeyPress (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114155: mlx_loop (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F005: main (main.c:63)
-==3853889== 
-==3853889== 1,456 bytes in 7 blocks are still reachable in loss record 119 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48C7FAE: _XEnq (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x48CABB6: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x48CBF01: _XReadEvents (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x48CC1D0: XWindowEvent (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x1142B5: mlx_int_wait_first_expose (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x113FCE: mlx_new_window (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F0E3: new_window (init.c:33)
-==3853889==    by 0x10EA0C: main (main.c:26)
-==3853889== 
-==3853889== 2,016 bytes in 27 blocks are still reachable in loss record 120 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x49137DD: _XkbReadGetMapReply (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x491441E: XkbGetUpdatedMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x49144F4: XkbGetMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x4914542: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x49148AF: XkbKeycodeToKeysym (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x115937: mlx_int_param_KeyPress (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114155: mlx_loop (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F005: main (main.c:63)
-==3853889== 
-==3853889== 2,048 bytes in 1 blocks are still reachable in loss record 121 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x4913914: _XkbReadGetMapReply (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x491441E: XkbGetUpdatedMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x49144F4: XkbGetMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x4914542: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x49148AF: XkbKeycodeToKeysym (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x115937: mlx_int_param_KeyPress (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114155: mlx_loop (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F005: main (main.c:63)
-==3853889== 
-==3853889== 2,704 bytes in 13 blocks are still reachable in loss record 122 of 128
-==3853889==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48C7FAE: _XEnq (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x48CABB6: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x48CBF01: _XReadEvents (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x48CC205: XWindowEvent (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x1142B5: mlx_int_wait_first_expose (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x113FCE: mlx_new_window (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F0E3: new_window (init.c:33)
-==3853889==    by 0x10EA0C: main (main.c:26)
-==3853889== 
-==3853889== 4,096 bytes in 1 blocks are still reachable in loss record 123 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x491413E: _XkbReadGetMapReply (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x491441E: XkbGetUpdatedMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x49144F4: XkbGetMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x4914542: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x49148AF: XkbKeycodeToKeysym (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x115937: mlx_int_param_KeyPress (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x114155: mlx_loop (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F005: main (main.c:63)
-==3853889== 
-==3853889== 4,704 bytes in 1 blocks are still reachable in loss record 124 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48B5B31: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x113D57: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F0C9: new_window (init.c:32)
-==3853889==    by 0x10EA0C: main (main.c:26)
-==3853889== 
-==3853889== 14,612 bytes in 1 blocks are still reachable in loss record 125 of 128
-==3853889==    at 0x484DCD3: realloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x4BFD4FB: xcb_connect_to_fd (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
-==3853889==    by 0x4BFDE6B: xcb_connect_to_display_with_auth_info (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
-==3853889==    by 0x48C5EE9: _XConnectXCB (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x48B5B68: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x113D57: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F0C9: new_window (init.c:32)
-==3853889==    by 0x10EA0C: main (main.c:26)
-==3853889== 
-==3853889== 16,384 bytes in 1 blocks are still reachable in loss record 126 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48B5EBE: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x113D57: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F0C9: new_window (init.c:32)
-==3853889==    by 0x10EA0C: main (main.c:26)
-==3853889== 
-==3853889== 21,168 bytes in 1 blocks are still reachable in loss record 127 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x4BFD204: xcb_connect_to_fd (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
-==3853889==    by 0x4BFDE6B: xcb_connect_to_display_with_auth_info (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
-==3853889==    by 0x48C5EE9: _XConnectXCB (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x48B5B68: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x113D57: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F0C9: new_window (init.c:32)
-==3853889==    by 0x10EA0C: main (main.c:26)
-==3853889== 
-==3853889== 33,600 bytes in 2 blocks are still reachable in loss record 128 of 128
-==3853889==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==3853889==    by 0x48B6290: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==3853889==    by 0x113D57: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
-==3853889==    by 0x10F0C9: new_window (init.c:32)
-==3853889==    by 0x10EA0C: main (main.c:26)
-==3853889== 
-==3853889== LEAK SUMMARY:
-==3853889==    definitely lost: 0 bytes in 0 blocks
-==3853889==    indirectly lost: 0 bytes in 0 blocks
-==3853889==      possibly lost: 0 bytes in 0 blocks
-==3853889==    still reachable: 118,599 bytes in 241 blocks
-==3853889==         suppressed: 0 bytes in 0 blocks
-==3853889== 
-==3853889== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 21 from 1)
-==3853889== 
-==3853889== 1 errors in context 1 of 1:
-==3853889== Conditional jump or move depends on uninitialised value(s)
-==3853889==    at 0x113611: ft_lstadd_back (ft_lstadd_back.c:29)
-==3853889==    by 0x10EC32: main (main.c:48)
-==3853889==  Uninitialised value was created by a stack allocation
-==3853889==    at 0x10E971: main (main.c:17)
-==3853889== 
---3853889-- 
---3853889-- used_suppression:     21 X on SUSE11 writev uninit padding /usr/libexec/valgrind/default.supp:377
-==3853889== 
-==3853889== ERROR SUMMARY: 1 errors from 0 contexts (suppressed: 21 from 1)
+==587964== Memcheck, a memory error detector
+==587964== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==587964== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
+==587964== Command: ./so_long ./map/map.ber
+==587964== Parent PID: 587962
+==587964== 
+--587964-- 
+--587964-- Valgrind options:
+--587964--    --leak-check=full
+--587964--    --show-leak-kinds=all
+--587964--    --track-origins=yes
+--587964--    --verbose
+--587964--    --log-file=valgrind-out.txt
+--587964-- Contents of /proc/version:
+--587964--   Linux version 5.15.0-91-generic (buildd@lcy02-amd64-045) (gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #101-Ubuntu SMP Tue Nov 14 13:30:08 UTC 2023
+--587964-- 
+--587964-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
+--587964-- Page sizes: currently 4096, max supported 4096
+--587964-- Valgrind library directory: /usr/libexec/valgrind
+--587964-- Reading syms from /nfs/homes/llai/42/so_long/so_long
+--587964-- Reading syms from /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+--587964--   Considering /usr/lib/debug/.build-id/cc/cdd41e22e25f77a8cda3d045c57ffdb01a9793.debug ..
+--587964--   .. build-id is valid
+--587964-- Reading syms from /usr/libexec/valgrind/memcheck-amd64-linux
+--587964--    object doesn't have a symbol table
+--587964--    object doesn't have a dynamic symbol table
+--587964-- Scheduler: using generic scheduler lock implementation.
+--587964-- Reading suppressions file: /usr/libexec/valgrind/default.supp
+==587964== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-587964-by-llai-on-???
+==587964== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-587964-by-llai-on-???
+==587964== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-587964-by-llai-on-???
+==587964== 
+==587964== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==587964== don't want to do, unless you know exactly what you're doing,
+==587964== or are doing some strange experiment):
+==587964==   /usr/bin/vgdb --pid=587964 ...command...
+==587964== 
+==587964== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==587964==   /path/to/gdb ./so_long
+==587964== and then give GDB the following command
+==587964==   target remote | /usr/bin/vgdb --pid=587964
+==587964== --pid is optional if only one valgrind process is running
+==587964== 
+--587964-- REDIR: 0x402aa40 (ld-linux-x86-64.so.2:strlen) redirected to 0x580bcec2 (???)
+--587964-- REDIR: 0x402a810 (ld-linux-x86-64.so.2:index) redirected to 0x580bcedc (???)
+--587964-- Reading syms from /usr/libexec/valgrind/vgpreload_core-amd64-linux.so
+--587964--    object doesn't have a symbol table
+--587964-- Reading syms from /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so
+--587964--    object doesn't have a symbol table
+==587964== WARNING: new redirection conflicts with existing -- ignoring it
+--587964--     old: 0x0402aa40 (strlen              ) R-> (0000.0) 0x580bcec2 ???
+--587964--     new: 0x0402aa40 (strlen              ) R-> (2007.0) 0x0484ee30 strlen
+--587964-- REDIR: 0x4027220 (ld-linux-x86-64.so.2:strcmp) redirected to 0x484fcd0 (strcmp)
+--587964-- REDIR: 0x402afa0 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4853840 (mempcpy)
+--587964-- Reading syms from /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0
+--587964--    object doesn't have a symbol table
+--587964-- Reading syms from /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+--587964--    object doesn't have a symbol table
+--587964-- Reading syms from /usr/lib/x86_64-linux-gnu/libc.so.6
+--587964--   Considering /usr/lib/debug/.build-id/20/3de0ae33b53fee1578b117cb4123e85d0534f0.debug ..
+--587964--   .. build-id is valid
+==587964== WARNING: new redirection conflicts with existing -- ignoring it
+--587964--     old: 0x04a6bc60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
+--587964--     new: 0x04a6bc60 (memalign            ) R-> (1017.0) 0x0484e050 aligned_alloc
+==587964== WARNING: new redirection conflicts with existing -- ignoring it
+--587964--     old: 0x04a6bc60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
+--587964--     new: 0x04a6bc60 (memalign            ) R-> (1017.0) 0x0484e020 aligned_alloc
+==587964== WARNING: new redirection conflicts with existing -- ignoring it
+--587964--     old: 0x04a6bc60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
+--587964--     new: 0x04a6bc60 (memalign            ) R-> (1017.0) 0x0484e050 aligned_alloc
+==587964== WARNING: new redirection conflicts with existing -- ignoring it
+--587964--     old: 0x04a6bc60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
+--587964--     new: 0x04a6bc60 (memalign            ) R-> (1017.0) 0x0484e020 aligned_alloc
+--587964-- Reading syms from /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+--587964--    object doesn't have a symbol table
+--587964-- Reading syms from /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
+--587964--    object doesn't have a symbol table
+--587964-- Reading syms from /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
+--587964--    object doesn't have a symbol table
+--587964-- Reading syms from /usr/lib/x86_64-linux-gnu/libbsd.so.0.11.5
+--587964--    object doesn't have a symbol table
+--587964-- Reading syms from /usr/lib/x86_64-linux-gnu/libmd.so.0.0.5
+--587964--    object doesn't have a symbol table
+--587964-- REDIR: 0x4a6e720 (libc.so.6:strnlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--587964-- REDIR: 0x4a6e9e0 (libc.so.6:strpbrk) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--587964-- REDIR: 0x4a6e2e0 (libc.so.6:strcmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--587964-- REDIR: 0x4a8ccd0 (libc.so.6:wcsnlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--587964-- REDIR: 0x4a6f6d0 (libc.so.6:memset) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--587964-- REDIR: 0x4a8b540 (libc.so.6:wcslen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--587964-- REDIR: 0x4a6fc10 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--587964-- REDIR: 0x4a8b370 (libc.so.6:wcschr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--587964-- REDIR: 0x4a6e260 (libc.so.6:index) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--587964-- REDIR: 0x4a6e960 (libc.so.6:rindex) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--587964-- REDIR: 0x4a6f5a0 (libc.so.6:memmove) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+==587964== Preferring higher priority redirection:
+--587964--     old: 0x04b665c0 (__memcpy_avx_unalign) R-> (2018.0) 0x04850f90 __memcpy_avx_unaligned_erms
+--587964--     new: 0x04b665c0 (__memcpy_avx_unalign) R-> (2018.1) 0x04852880 memmove
+--587964-- REDIR: 0x4a8b3f0 (libc.so.6:wcscmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--587964-- REDIR: 0x4a6f9e0 (libc.so.6:stpncpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--587964-- REDIR: 0x4a8b9b0 (libc.so.6:wmemchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--587964-- REDIR: 0x4a6e830 (libc.so.6:strncmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--587964-- REDIR: 0x4a6fa70 (libc.so.6:strcasecmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--587964-- REDIR: 0x4a6e420 (libc.so.6:strcspn) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--587964-- REDIR: 0x4a8b470 (libc.so.6:wcscpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--587964-- REDIR: 0x4a6e1d0 (libc.so.6:strcat) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--587964-- REDIR: 0x4a6fb60 (libc.so.6:strncasecmp_l) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--587964-- REDIR: 0x4a6f480 (libc.so.6:bcmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--587964-- REDIR: 0x4a77570 (libc.so.6:memrchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--587964-- REDIR: 0x4a71010 (libc.so.6:strchrnul) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--587964-- REDIR: 0x4a6e390 (libc.so.6:strcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--587964-- REDIR: 0x4a6fb10 (libc.so.6:strcasecmp_l) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--587964-- REDIR: 0x4a6e6a0 (libc.so.6:strlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--587964-- REDIR: 0x4a6e8d0 (libc.so.6:strncpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--587964-- REDIR: 0x4a6f950 (libc.so.6:stpcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--587964-- REDIR: 0x4a6f3f0 (libc.so.6:memchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--587964-- REDIR: 0x4a6eb00 (libc.so.6:strspn) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--587964-- REDIR: 0x4a6f7d0 (libc.so.6:mempcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--587964-- REDIR: 0x4a6fac0 (libc.so.6:strncasecmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--587964-- REDIR: 0x4a70f80 (libc.so.6:rawmemchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--587964-- REDIR: 0x4b63410 (libc.so.6:__strrchr_avx2) redirected to 0x484e810 (rindex)
+--587964-- REDIR: 0x4a6b0a0 (libc.so.6:malloc) redirected to 0x4848820 (malloc)
+--587964-- REDIR: 0x4a6b3e0 (libc.so.6:free) redirected to 0x484b210 (free)
+--587964-- REDIR: 0x4b635e0 (libc.so.6:__strlen_avx2) redirected to 0x484ed10 (strlen)
+--587964-- REDIR: 0x4b5eb80 (libc.so.6:__strncmp_avx2) redirected to 0x484f3e0 (strncmp)
+--587964-- REDIR: 0x4a6c520 (libc.so.6:calloc) redirected to 0x484d9d0 (calloc)
+--587964-- REDIR: 0x4b665c0 (libc.so.6:__memcpy_avx_unaligned_erms) redirected to 0x4852880 (memmove)
+--587964-- REDIR: 0x4b63200 (libc.so.6:__strchrnul_avx2) redirected to 0x4853330 (strchrnul)
+--587964-- REDIR: 0x4afa5f0 (libc.so.6:__strcpy_chk) redirected to 0x48533a0 (__strcpy_chk)
+--587964-- REDIR: 0x4a6efc0 (libc.so.6:__GI_strstr) redirected to 0x4853ae0 (__strstr_sse2)
+--587964-- REDIR: 0x4b5f880 (libc.so.6:__memcmp_avx2_movbe) redirected to 0x4852010 (bcmp)
+--587964-- REDIR: 0x4b66d80 (libc.so.6:__memset_avx2_unaligned_erms) redirected to 0x4852770 (memset)
+--587964-- REDIR: 0x4a6b740 (libc.so.6:realloc) redirected to 0x484dc50 (realloc)
+--587964-- REDIR: 0x4b64e40 (libc.so.6:__strncpy_avx2) redirected to 0x484efe0 (strncpy)
+--587964-- REDIR: 0x4b5e740 (libc.so.6:__strcmp_avx2) redirected to 0x484fbd0 (strcmp)
+--587964-- REDIR: 0x4b64ab0 (libc.so.6:__strcpy_avx2) redirected to 0x484ee60 (strcpy)
+--587964-- REDIR: 0x4b5ff30 (libc.so.6:__strcasecmp_avx) redirected to 0x484f560 (strcasecmp)
+==587964== Conditional jump or move depends on uninitialised value(s)
+==587964==    at 0x114B71: ft_lstadd_back (ft_lstadd_back.c:29)
+==587964==    by 0x10FCBF: main (main.c:43)
+==587964==  Uninitialised value was created by a stack allocation
+==587964==    at 0x10F9B1: main (main.c:17)
+==587964== 
+==587964== 
+==587964== HEAP SUMMARY:
+==587964==     in use at exit: 118,599 bytes in 241 blocks
+==587964==   total heap usage: 150,639 allocs, 150,398 frees, 3,758,953 bytes allocated
+==587964== 
+==587964== Searching for pointers to 241 not-freed blocks
+==587964== Checked 899,624 bytes
+==587964== 
+==587964== 3 bytes in 1 blocks are still reachable in loss record 1 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x4A6E58E: strdup (strdup.c:42)
+==587964==    by 0x48B5B45: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x115097: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110156: new_window (init.c:32)
+==587964==    by 0x10FA4C: main (main.c:26)
+==587964== 
+==587964== 5 bytes in 1 blocks are still reachable in loss record 2 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x113ABA: ft_strdup (ft_strdup.c:29)
+==587964==    by 0x1123B8: new_sprite (sprite.c:20)
+==587964==    by 0x10FB32: main (main.c:32)
+==587964== 
+==587964== 8 bytes in 1 blocks are still reachable in loss record 3 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x4A6E58E: strdup (strdup.c:42)
+==587964==    by 0x48B29AE: XInitExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x4877820: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x487C9E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x114EC3: mlx_int_deal_shm (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115151: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110156: new_window (init.c:32)
+==587964==    by 0x10FA4C: main (main.c:26)
+==587964== 
+==587964== 8 bytes in 1 blocks are still reachable in loss record 4 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x4875B34: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x48779DF: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x487C9E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x114EC3: mlx_int_deal_shm (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115151: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110156: new_window (init.c:32)
+==587964==    by 0x10FA4C: main (main.c:26)
+==587964== 
+==587964== 10 bytes in 1 blocks are still reachable in loss record 5 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x4A6E58E: strdup (strdup.c:42)
+==587964==    by 0x48B29AE: XInitExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x491C213: XkbUseExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x48B66A8: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x115097: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110156: new_window (init.c:32)
+==587964==    by 0x10FA4C: main (main.c:26)
+==587964== 
+==587964== 10 bytes in 1 blocks are still reachable in loss record 6 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x113ABA: ft_strdup (ft_strdup.c:29)
+==587964==    by 0x1123B8: new_sprite (sprite.c:20)
+==587964==    by 0x10FB80: main (main.c:34)
+==587964== 
+==587964== 11 bytes in 1 blocks are still reachable in loss record 7 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x113ABA: ft_strdup (ft_strdup.c:29)
+==587964==    by 0x1123B8: new_sprite (sprite.c:20)
+==587964==    by 0x10FBF5: main (main.c:37)
+==587964== 
+==587964== 12 bytes in 1 blocks are still reachable in loss record 8 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x113ABA: ft_strdup (ft_strdup.c:29)
+==587964==    by 0x1123B8: new_sprite (sprite.c:20)
+==587964==    by 0x10FB59: main (main.c:33)
+==587964== 
+==587964== 12 bytes in 1 blocks are still reachable in loss record 9 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x113ABA: ft_strdup (ft_strdup.c:29)
+==587964==    by 0x1123B8: new_sprite (sprite.c:20)
+==587964==    by 0x10FBA7: main (main.c:35)
+==587964== 
+==587964== 13 bytes in 1 blocks are still reachable in loss record 10 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x113ABA: ft_strdup (ft_strdup.c:29)
+==587964==    by 0x1123B8: new_sprite (sprite.c:20)
+==587964==    by 0x10FBCE: main (main.c:36)
+==587964== 
+==587964== 16 bytes in 1 blocks are still reachable in loss record 11 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x4BFD2EE: xcb_connect_to_fd (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==587964==    by 0x4BFDE6B: xcb_connect_to_display_with_auth_info (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==587964==    by 0x48C5EE9: _XConnectXCB (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x48B5B68: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x115097: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110156: new_window (init.c:32)
+==587964==    by 0x10FA4C: main (main.c:26)
+==587964== 
+==587964== 16 bytes in 1 blocks are still reachable in loss record 12 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x114AEB: ft_lstnew (ft_lstnew.c:29)
+==587964==    by 0x10FCA4: main (main.c:43)
+==587964== 
+==587964== 16 bytes in 1 blocks are still reachable in loss record 13 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x114AEB: ft_lstnew (ft_lstnew.c:29)
+==587964==    by 0x10FD46: main (main.c:44)
+==587964== 
+==587964== 16 bytes in 1 blocks are still reachable in loss record 14 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x114AEB: ft_lstnew (ft_lstnew.c:29)
+==587964==    by 0x10FDE8: main (main.c:45)
+==587964== 
+==587964== 16 bytes in 1 blocks are still reachable in loss record 15 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x114AEB: ft_lstnew (ft_lstnew.c:29)
+==587964==    by 0x10FE8A: main (main.c:46)
+==587964== 
+==587964== 16 bytes in 1 blocks are still reachable in loss record 16 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x114AEB: ft_lstnew (ft_lstnew.c:29)
+==587964==    by 0x10FF2C: main (main.c:47)
+==587964== 
+==587964== 16 bytes in 1 blocks are still reachable in loss record 17 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x114AEB: ft_lstnew (ft_lstnew.c:29)
+==587964==    by 0x10FFCE: main (main.c:48)
+==587964== 
+==587964== 21 bytes in 1 blocks are still reachable in loss record 18 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48B603E: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x115097: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110156: new_window (init.c:32)
+==587964==    by 0x10FA4C: main (main.c:26)
+==587964== 
+==587964== 21 bytes in 1 blocks are still reachable in loss record 19 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x113ABA: ft_strdup (ft_strdup.c:29)
+==587964==    by 0x1123CA: new_sprite (sprite.c:20)
+==587964==    by 0x10FB80: main (main.c:34)
+==587964== 
+==587964== 22 bytes in 1 blocks are still reachable in loss record 20 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x113ABA: ft_strdup (ft_strdup.c:29)
+==587964==    by 0x1123CA: new_sprite (sprite.c:20)
+==587964==    by 0x10FBF5: main (main.c:37)
+==587964== 
+==587964== 23 bytes in 1 blocks are still reachable in loss record 21 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x113ABA: ft_strdup (ft_strdup.c:29)
+==587964==    by 0x1123CA: new_sprite (sprite.c:20)
+==587964==    by 0x10FB59: main (main.c:33)
+==587964== 
+==587964== 23 bytes in 1 blocks are still reachable in loss record 22 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x113ABA: ft_strdup (ft_strdup.c:29)
+==587964==    by 0x1123CA: new_sprite (sprite.c:20)
+==587964==    by 0x10FBA7: main (main.c:35)
+==587964== 
+==587964== 24 bytes in 1 blocks are still reachable in loss record 23 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x4877041: XextCreateExtension (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x48774CC: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x48779C8: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x487C9E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x114EC3: mlx_int_deal_shm (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115151: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110156: new_window (init.c:32)
+==587964==    by 0x10FA4C: main (main.c:26)
+==587964== 
+==587964== 24 bytes in 1 blocks are still reachable in loss record 24 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x4A6E58E: strdup (strdup.c:42)
+==587964==    by 0x48B29AE: XInitExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x4877820: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x487750A: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x48779C8: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x487C9E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x114EC3: mlx_int_deal_shm (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115151: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110156: new_window (init.c:32)
+==587964==    by 0x10FA4C: main (main.c:26)
+==587964== 
+==587964== 24 bytes in 1 blocks are still reachable in loss record 25 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48779F5: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x487C9E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x114EC3: mlx_int_deal_shm (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115151: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110156: new_window (init.c:32)
+==587964==    by 0x10FA4C: main (main.c:26)
+==587964== 
+==587964== 24 bytes in 1 blocks are still reachable in loss record 26 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x113ABA: ft_strdup (ft_strdup.c:29)
+==587964==    by 0x1123CA: new_sprite (sprite.c:20)
+==587964==    by 0x10FBCE: main (main.c:36)
+==587964== 
+==587964== 24 bytes in 1 blocks are still reachable in loss record 27 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48C3A65: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x48CC2C6: _XReply (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x48CC77E: XSync (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x115427: mlx_loop (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110092: main (main.c:53)
+==587964== 
+==587964== 29 bytes in 1 blocks are still reachable in loss record 28 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48AF0CD: _XUpdateAtomCache (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x48B1929: XInternAtom (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x115142: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110156: new_window (init.c:32)
+==587964==    by 0x10FA4C: main (main.c:26)
+==587964== 
+==587964== 29 bytes in 1 blocks are still reachable in loss record 29 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x113ABA: ft_strdup (ft_strdup.c:29)
+==587964==    by 0x1123CA: new_sprite (sprite.c:20)
+==587964==    by 0x10FB32: main (main.c:32)
+==587964== 
+==587964== 32 bytes in 1 blocks are still reachable in loss record 30 of 128
+==587964==    at 0x48487A9: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x4C0115E: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==587964==    by 0x4C01237: xcb_get_extension_data (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==587964==    by 0x4C012EE: xcb_prefetch_maximum_request_length (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==587964==    by 0x4C01364: xcb_get_maximum_request_length (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==587964==    by 0x48B652B: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x115097: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110156: new_window (init.c:32)
+==587964==    by 0x10FA4C: main (main.c:26)
+==587964== 
+==587964== 32 bytes in 1 blocks are still reachable in loss record 31 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x4BFA1B7: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==587964==    by 0x4BFAA08: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==587964==    by 0x4BFAEB0: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==587964==    by 0x4BFBE44: xcb_wait_for_reply (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==587964==    by 0x4C01292: xcb_get_extension_data (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==587964==    by 0x4C012EE: xcb_prefetch_maximum_request_length (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==587964==    by 0x4C01364: xcb_get_maximum_request_length (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==587964==    by 0x48B652B: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x115097: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110156: new_window (init.c:32)
+==587964==    by 0x10FA4C: main (main.c:26)
+==587964== 
+==587964== 32 bytes in 1 blocks are still reachable in loss record 32 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48777FF: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x487C9E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x114EC3: mlx_int_deal_shm (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115151: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110156: new_window (init.c:32)
+==587964==    by 0x10FA4C: main (main.c:26)
+==587964== 
+==587964== 32 bytes in 1 blocks are still reachable in loss record 33 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48777FF: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x487750A: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x48779C8: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x487C9E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x114EC3: mlx_int_deal_shm (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115151: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110156: new_window (init.c:32)
+==587964==    by 0x10FA4C: main (main.c:26)
+==587964== 
+==587964== 32 bytes in 2 blocks are still reachable in loss record 34 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x114AEB: ft_lstnew (ft_lstnew.c:29)
+==587964==    by 0x1125E1: add_frame (sprite.c:47)
+==587964==    by 0x112708: slice_sprite (sprite.c:63)
+==587964==    by 0x10FE7E: main (main.c:46)
+==587964== 
+==587964== 32 bytes in 2 blocks are still reachable in loss record 35 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x114AEB: ft_lstnew (ft_lstnew.c:29)
+==587964==    by 0x1125E1: add_frame (sprite.c:47)
+==587964==    by 0x112708: slice_sprite (sprite.c:63)
+==587964==    by 0x10FF20: main (main.c:47)
+==587964== 
+==587964== 32 bytes in 2 blocks are still reachable in loss record 36 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x114AEB: ft_lstnew (ft_lstnew.c:29)
+==587964==    by 0x1125E1: add_frame (sprite.c:47)
+==587964==    by 0x112708: slice_sprite (sprite.c:63)
+==587964==    by 0x10FFC2: main (main.c:48)
+==587964== 
+==587964== 33 bytes in 1 blocks are still reachable in loss record 37 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48AF0CD: _XUpdateAtomCache (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x48B1929: XInternAtom (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x11512B: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110156: new_window (init.c:32)
+==587964==    by 0x10FA4C: main (main.c:26)
+==587964== 
+==587964== 40 bytes in 1 blocks are still reachable in loss record 38 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x11161A: convert_map (map_utils.c:33)
+==587964==    by 0x111443: read_map (map.c:51)
+==587964==    by 0x10FA20: main (main.c:25)
+==587964== 
+==587964== 40 bytes in 1 blocks are still reachable in loss record 39 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48C61F1: _XPollfdCacheInit (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x48B5E71: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x115097: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110156: new_window (init.c:32)
+==587964==    by 0x10FA4C: main (main.c:26)
+==587964== 
+==587964== 48 bytes in 1 blocks are still reachable in loss record 40 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48C5E71: _XConnectXCB (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x48B5B68: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x115097: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110156: new_window (init.c:32)
+==587964==    by 0x10FA4C: main (main.c:26)
+==587964== 
+==587964== 48 bytes in 1 blocks are still reachable in loss record 41 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48C5E87: _XConnectXCB (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x48B5B68: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x115097: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110156: new_window (init.c:32)
+==587964==    by 0x10FA4C: main (main.c:26)
+==587964== 
+==587964== 48 bytes in 1 blocks are still reachable in loss record 42 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x49144C0: XkbGetMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x4914542: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x49148AF: XkbKeycodeToKeysym (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x116DF7: mlx_int_param_KeyPress (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115495: mlx_loop (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110092: main (main.c:53)
+==587964== 
+==587964== 56 bytes in 1 blocks are still reachable in loss record 43 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x112647: slice_sprite (sprite.c:56)
+==587964==    by 0x10FC98: main (main.c:43)
+==587964== 
+==587964== 56 bytes in 1 blocks are still reachable in loss record 44 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x112647: slice_sprite (sprite.c:56)
+==587964==    by 0x10FD3A: main (main.c:44)
+==587964== 
+==587964== 56 bytes in 1 blocks are still reachable in loss record 45 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x112647: slice_sprite (sprite.c:56)
+==587964==    by 0x10FDDC: main (main.c:45)
+==587964== 
+==587964== 56 bytes in 1 blocks are still reachable in loss record 46 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x112647: slice_sprite (sprite.c:56)
+==587964==    by 0x10FE7E: main (main.c:46)
+==587964== 
+==587964== 56 bytes in 1 blocks are still reachable in loss record 47 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x112647: slice_sprite (sprite.c:56)
+==587964==    by 0x10FF20: main (main.c:47)
+==587964== 
+==587964== 56 bytes in 1 blocks are still reachable in loss record 48 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x112647: slice_sprite (sprite.c:56)
+==587964==    by 0x10FFC2: main (main.c:48)
+==587964== 
+==587964== 64 bytes in 4 blocks are still reachable in loss record 49 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x114AEB: ft_lstnew (ft_lstnew.c:29)
+==587964==    by 0x1125E1: add_frame (sprite.c:47)
+==587964==    by 0x112708: slice_sprite (sprite.c:63)
+==587964==    by 0x10FD3A: main (main.c:44)
+==587964== 
+==587964== 64 bytes in 4 blocks are still reachable in loss record 50 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x114AEB: ft_lstnew (ft_lstnew.c:29)
+==587964==    by 0x1125E1: add_frame (sprite.c:47)
+==587964==    by 0x112708: slice_sprite (sprite.c:63)
+==587964==    by 0x10FDDC: main (main.c:45)
+==587964== 
+==587964== 65 bytes in 5 blocks are still reachable in loss record 51 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x111653: convert_map (map_utils.c:35)
+==587964==    by 0x111443: read_map (map.c:51)
+==587964==    by 0x10FA20: main (main.c:25)
+==587964== 
+==587964== 72 bytes in 1 blocks are still reachable in loss record 52 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48B5F20: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x115097: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110156: new_window (init.c:32)
+==587964==    by 0x10FA4C: main (main.c:26)
+==587964== 
+==587964== 72 bytes in 1 blocks are still reachable in loss record 53 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x49144A4: XkbGetMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x4914542: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x49148AF: XkbKeycodeToKeysym (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x116DF7: mlx_int_param_KeyPress (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115495: mlx_loop (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110092: main (main.c:53)
+==587964== 
+==587964== 88 bytes in 1 blocks are still reachable in loss record 54 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x11581B: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115B42: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x1164E7: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x116914: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x112033: new_file_img (image.c:20)
+==587964==    by 0x110AC7: load_map_image (render.c:37)
+==587964==    by 0x110A64: load_image (render.c:31)
+==587964==    by 0x10FAFC: main (main.c:30)
+==587964== 
+==587964== 88 bytes in 1 blocks are still reachable in loss record 55 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x11581B: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115B42: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x1164E7: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x116914: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x112033: new_file_img (image.c:20)
+==587964==    by 0x110B57: load_map_image (render.c:38)
+==587964==    by 0x110A64: load_image (render.c:31)
+==587964==    by 0x10FAFC: main (main.c:30)
+==587964== 
+==587964== 88 bytes in 1 blocks are still reachable in loss record 56 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x11581B: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115B42: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x1164E7: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x116914: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x112033: new_file_img (image.c:20)
+==587964==    by 0x110BE7: load_map_image (render.c:39)
+==587964==    by 0x110A64: load_image (render.c:31)
+==587964==    by 0x10FAFC: main (main.c:30)
+==587964== 
+==587964== 88 bytes in 1 blocks are still reachable in loss record 57 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x11581B: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115B42: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x1164E7: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x116914: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x112033: new_file_img (image.c:20)
+==587964==    by 0x110C77: load_map_image (render.c:40)
+==587964==    by 0x110A64: load_image (render.c:31)
+==587964==    by 0x10FAFC: main (main.c:30)
+==587964== 
+==587964== 88 bytes in 1 blocks are still reachable in loss record 58 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x11581B: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115B42: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x1164E7: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x116914: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x112033: new_file_img (image.c:20)
+==587964==    by 0x110D07: load_map_image (render.c:41)
+==587964==    by 0x110A64: load_image (render.c:31)
+==587964==    by 0x10FAFC: main (main.c:30)
+==587964== 
+==587964== 88 bytes in 1 blocks are still reachable in loss record 59 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x11581B: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115B42: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x1164E7: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x116914: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x112033: new_file_img (image.c:20)
+==587964==    by 0x111F78: load_player_image (player.c:27)
+==587964==    by 0x110A70: load_image (render.c:32)
+==587964==    by 0x10FAFC: main (main.c:30)
+==587964== 
+==587964== 88 bytes in 1 blocks are still reachable in loss record 60 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x11581B: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115B42: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x11212C: new_img (image.c:33)
+==587964==    by 0x110985: render_image (render.c:23)
+==587964==    by 0x10FB0B: main (main.c:31)
+==587964== 
+==587964== 88 bytes in 1 blocks are still reachable in loss record 61 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x11581B: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115B42: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x1164E7: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x116914: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x112033: new_file_img (image.c:20)
+==587964==    by 0x1123A5: new_sprite (sprite.c:19)
+==587964==    by 0x10FB32: main (main.c:32)
+==587964== 
+==587964== 88 bytes in 1 blocks are still reachable in loss record 62 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x11581B: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115B42: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x1164E7: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x116914: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x112033: new_file_img (image.c:20)
+==587964==    by 0x1123A5: new_sprite (sprite.c:19)
+==587964==    by 0x10FB59: main (main.c:33)
+==587964== 
+==587964== 88 bytes in 1 blocks are still reachable in loss record 63 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x11581B: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115B42: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x1164E7: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x116914: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x112033: new_file_img (image.c:20)
+==587964==    by 0x1123A5: new_sprite (sprite.c:19)
+==587964==    by 0x10FB80: main (main.c:34)
+==587964== 
+==587964== 88 bytes in 1 blocks are still reachable in loss record 64 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x11581B: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115B42: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x1164E7: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x116914: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x112033: new_file_img (image.c:20)
+==587964==    by 0x1123A5: new_sprite (sprite.c:19)
+==587964==    by 0x10FBA7: main (main.c:35)
+==587964== 
+==587964== 88 bytes in 1 blocks are still reachable in loss record 65 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x11581B: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115B42: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x1164E7: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x116914: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x112033: new_file_img (image.c:20)
+==587964==    by 0x1123A5: new_sprite (sprite.c:19)
+==587964==    by 0x10FBCE: main (main.c:36)
+==587964== 
+==587964== 88 bytes in 1 blocks are still reachable in loss record 66 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x11581B: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115B42: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x1164E7: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x116914: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x112033: new_file_img (image.c:20)
+==587964==    by 0x1123A5: new_sprite (sprite.c:19)
+==587964==    by 0x10FBF5: main (main.c:37)
+==587964== 
+==587964== 96 bytes in 6 blocks are still reachable in loss record 67 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x114AEB: ft_lstnew (ft_lstnew.c:29)
+==587964==    by 0x1125E1: add_frame (sprite.c:47)
+==587964==    by 0x112708: slice_sprite (sprite.c:63)
+==587964==    by 0x10FC98: main (main.c:43)
+==587964== 
+==587964== 112 bytes in 1 blocks are still reachable in loss record 68 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48C5D72: _XConnectXCB (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x48B5B68: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x115097: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110156: new_window (init.c:32)
+==587964==    by 0x10FA4C: main (main.c:26)
+==587964== 
+==587964== 112 bytes in 1 blocks are still reachable in loss record 69 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48B6200: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x115097: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110156: new_window (init.c:32)
+==587964==    by 0x10FA4C: main (main.c:26)
+==587964== 
+==587964== 128 bytes in 1 blocks are still reachable in loss record 70 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48B612E: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x115097: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110156: new_window (init.c:32)
+==587964==    by 0x10FA4C: main (main.c:26)
+==587964== 
+==587964== 128 bytes in 1 blocks are still reachable in loss record 71 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48B299E: XInitExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x491C213: XkbUseExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x48B66A8: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x115097: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110156: new_window (init.c:32)
+==587964==    by 0x10FA4C: main (main.c:26)
+==587964== 
+==587964== 128 bytes in 1 blocks are still reachable in loss record 72 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48B299E: XInitExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x4877820: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x487C9E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x114EC3: mlx_int_deal_shm (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115151: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110156: new_window (init.c:32)
+==587964==    by 0x10FA4C: main (main.c:26)
+==587964== 
+==587964== 128 bytes in 1 blocks are still reachable in loss record 73 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48B299E: XInitExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x4877820: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x487750A: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x48779C8: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x487C9E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x114EC3: mlx_int_deal_shm (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115151: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110156: new_window (init.c:32)
+==587964==    by 0x10FA4C: main (main.c:26)
+==587964== 
+==587964== 128 bytes in 2 blocks are still reachable in loss record 74 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x113A60: ft_calloc (ft_calloc.c:31)
+==587964==    by 0x1124C4: add_frame (sprite.c:30)
+==587964==    by 0x112708: slice_sprite (sprite.c:63)
+==587964==    by 0x10FE7E: main (main.c:46)
+==587964== 
+==587964== 128 bytes in 2 blocks are still reachable in loss record 75 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x113A60: ft_calloc (ft_calloc.c:31)
+==587964==    by 0x1124C4: add_frame (sprite.c:30)
+==587964==    by 0x112708: slice_sprite (sprite.c:63)
+==587964==    by 0x10FF20: main (main.c:47)
+==587964== 
+==587964== 128 bytes in 2 blocks are still reachable in loss record 76 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x113A60: ft_calloc (ft_calloc.c:31)
+==587964==    by 0x1124C4: add_frame (sprite.c:30)
+==587964==    by 0x112708: slice_sprite (sprite.c:63)
+==587964==    by 0x10FFC2: main (main.c:48)
+==587964== 
+==587964== 136 bytes in 1 blocks are still reachable in loss record 77 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x11507F: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110156: new_window (init.c:32)
+==587964==    by 0x10FA4C: main (main.c:26)
+==587964== 
+==587964== 136 bytes in 1 blocks are still reachable in loss record 78 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48760C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x115846: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115B42: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x1164E7: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x116914: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x112033: new_file_img (image.c:20)
+==587964==    by 0x110AC7: load_map_image (render.c:37)
+==587964==    by 0x110A64: load_image (render.c:31)
+==587964==    by 0x10FAFC: main (main.c:30)
+==587964== 
+==587964== 136 bytes in 1 blocks are still reachable in loss record 79 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48760C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x115846: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115B42: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x1164E7: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x116914: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x112033: new_file_img (image.c:20)
+==587964==    by 0x110B57: load_map_image (render.c:38)
+==587964==    by 0x110A64: load_image (render.c:31)
+==587964==    by 0x10FAFC: main (main.c:30)
+==587964== 
+==587964== 136 bytes in 1 blocks are still reachable in loss record 80 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48760C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x115846: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115B42: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x1164E7: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x116914: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x112033: new_file_img (image.c:20)
+==587964==    by 0x110BE7: load_map_image (render.c:39)
+==587964==    by 0x110A64: load_image (render.c:31)
+==587964==    by 0x10FAFC: main (main.c:30)
+==587964== 
+==587964== 136 bytes in 1 blocks are still reachable in loss record 81 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48760C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x115846: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115B42: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x1164E7: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x116914: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x112033: new_file_img (image.c:20)
+==587964==    by 0x110C77: load_map_image (render.c:40)
+==587964==    by 0x110A64: load_image (render.c:31)
+==587964==    by 0x10FAFC: main (main.c:30)
+==587964== 
+==587964== 136 bytes in 1 blocks are still reachable in loss record 82 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48760C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x115846: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115B42: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x1164E7: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x116914: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x112033: new_file_img (image.c:20)
+==587964==    by 0x110D07: load_map_image (render.c:41)
+==587964==    by 0x110A64: load_image (render.c:31)
+==587964==    by 0x10FAFC: main (main.c:30)
+==587964== 
+==587964== 136 bytes in 1 blocks are still reachable in loss record 83 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48760C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x115846: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115B42: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x1164E7: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x116914: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x112033: new_file_img (image.c:20)
+==587964==    by 0x111F78: load_player_image (player.c:27)
+==587964==    by 0x110A70: load_image (render.c:32)
+==587964==    by 0x10FAFC: main (main.c:30)
+==587964== 
+==587964== 136 bytes in 1 blocks are still reachable in loss record 84 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48760C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x115846: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115B42: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x11212C: new_img (image.c:33)
+==587964==    by 0x110985: render_image (render.c:23)
+==587964==    by 0x10FB0B: main (main.c:31)
+==587964== 
+==587964== 136 bytes in 1 blocks are still reachable in loss record 85 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48760C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x115846: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115B42: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x1164E7: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x116914: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x112033: new_file_img (image.c:20)
+==587964==    by 0x1123A5: new_sprite (sprite.c:19)
+==587964==    by 0x10FB32: main (main.c:32)
+==587964== 
+==587964== 136 bytes in 1 blocks are still reachable in loss record 86 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48760C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x115846: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115B42: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x1164E7: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x116914: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x112033: new_file_img (image.c:20)
+==587964==    by 0x1123A5: new_sprite (sprite.c:19)
+==587964==    by 0x10FB59: main (main.c:33)
+==587964== 
+==587964== 136 bytes in 1 blocks are still reachable in loss record 87 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48760C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x115846: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115B42: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x1164E7: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x116914: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x112033: new_file_img (image.c:20)
+==587964==    by 0x1123A5: new_sprite (sprite.c:19)
+==587964==    by 0x10FB80: main (main.c:34)
+==587964== 
+==587964== 136 bytes in 1 blocks are still reachable in loss record 88 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48760C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x115846: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115B42: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x1164E7: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x116914: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x112033: new_file_img (image.c:20)
+==587964==    by 0x1123A5: new_sprite (sprite.c:19)
+==587964==    by 0x10FBA7: main (main.c:35)
+==587964== 
+==587964== 136 bytes in 1 blocks are still reachable in loss record 89 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48760C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x115846: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115B42: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x1164E7: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x116914: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x112033: new_file_img (image.c:20)
+==587964==    by 0x1123A5: new_sprite (sprite.c:19)
+==587964==    by 0x10FBCE: main (main.c:36)
+==587964== 
+==587964== 136 bytes in 1 blocks are still reachable in loss record 90 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48760C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x115846: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115B42: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x1164E7: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x116914: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x112033: new_file_img (image.c:20)
+==587964==    by 0x1123A5: new_sprite (sprite.c:19)
+==587964==    by 0x10FBF5: main (main.c:37)
+==587964== 
+==587964== 149 bytes in 1 blocks are still reachable in loss record 91 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48B6710: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x115097: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110156: new_window (init.c:32)
+==587964==    by 0x10FA4C: main (main.c:26)
+==587964== 
+==587964== 152 bytes in 1 blocks are still reachable in loss record 92 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x491C40E: XkbUseExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x48B66A8: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x115097: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110156: new_window (init.c:32)
+==587964==    by 0x10FA4C: main (main.c:26)
+==587964== 
+==587964== 160 bytes in 1 blocks are still reachable in loss record 93 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48A49EF: XCreateGC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x48B65A4: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x115097: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110156: new_window (init.c:32)
+==587964==    by 0x10FA4C: main (main.c:26)
+==587964== 
+==587964== 168 bytes in 1 blocks are still reachable in loss record 94 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48B60B2: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x115097: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110156: new_window (init.c:32)
+==587964==    by 0x10FA4C: main (main.c:26)
+==587964== 
+==587964== 176 bytes in 2 blocks are still reachable in loss record 95 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x11581B: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115B42: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x11212C: new_img (image.c:33)
+==587964==    by 0x1124FB: add_frame (sprite.c:33)
+==587964==    by 0x112708: slice_sprite (sprite.c:63)
+==587964==    by 0x10FE7E: main (main.c:46)
+==587964== 
+==587964== 176 bytes in 2 blocks are still reachable in loss record 96 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x11581B: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115B42: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x11212C: new_img (image.c:33)
+==587964==    by 0x1124FB: add_frame (sprite.c:33)
+==587964==    by 0x112708: slice_sprite (sprite.c:63)
+==587964==    by 0x10FF20: main (main.c:47)
+==587964== 
+==587964== 176 bytes in 2 blocks are still reachable in loss record 97 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x11581B: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115B42: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x11212C: new_img (image.c:33)
+==587964==    by 0x1124FB: add_frame (sprite.c:33)
+==587964==    by 0x112708: slice_sprite (sprite.c:63)
+==587964==    by 0x10FFC2: main (main.c:48)
+==587964== 
+==587964== 208 bytes in 1 blocks are still reachable in loss record 98 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x4875AE9: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x48779DF: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x487C9E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x114EC3: mlx_int_deal_shm (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115151: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110156: new_window (init.c:32)
+==587964==    by 0x10FA4C: main (main.c:26)
+==587964== 
+==587964== 208 bytes in 1 blocks are still reachable in loss record 99 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48C7FAE: _XEnq (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x48CABB6: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x48CBEC0: _XReadEvents (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x48CC205: XWindowEvent (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x1155F5: mlx_int_wait_first_expose (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x11530E: mlx_new_window (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110170: new_window (init.c:33)
+==587964==    by 0x10FA4C: main (main.c:26)
+==587964== 
+==587964== 208 bytes in 1 blocks are still reachable in loss record 100 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48C7FAE: _XEnq (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x48CABB6: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x48CBEC0: _XReadEvents (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x48CC1D0: XWindowEvent (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x1155F5: mlx_int_wait_first_expose (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x11530E: mlx_new_window (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110170: new_window (init.c:33)
+==587964==    by 0x10FA4C: main (main.c:26)
+==587964== 
+==587964== 208 bytes in 1 blocks are still reachable in loss record 101 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48C7FAE: _XEnq (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x48CABB6: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x48CC40C: _XReply (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x48CC77E: XSync (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x115910: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115B42: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x1164E7: mlx_int_parse_xpm (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x116914: mlx_xpm_file_to_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x112033: new_file_img (image.c:20)
+==587964==    by 0x1123A5: new_sprite (sprite.c:19)
+==587964==    by 0x10FB32: main (main.c:32)
+==587964== 
+==587964== 256 bytes in 1 blocks are still reachable in loss record 102 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x491955D: XkbAllocClientMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x49140DE: _XkbReadGetMapReply (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x491441E: XkbGetUpdatedMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x49144F4: XkbGetMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x4914542: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x49148AF: XkbKeycodeToKeysym (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x116DF7: mlx_int_param_KeyPress (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115495: mlx_loop (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110092: main (main.c:53)
+==587964== 
+==587964== 256 bytes in 4 blocks are still reachable in loss record 103 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x113A60: ft_calloc (ft_calloc.c:31)
+==587964==    by 0x1124C4: add_frame (sprite.c:30)
+==587964==    by 0x112708: slice_sprite (sprite.c:63)
+==587964==    by 0x10FD3A: main (main.c:44)
+==587964== 
+==587964== 256 bytes in 4 blocks are still reachable in loss record 104 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x113A60: ft_calloc (ft_calloc.c:31)
+==587964==    by 0x1124C4: add_frame (sprite.c:30)
+==587964==    by 0x112708: slice_sprite (sprite.c:63)
+==587964==    by 0x10FDDC: main (main.c:45)
+==587964== 
+==587964== 272 bytes in 2 blocks are still reachable in loss record 105 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48760C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x115846: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115B42: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x11212C: new_img (image.c:33)
+==587964==    by 0x1124FB: add_frame (sprite.c:33)
+==587964==    by 0x112708: slice_sprite (sprite.c:63)
+==587964==    by 0x10FE7E: main (main.c:46)
+==587964== 
+==587964== 272 bytes in 2 blocks are still reachable in loss record 106 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48760C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x115846: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115B42: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x11212C: new_img (image.c:33)
+==587964==    by 0x1124FB: add_frame (sprite.c:33)
+==587964==    by 0x112708: slice_sprite (sprite.c:63)
+==587964==    by 0x10FF20: main (main.c:47)
+==587964== 
+==587964== 272 bytes in 2 blocks are still reachable in loss record 107 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48760C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x115846: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115B42: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x11212C: new_img (image.c:33)
+==587964==    by 0x1124FB: add_frame (sprite.c:33)
+==587964==    by 0x112708: slice_sprite (sprite.c:63)
+==587964==    by 0x10FFC2: main (main.c:48)
+==587964== 
+==587964== 344 bytes in 6 blocks are still reachable in loss record 108 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x49138F5: _XkbReadGetMapReply (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x491441E: XkbGetUpdatedMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x49144F4: XkbGetMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x4914542: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x49148AF: XkbKeycodeToKeysym (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x116DF7: mlx_int_param_KeyPress (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115495: mlx_loop (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110092: main (main.c:53)
+==587964== 
+==587964== 352 bytes in 4 blocks are still reachable in loss record 109 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x11581B: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115B42: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x11212C: new_img (image.c:33)
+==587964==    by 0x1124FB: add_frame (sprite.c:33)
+==587964==    by 0x112708: slice_sprite (sprite.c:63)
+==587964==    by 0x10FD3A: main (main.c:44)
+==587964== 
+==587964== 352 bytes in 4 blocks are still reachable in loss record 110 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x11581B: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115B42: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x11212C: new_img (image.c:33)
+==587964==    by 0x1124FB: add_frame (sprite.c:33)
+==587964==    by 0x112708: slice_sprite (sprite.c:63)
+==587964==    by 0x10FDDC: main (main.c:45)
+==587964== 
+==587964== 384 bytes in 6 blocks are still reachable in loss record 111 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x113A60: ft_calloc (ft_calloc.c:31)
+==587964==    by 0x1124C4: add_frame (sprite.c:30)
+==587964==    by 0x112708: slice_sprite (sprite.c:63)
+==587964==    by 0x10FC98: main (main.c:43)
+==587964== 
+==587964== 512 bytes in 1 blocks are still reachable in loss record 112 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48B146A: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x48B184E: XInternAtom (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x11512B: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110156: new_window (init.c:32)
+==587964==    by 0x10FA4C: main (main.c:26)
+==587964== 
+==587964== 528 bytes in 6 blocks are still reachable in loss record 113 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x11581B: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115B42: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x11212C: new_img (image.c:33)
+==587964==    by 0x1124FB: add_frame (sprite.c:33)
+==587964==    by 0x112708: slice_sprite (sprite.c:63)
+==587964==    by 0x10FC98: main (main.c:43)
+==587964== 
+==587964== 544 bytes in 4 blocks are still reachable in loss record 114 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48760C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x115846: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115B42: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x11212C: new_img (image.c:33)
+==587964==    by 0x1124FB: add_frame (sprite.c:33)
+==587964==    by 0x112708: slice_sprite (sprite.c:63)
+==587964==    by 0x10FD3A: main (main.c:44)
+==587964== 
+==587964== 544 bytes in 4 blocks are still reachable in loss record 115 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48760C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x115846: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115B42: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x11212C: new_img (image.c:33)
+==587964==    by 0x1124FB: add_frame (sprite.c:33)
+==587964==    by 0x112708: slice_sprite (sprite.c:63)
+==587964==    by 0x10FDDC: main (main.c:45)
+==587964== 
+==587964== 816 bytes in 6 blocks are still reachable in loss record 116 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48760C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==587964==    by 0x115846: mlx_int_new_xshm_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115B42: mlx_new_image (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x11212C: new_img (image.c:33)
+==587964==    by 0x1124FB: add_frame (sprite.c:33)
+==587964==    by 0x112708: slice_sprite (sprite.c:63)
+==587964==    by 0x10FC98: main (main.c:43)
+==587964== 
+==587964== 832 bytes in 4 blocks are still reachable in loss record 117 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48C7FAE: _XEnq (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x48CABB6: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x48CAC69: _XEventsQueued (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x48A587D: XFlush (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x115797: mlx_string_put (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x10FAED: main (main.c:28)
+==587964== 
+==587964== 1,120 bytes in 1 blocks are still reachable in loss record 118 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x4919619: XkbAllocClientMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x4913EB7: _XkbReadGetMapReply (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x491441E: XkbGetUpdatedMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x49144F4: XkbGetMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x4914542: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x49148AF: XkbKeycodeToKeysym (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x116DF7: mlx_int_param_KeyPress (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115495: mlx_loop (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110092: main (main.c:53)
+==587964== 
+==587964== 1,456 bytes in 7 blocks are still reachable in loss record 119 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48C7FAE: _XEnq (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x48CABB6: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x48CBF01: _XReadEvents (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x48CC1D0: XWindowEvent (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x1155F5: mlx_int_wait_first_expose (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x11530E: mlx_new_window (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110170: new_window (init.c:33)
+==587964==    by 0x10FA4C: main (main.c:26)
+==587964== 
+==587964== 2,016 bytes in 27 blocks are still reachable in loss record 120 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x49137DD: _XkbReadGetMapReply (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x491441E: XkbGetUpdatedMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x49144F4: XkbGetMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x4914542: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x49148AF: XkbKeycodeToKeysym (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x116DF7: mlx_int_param_KeyPress (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115495: mlx_loop (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110092: main (main.c:53)
+==587964== 
+==587964== 2,048 bytes in 1 blocks are still reachable in loss record 121 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x4913914: _XkbReadGetMapReply (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x491441E: XkbGetUpdatedMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x49144F4: XkbGetMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x4914542: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x49148AF: XkbKeycodeToKeysym (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x116DF7: mlx_int_param_KeyPress (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115495: mlx_loop (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110092: main (main.c:53)
+==587964== 
+==587964== 2,704 bytes in 13 blocks are still reachable in loss record 122 of 128
+==587964==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48C7FAE: _XEnq (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x48CABB6: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x48CBF01: _XReadEvents (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x48CC205: XWindowEvent (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x1155F5: mlx_int_wait_first_expose (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x11530E: mlx_new_window (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110170: new_window (init.c:33)
+==587964==    by 0x10FA4C: main (main.c:26)
+==587964== 
+==587964== 4,096 bytes in 1 blocks are still reachable in loss record 123 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x491413E: _XkbReadGetMapReply (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x491441E: XkbGetUpdatedMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x49144F4: XkbGetMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x4914542: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x49148AF: XkbKeycodeToKeysym (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x116DF7: mlx_int_param_KeyPress (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x115495: mlx_loop (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110092: main (main.c:53)
+==587964== 
+==587964== 4,704 bytes in 1 blocks are still reachable in loss record 124 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48B5B31: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x115097: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110156: new_window (init.c:32)
+==587964==    by 0x10FA4C: main (main.c:26)
+==587964== 
+==587964== 14,612 bytes in 1 blocks are still reachable in loss record 125 of 128
+==587964==    at 0x484DCD3: realloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x4BFD4FB: xcb_connect_to_fd (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==587964==    by 0x4BFDE6B: xcb_connect_to_display_with_auth_info (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==587964==    by 0x48C5EE9: _XConnectXCB (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x48B5B68: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x115097: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110156: new_window (init.c:32)
+==587964==    by 0x10FA4C: main (main.c:26)
+==587964== 
+==587964== 16,384 bytes in 1 blocks are still reachable in loss record 126 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48B5EBE: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x115097: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110156: new_window (init.c:32)
+==587964==    by 0x10FA4C: main (main.c:26)
+==587964== 
+==587964== 21,168 bytes in 1 blocks are still reachable in loss record 127 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x4BFD204: xcb_connect_to_fd (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==587964==    by 0x4BFDE6B: xcb_connect_to_display_with_auth_info (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==587964==    by 0x48C5EE9: _XConnectXCB (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x48B5B68: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x115097: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110156: new_window (init.c:32)
+==587964==    by 0x10FA4C: main (main.c:26)
+==587964== 
+==587964== 33,600 bytes in 2 blocks are still reachable in loss record 128 of 128
+==587964==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==587964==    by 0x48B6290: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==587964==    by 0x115097: mlx_init (in /nfs/homes/llai/42/so_long/so_long)
+==587964==    by 0x110156: new_window (init.c:32)
+==587964==    by 0x10FA4C: main (main.c:26)
+==587964== 
+==587964== LEAK SUMMARY:
+==587964==    definitely lost: 0 bytes in 0 blocks
+==587964==    indirectly lost: 0 bytes in 0 blocks
+==587964==      possibly lost: 0 bytes in 0 blocks
+==587964==    still reachable: 118,599 bytes in 241 blocks
+==587964==         suppressed: 0 bytes in 0 blocks
+==587964== 
+==587964== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 1 from 1)
+==587964== 
+==587964== 1 errors in context 1 of 1:
+==587964== Conditional jump or move depends on uninitialised value(s)
+==587964==    at 0x114B71: ft_lstadd_back (ft_lstadd_back.c:29)
+==587964==    by 0x10FCBF: main (main.c:43)
+==587964==  Uninitialised value was created by a stack allocation
+==587964==    at 0x10F9B1: main (main.c:17)
+==587964== 
+--587964-- 
+--587964-- used_suppression:      1 X on SUSE11 writev uninit padding /usr/libexec/valgrind/default.supp:377
+==587964== 
+==587964== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 1 from 1)

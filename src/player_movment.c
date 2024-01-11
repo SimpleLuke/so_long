@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:55:50 by llai              #+#    #+#             */
-/*   Updated: 2024/01/11 15:41:55 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/11 16:26:31 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,12 @@ bool	is_end_game(t_game *game)
 
 int	keystroke(int keycode, t_game *game)
 {
+	static uint64_t	updated_at = 0;
+	int				fps = 16;
+
+	if ((timestamp_in_ms() - updated_at) < (uint64_t)(1000 / fps))
+		return (0);
+	updated_at = timestamp_in_ms();
 	if (game->end_exit.is_end)
 		return (0);
 	if (keycode == 119 && !is_wall(game, UP))

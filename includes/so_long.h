@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 14:33:09 by llai              #+#    #+#             */
-/*   Updated: 2024/01/11 16:05:25 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/11 16:23:59 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "sprite.h"
 # include "animation.h"
 # include <stdbool.h>
+# include <stdint.h>
 
 # define ESC_KEY 0xff1b
 # define HEIGHT 32
@@ -232,6 +233,9 @@ void	move_enemy(t_game *game);
 
 // Steps
 void	put_steps_on_screen(t_game *game);
+
+// Time
+uint64_t	timestamp_in_ms(void);
 
 // Debug
 int		print_error(char *msg);

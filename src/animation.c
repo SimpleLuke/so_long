@@ -6,20 +6,18 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:47:39 by llai              #+#    #+#             */
-/*   Updated: 2024/01/11 16:05:48 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/11 16:25:12 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 #include <stdint.h>
 
-uint64_t	timestamp_in_ms(void);
-uint64_t	updated_at = 0;
-
-int			fps = 16;
 
 int	update(t_game *game)
 {
+	int			fps = 16;
+	static uint64_t	updated_at = 0;
 	t_list	*list;
 
 	// ft_printf("timestamp: %d\t update: %d\n", timestamp_in_ms(), updated_at);
