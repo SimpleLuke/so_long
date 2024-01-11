@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 14:33:09 by llai              #+#    #+#             */
-/*   Updated: 2024/01/10 17:23:50 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/11 12:38:10 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ enum e_direction
 	UP,
 	DOWN,
 	LEFT,
-	RIGHT
+	RIGHT,
+	STAY
 };
 
 typedef struct s_win

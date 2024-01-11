@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:47:39 by llai              #+#    #+#             */
-/*   Updated: 2024/01/10 17:31:26 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/11 12:55:27 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ int	update(t_game *game)
 	if (!list)
 		return (-1);
 	// ft_lstiter(list, update_animation);
-	ft_lstiter_param(list, update_animation, game);
 	if (game->map[game->player.location.y][game->player.location.x] == 'M' && !game->end_exit.is_end)
 	{
 		ft_printf("YOU LOST\n");
 		game->end_exit.is_end = true;
 	}
+	ft_lstiter_param(list, update_animation, game);
 	return (0);
 }
 

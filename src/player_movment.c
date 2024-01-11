@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:55:50 by llai              #+#    #+#             */
-/*   Updated: 2024/01/10 20:44:18 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/11 12:59:54 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,12 @@ void	move_player(t_game *game, enum e_direction dir)
 	{
 		replace_ground(game);
 		move_right(game);
+	}
+	if (game->map[game->player.location.y][game->player.location.x] == 'M' && !game->end_exit.is_end)
+	{
+		game->end_exit.is_end = true;
+		mlx_put_image_to_window(game->base_image.win.mlx, game->base_image.win.win_ptr, game->base_image.img_ptr, 0, 0);
+		return ;
 	}
 	move_enemy(game);
 	mlx_put_image_to_window(game->base_image.win.mlx, game->base_image.win.win_ptr, game->base_image.img_ptr, 0, 0);
