@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:55:50 by llai              #+#    #+#             */
-/*   Updated: 2024/01/11 12:59:54 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/11 15:41:55 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,22 +63,22 @@ int	keystroke(int keycode, t_game *game)
 		ft_printf("YOU WIN!");
 		game->end_exit.is_end = true;
 	}
-	int	i;
-	int	j;
-	int	count;
-
-	count = 0;
-	i = -1;
-	while (++i < game->height)
-	{
-		j = -1;
-		while (++j < game->width)
-		{
-			if (game->map[i][j] == 'M')
-				count++;
-		}
-	}
-	ft_printf("ENEMY:%d\n", count);
+	// int	i;
+	// int	j;
+	// int	count;
+	//
+	// count = 0;
+	// i = -1;
+	// while (++i < game->height)
+	// {
+	// 	j = -1;
+	// 	while (++j < game->width)
+	// 	{
+	// 		if (game->map[i][j] == 'M')
+	// 			count++;
+	// 	}
+	// }
+	// ft_printf("ENEMY:%d\n", count);
 	return (0);
 }
 

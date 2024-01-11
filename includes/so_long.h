@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 14:33:09 by llai              #+#    #+#             */
-/*   Updated: 2024/01/11 12:38:10 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/11 16:05:25 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,7 +212,7 @@ void	update_animation(void *list_p, void *game_p);
 // void	generate_checked_texture(t_player *data, int width, int height);
 
 // Color
-// int	create_trgb(int t, int r, int g, int b);
+int	create_trgb(int t, int r, int g, int b);
 
 // Window management
 int		destory_game(t_game *game);
@@ -229,6 +229,9 @@ void	move_right(t_game *game);
 // Enemy
 void	put_enemy(t_game *game);
 void	move_enemy(t_game *game);
+
+// Steps
+void	put_steps_on_screen(t_game *game);
 
 // Debug
 int		print_error(char *msg);

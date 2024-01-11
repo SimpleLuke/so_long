@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:30:12 by llai              #+#    #+#             */
-/*   Updated: 2024/01/11 15:19:45 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/11 15:22:33 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,13 +116,13 @@ void	move_enemy(t_game *game)
 	}
 	map_to_map(map_copy, game->map, game);
 	i = -1;
-				for (int i = 0; i < game->height; i++)
-				{
-					for (int j = 0; j < game->width; j++) {
-						ft_printf("%c", map_copy[i][j]);
-					}
-					ft_printf("\n");
-				}
+				// for (int i = 0; i < game->height; i++)
+				// {
+				// 	for (int j = 0; j < game->width; j++) {
+				// 		ft_printf("%c", map_copy[i][j]);
+				// 	}
+				// 	ft_printf("\n");
+				// }
 	while (++i < game->height)
 	{
 		j = -1;

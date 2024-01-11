@@ -21,7 +21,8 @@ SRC = src/main.c \
 	  src/sprite.c \
 	  src/animation.c \
 	  src/utils.c \
-	  src/enemy.c
+	  src/enemy.c \
+	  src/text.c
 OBJ = $(SRC:src/%c=$(BIN)/%o)
 INCS = includes
 LIBFT_PATH = libft

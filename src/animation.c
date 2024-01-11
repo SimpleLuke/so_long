@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:47:39 by llai              #+#    #+#             */
-/*   Updated: 2024/01/11 12:55:27 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/11 16:05:48 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	update(t_game *game)
 		game->end_exit.is_end = true;
 	}
 	ft_lstiter_param(list, update_animation, game);
+	put_steps_on_screen(game);
 	return (0);
 }
 
