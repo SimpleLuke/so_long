@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:32:19 by llai              #+#    #+#             */
-/*   Updated: 2024/01/10 14:59:42 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/11 15:19:34 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ bool	check_map(t_game *game, char *map_line)
 	if (!check_rec(game, map_line) || !check_comp(game)
 		|| !check_wall(game) || !check_path(game))
 		return (false);
-	put_enemy(game);
+	if (((double)game->comp.space / (game->height * game->width) * 100) > 40)
+		put_enemy(game);
 	return (true);
 }
 
