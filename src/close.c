@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 19:10:30 by llai              #+#    #+#             */
-/*   Updated: 2024/01/10 17:27:06 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/12 12:01:31 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@ void	free_images(t_game *game)
 {
 	mlx_destroy_image(game->base_image.win.mlx, game->texture.space.img_ptr);
 	mlx_destroy_image(game->base_image.win.mlx, game->texture.wall.img_ptr);
-	mlx_destroy_image(game->base_image.win.mlx, game->texture.collectible.img_ptr);
-	mlx_destroy_image(game->base_image.win.mlx, game->texture.player_start.img_ptr);
+	mlx_destroy_image(game->base_image.win.mlx,
+		game->texture.collectible.img_ptr);
+	mlx_destroy_image(game->base_image.win.mlx,
+		game->texture.player_start.img_ptr);
 	mlx_destroy_image(game->base_image.win.mlx, game->texture.map_exit.img_ptr);
 	mlx_destroy_image(game->base_image.win.mlx, game->player.sprite.img_ptr);
 }
@@ -39,7 +41,8 @@ int	esc_close_win(int keycode, t_game *game)
 {
 	if (keycode == ESC_KEY)
 	{
-		mlx_destroy_window(game->base_image.win.mlx, game->base_image.win.win_ptr);
+		mlx_destroy_window(game->base_image.win.mlx,
+			game->base_image.win.win_ptr);
 		exit(EXIT_SUCCESS);
 	}
 	return (0);
