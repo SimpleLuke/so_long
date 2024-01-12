@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:55:50 by llai              #+#    #+#             */
-/*   Updated: 2024/01/12 12:14:09 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/12 12:24:21 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,18 +72,18 @@ int	keystroke(int keycode, t_game *game)
 void	replace_ground(t_game *game)
 {
 	char		current;
-	t_plocation	plocation;
+	t_plocation	*plocation;
 
-	plocation = game->player.location;
-	current = game->map[plocation.y][plocation.x];
+	plocation = &game->player.location;
+	current = game->map[plocation->y][plocation->x];
 	if (current == 'P')
-		render_sprite(game, 'P', plocation.y, plocation.x);
+		render_sprite(game, 'P', plocation->y, plocation->x);
 	else if (current == 'E')
-		render_sprite(game, 'E', plocation.y, plocation.x);
+		render_sprite(game, 'E', plocation->y, plocation->x);
 	else if (current == 'C')
-		render_sprite(game, '0', plocation.y, plocation.x);
+		render_sprite(game, '0', plocation->y, plocation->x);
 	else
-		render_sprite(game, '0', plocation.y, plocation.x);
+		render_sprite(game, '0', plocation->y, plocation->x);
 }
 
 void	put_player(t_game *game, enum e_direction dir)
@@ -112,14 +112,13 @@ void	put_player(t_game *game, enum e_direction dir)
 
 void	move_player(t_game *game, enum e_direction dir)
 {
-	t_plocation	plocation;
+	t_plocation	*plocation;
 
-	plocation = game->player.location;
+	plocation = &game->player.location;
 	ft_printf("YOU HAVE MOVED %d STEPS\n", ++game->steps);
 	put_player(game, dir);
-	if (game->map[plocation.y][plocation.x] == 'M' && !game->end_exit.is_end)
+	if (game->map[plocation->y][plocation->x] == 'M' && !game->end_exit.is_end)
 	{
-		game->end_exit.is_end = true;
 		mlx_put_image_to_window(game->base_image.win.mlx,
 			game->base_image.win.win_ptr, game->base_image.img_ptr, 0, 0);
 		return ;
