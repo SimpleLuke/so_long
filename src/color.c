@@ -6,11 +6,11 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 14:46:04 by llai              #+#    #+#             */
-/*   Updated: 2024/01/11 15:28:43 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/12 12:04:35 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int create_trgb(int t, int r, int g, int b)
+int	create_trgb(int t, int r, int g, int b)
 {
-    return (t << 24 | r << 16 | g << 8 | b);
+	return (t << 24 | r << 16 | g << 8 | b);
 }
