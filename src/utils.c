@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 19:17:48 by llai              #+#    #+#             */
-/*   Updated: 2024/01/09 19:22:32 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/12 12:02:47 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 #include <sys/time.h>
 #include <stdint.h>
 #include <stdlib.h>
-
-uint64_t	created_at = 0;
 
 static uint64_t	gettimeofday_ms(void)
 {
@@ -27,6 +25,8 @@ static uint64_t	gettimeofday_ms(void)
 
 uint64_t	timestamp_in_ms(void)
 {
+	static uint64_t	created_at = 0;
+
 	if (created_at == 0)
 		created_at = gettimeofday_ms();
 	return (gettimeofday_ms() - created_at);
