@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 15:24:19 by llai              #+#    #+#             */
-/*   Updated: 2024/01/12 16:23:26 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/12 17:25:08 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,26 +46,6 @@ void	load_map_image(t_game *game)
 			game->base_image.win);
 	game->texture.player_start = new_file_img("assets/start.xpm",
 			game->base_image.win);
-}
-
-void	put_comp(t_game *game, int i, int j)
-{
-	if (game->map[i][j] == '1')
-		render_sprite(game, '1', i, j);
-	else if (game->map[i][j] == '0')
-		render_sprite(game, '0', i, j);
-	else if (game->map[i][j] == 'C')
-		render_sprite(game, '0', i, j);
-	else if (game->map[i][j] == 'P')
-	{
-		render_sprite(game, 'P', i, j);
-		game->player.location.x = j;
-		game->player.location.y = i;
-	}
-	else if (game->map[i][j] == 'E')
-		render_sprite(game, 'E', i, j);
-	else if (game->map[i][j] == 'M')
-		render_sprite(game, 'M', i, j);
 }
 
 void	render_map(t_game *game)

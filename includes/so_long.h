@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 14:33:09 by llai              #+#    #+#             */
-/*   Updated: 2024/01/11 16:23:59 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/12 17:34:21 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define ESC_KEY 0xff1b
 # define HEIGHT 32
 # define WIDTH 32
+# define FPS 16
 
 enum e_direction
 {
@@ -119,7 +120,6 @@ typedef struct s_animation
 	t_list			*frames;
 	int				width;
 	int				height;
-	int				delay;
 	int				_tmp_delay;
 	int				current_frame_num;
 	long int		last_updated;
@@ -171,6 +171,9 @@ typedef struct s_animator
 void	init_game(t_game *game);
 t_win	new_window(int w, int h, char *str);
 
+// Game
+bool	is_end_game(t_game *game);
+
 // Custom put pixel
 void	my_mlx_pixel_put(t_player *data, int x, int y, int color);
 
@@ -182,6 +185,9 @@ bool	check_rec(t_game *game, char *map_line);
 bool	check_comp(t_game *game);
 bool	check_wall(t_game *game);
 int		convert_map(t_game *game, char *map_line);
+void	map_to_map(char **src, char **dst, t_game *game);
+void	free_map_copy(char **map_copy, t_game *game);
+void	put_comp(t_game *game, int i, int j);
 
 // Render
 t_img	new_file_img(char *path, t_win window);
@@ -198,12 +204,17 @@ void	load_player_image(t_game *game);
 
 // Sprite
 t_sprite	new_sprite(char *name, char *file_path, t_win *win);
-t_animation	*slice_sprite(t_sprite s, t_sprite_slice slice, int frames, int delay, enum e_entity e);
+t_animation	*slice_sprite(t_sprite s, t_sprite_slice slice, int frames, enum e_entity e);
 void		destory_sprite(t_sprite s);
 
 // Animation
 int		update(t_game *game);
 void	update_animation(void *list_p, void *game_p);
+void	check_enetity(t_animation *a, t_game *game, t_img *img);
+void	render_enemy_sprite(t_game *game, t_img *img);
+void	render_space_sprite(t_game *game);
+void	render_collectible_sprite(t_game *game, t_img *img);
+void	render_player_sprite(t_game *game, t_img *img);
 // Draw shapes
 // void	draw_circle(t_player *data, int center_x,
 //	int center_y, int radius, int color);

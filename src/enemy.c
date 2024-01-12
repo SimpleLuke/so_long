@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:30:12 by llai              #+#    #+#             */
-/*   Updated: 2024/01/12 14:36:05 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/12 17:16:51 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,30 +68,6 @@ enum e_direction	choose_direction(t_game *game,
 	if (r == STAY && set_map(i, j, map_copy, 'M'))
 		return (STAY);
 	return (choose_direction(game, i, j, map_copy));
-}
-
-void	map_to_map(char **src, char **dst, t_game *game)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	while (++i < game->height)
-	{
-		j = -1;
-		while (++j < game->width)
-			dst[i][j] = src[i][j];
-	}
-}
-
-void	free_map_copy(char **map_copy, t_game *game)
-{
-	int	i;
-
-	i = -1;
-	while (++i < game->height)
-		free(map_copy[i]);
-	free(map_copy);
 }
 
 void	move_enemy(t_game *game)

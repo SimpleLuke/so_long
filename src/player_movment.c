@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:55:50 by llai              #+#    #+#             */
-/*   Updated: 2024/01/12 12:24:21 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/12 17:05:56 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,6 @@ bool	is_wall(t_game *game, enum e_direction dir)
 	else if (dir == RIGHT && game->map
 		[game->player.location.y][game->player.location.x + 1] == '1')
 		return (true);
-	return (false);
-}
-
-bool	is_end_game(t_game *game)
-{
-	if (game->player.location.x == game->end_exit.x
-		&& game->player.location.y == game->end_exit.y)
-		if (game->comp.collectible == game->end_exit.points)
-			return (true);
 	return (false);
 }
 

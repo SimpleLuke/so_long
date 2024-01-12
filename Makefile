@@ -14,15 +14,18 @@ SRC = src/main.c \
 	  src/render.c \
 	  src/map.c \
 	  src/map_utils.c \
+	  src/map_utils2.c \
 	  src/path.c \
 	  src/player.c \
 	  src/image.c \
 	  src/debug.c \
 	  src/sprite.c \
 	  src/animation.c \
+	  src/animation_utils.c \
 	  src/utils.c \
 	  src/enemy.c \
-	  src/text.c
+	  src/text.c \
+	  src/game_utils.c
 OBJ = $(SRC:src/%c=$(BIN)/%o)
 INCS = includes
 LIBFT_PATH = libft

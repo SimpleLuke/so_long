@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:47:39 by llai              #+#    #+#             */
-/*   Updated: 2024/01/12 14:41:13 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/12 17:32:04 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,32 +33,6 @@ int	update(t_game *game)
 	ft_lstiter_param(list, update_animation, game);
 	put_steps_on_screen(game);
 	return (0);
-}
-
-void	render_collectible_sprite(t_game *game, t_img *img)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	if (game->map[game->player.location.y][game->player.location.x] == 'C')
-	{
-		game->end_exit.points += 1;
-		game->map[game->player.location.y][game->player.location.x] = '0';
-	}
-	while (++i < game->height)
-	{
-		j = -1;
-		while (++j < game->width)
-		{
-			if (game->map[i][j] == 'C')
-			{
-				put_img_to_img(game->base_image,
-					game->texture.space, j * 32, i * 32);
-				put_img_to_img(game->base_image, *img, j * 32, i * 32);
-			}
-		}
-	}
 }
 
 void	render_enemy_sprite(t_game *game, t_img *img)
@@ -110,22 +84,6 @@ void	render_player_sprite(t_game *game, t_img *img)
 	y = game->player.location.y;
 	put_img_to_img(game->base_image, game->texture.space, x * 32, y * 32);
 	put_img_to_img(game->base_image, *img, x * 32, y * 32);
-}
-
-void	check_enetity(t_animation *a, t_game *game, t_img *img)
-{
-	if (a->entity == COLLECTIBLE)
-		render_collectible_sprite(game, img);
-	else if (a->entity == PLAYER_DOWN && game->player.position == DOWN)
-		render_player_sprite(game, img);
-	else if (a->entity == PLAYER_UP && game->player.position == UP)
-		render_player_sprite(game, img);
-	else if (a->entity == PLAYER_LEFT && game->player.position == LEFT)
-		render_player_sprite(game, img);
-	else if (a->entity == PLAYER_RIGHT && game->player.position == RIGHT)
-		render_player_sprite(game, img);
-	else if (a->entity == ENEMY_DOWN)
-		render_enemy_sprite(game, img);
 }
 
 void	update_animation(void *list_p, void *game_p)
