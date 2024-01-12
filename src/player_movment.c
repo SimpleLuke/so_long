@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:55:50 by llai              #+#    #+#             */
-/*   Updated: 2024/01/11 16:26:31 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/12 12:14:09 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,8 @@ bool	is_wall(t_game *game, enum e_direction dir)
 
 bool	is_end_game(t_game *game)
 {
-	// ft_printf("X: %d, %d\n", game->player.location.x, game->end_exit.x);
-	// ft_printf("Y: %d, %d\n", game->player.location.y, game->end_exit.y);
-	// ft_printf("P: %d, %d\n", game->comp.collectible, game->end_exit.points);
-	if (game->player.location.x == game->end_exit.x && game->player.location.y == game->end_exit.y)
+	if (game->player.location.x == game->end_exit.x
+		&& game->player.location.y == game->end_exit.y)
 		if (game->comp.collectible == game->end_exit.points)
 			return (true);
 	return (false);
@@ -49,9 +47,8 @@ bool	is_end_game(t_game *game)
 int	keystroke(int keycode, t_game *game)
 {
 	static uint64_t	updated_at = 0;
-	int				fps = 16;
 
-	if ((timestamp_in_ms() - updated_at) < (uint64_t)(1000 / fps))
+	if ((timestamp_in_ms() - updated_at) < (uint64_t)(1000 / FPS))
 		return (0);
 	updated_at = timestamp_in_ms();
 	if (game->end_exit.is_end)
@@ -69,52 +66,28 @@ int	keystroke(int keycode, t_game *game)
 		ft_printf("YOU WIN!");
 		game->end_exit.is_end = true;
 	}
-	// int	i;
-	// int	j;
-	// int	count;
-	//
-	// count = 0;
-	// i = -1;
-	// while (++i < game->height)
-	// {
-	// 	j = -1;
-	// 	while (++j < game->width)
-	// 	{
-	// 		if (game->map[i][j] == 'M')
-	// 			count++;
-	// 	}
-	// }
-	// ft_printf("ENEMY:%d\n", count);
 	return (0);
 }
 
 void	replace_ground(t_game *game)
 {
-	char	current;
+	char		current;
+	t_plocation	plocation;
 
-	current = game->map[game->player.location.y][game->player.location.x];
+	plocation = game->player.location;
+	current = game->map[plocation.y][plocation.x];
 	if (current == 'P')
-		render_sprite(game, 'P', game->player.location.y, game->player.location.x);
-		// mlx_put_image_to_window(game->mlx, game->win,
-		// 	game->texture.player_start.img_ptr, game->player.location.x * 32,
-		// 	game->player.location.y * 32);
+		render_sprite(game, 'P', plocation.y, plocation.x);
 	else if (current == 'E')
-		render_sprite(game, 'E', game->player.location.y, game->player.location.x);
-		// mlx_put_image_to_window(game->mlx, game->win,
-		// 	game->texture.map_exit.img_ptr, game->player.location.x * 32,
-		// 	game->player.location.y * 32);
+		render_sprite(game, 'E', plocation.y, plocation.x);
 	else if (current == 'C')
-		render_sprite(game, '0', game->player.location.y, game->player.location.x);
+		render_sprite(game, '0', plocation.y, plocation.x);
 	else
-		render_sprite(game, '0', game->player.location.y, game->player.location.x);
-		// mlx_put_image_to_window(game->mlx, game->win,
-		// 	game->texture.space.img_ptr, game->player.location.x * 32,
-		// 	game->player.location.y * 32);
+		render_sprite(game, '0', plocation.y, plocation.x);
 }
 
-void	move_player(t_game *game, enum e_direction dir)
+void	put_player(t_game *game, enum e_direction dir)
 {
-	ft_printf("YOU HAVE MOVED %d STEPS\n", ++game->steps);
 	if (dir == UP)
 	{
 		replace_ground(game);
@@ -135,12 +108,23 @@ void	move_player(t_game *game, enum e_direction dir)
 		replace_ground(game);
 		move_right(game);
 	}
-	if (game->map[game->player.location.y][game->player.location.x] == 'M' && !game->end_exit.is_end)
+}
+
+void	move_player(t_game *game, enum e_direction dir)
+{
+	t_plocation	plocation;
+
+	plocation = game->player.location;
+	ft_printf("YOU HAVE MOVED %d STEPS\n", ++game->steps);
+	put_player(game, dir);
+	if (game->map[plocation.y][plocation.x] == 'M' && !game->end_exit.is_end)
 	{
 		game->end_exit.is_end = true;
-		mlx_put_image_to_window(game->base_image.win.mlx, game->base_image.win.win_ptr, game->base_image.img_ptr, 0, 0);
+		mlx_put_image_to_window(game->base_image.win.mlx,
+			game->base_image.win.win_ptr, game->base_image.img_ptr, 0, 0);
 		return ;
 	}
 	move_enemy(game);
-	mlx_put_image_to_window(game->base_image.win.mlx, game->base_image.win.win_ptr, game->base_image.img_ptr, 0, 0);
+	mlx_put_image_to_window(game->base_image.win.mlx,
+		game->base_image.win.win_ptr, game->base_image.img_ptr, 0, 0);
 }
