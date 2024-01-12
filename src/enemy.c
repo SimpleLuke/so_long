@@ -6,11 +6,12 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:30:12 by llai              #+#    #+#             */
-/*   Updated: 2024/01/11 15:22:33 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/12 14:36:05 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+#include <stdbool.h>
 #include <stdlib.h>
 
 void	put_enemy(t_game *game)
@@ -30,47 +31,42 @@ void	put_enemy(t_game *game)
 	}
 }
 
-enum e_direction	choose_direction(t_game *game, int i, int j, char **map_copy)
+bool	valid_enemy_move(char sym)
 {
-	int	r;
+	return (sym != '1' && sym != 'C' && sym != 'E' && sym != 'P');
+}
+
+int	set_map(int i, int j, char **map_copy, char type)
+{
+	map_copy[i][j] = type;
+	return (1);
+}
+
+enum e_direction	choose_direction(t_game *game,
+	int i, int j, char **map_copy)
+{
+	int		r;
+	char	sym;
 
 	r = rand() % 5;
-	// ft_printf("HEY: %d %d\n", j, i);
-	// ft_printf("P: %d %d\n", game->player.location.x, game->player.location.y);
-	if (r == UP && game->map[i - 1][j] != '1' && game->map[i - 1][j] != 'C'
-		&& game->map[i - 1][j] != 'E' && game->map[i - 1][j] != 'P' && map_copy[i - 1][j] != 'M')
-	{
-		// ft_printf("UP\n");
-		map_copy[i][j] = '0';
-		map_copy[i - 1][j] = 'M';
+	sym = game->map[i - 1][j];
+	if (r == UP && valid_enemy_move(sym) && map_copy[i - 1][j] != 'M'
+		&& set_map(i, j, map_copy, '0') && set_map(i - 1, j, map_copy, 'M'))
 		return (UP);
-	}
-	if (r == DOWN && game->map[i + 1][j] != '1' && game->map[i + 1][j] != 'C' && game->map[i + 1][j] != 'E' && game->map[i + 1][j] != 'P' && map_copy[i + 1][j] != 'M')
-	{
-		// ft_printf("DOWN\n");
-		map_copy[i][j] = '0';
-		map_copy[i + 1][j] = 'M';
+	sym = game->map[i + 1][j];
+	if (r == DOWN && valid_enemy_move(sym) && map_copy[i + 1][j] != 'M'
+		&& set_map(i, j, map_copy, '0') && set_map(i + 1, j, map_copy, 'M'))
 		return (DOWN);
-	}
-	if (r == LEFT && game->map[i][j - 1] != '1' && game->map[i][j - 1] != 'C' && game->map[i][j - 1] != 'E' && game->map[i][j - 1] != 'P' && map_copy[i][j - 1] != 'M')
-	{
-		// ft_printf("LEFT\n");
-		map_copy[i][j] = '0';
-		map_copy[i][j - 1] = 'M';
+	sym = game->map[i][j - 1];
+	if (r == LEFT && valid_enemy_move(sym) && map_copy[i][j - 1] != 'M'
+		&& set_map(i, j, map_copy, '0') && set_map(i, j - 1, map_copy, 'M'))
 		return (LEFT);
-	}
-	if (r == RIGHT && game->map[i][j + 1] != '1' && game->map[i][j + 1] != 'C' && game->map[i][j + 1] != 'E' && game->map[i][j + 1] != 'P' && map_copy[i][j + 1] != 'M')
-	{
-		// ft_printf("RIGHT\n");
-		map_copy[i][j] = '0';
-		map_copy[i][j + 1] = 'M';
+	sym = game->map[i][j + 1];
+	if (r == RIGHT && valid_enemy_move(sym) && map_copy[i][j + 1] != 'M'
+		&& set_map(i, j, map_copy, '0') && set_map(i, j + 1, map_copy, 'M'))
 		return (RIGHT);
-	}
-	if (r == STAY)
-	{
-		map_copy[i][j] = 'M';
+	if (r == STAY && set_map(i, j, map_copy, 'M'))
 		return (STAY);
-	}
 	return (choose_direction(game, i, j, map_copy));
 }
 
@@ -88,14 +84,22 @@ void	map_to_map(char **src, char **dst, t_game *game)
 	}
 }
 
-void	move_enemy(t_game *game)
+void	free_map_copy(char **map_copy, t_game *game)
 {
 	int	i;
-	int	j;
-	enum e_direction	dir;
+
+	i = -1;
+	while (++i < game->height)
+		free(map_copy[i]);
+	free(map_copy);
+}
+
+void	move_enemy(t_game *game)
+{
+	int		i;
+	int		j;
 	char	**map_copy;
 
-	(void)dir;
 	i = -1;
 	map_copy = (char **)malloc(game->height * sizeof(char *));
 	while (++i < game->height)
@@ -109,25 +113,12 @@ void	move_enemy(t_game *game)
 		{
 			if (game->map[i][j] == 'M')
 			{
-				put_img_to_img(game->base_image, game->texture.space, j * 32, i * 32);
-				choose_direction(game, i , j, map_copy);
+				put_img_to_img(game->base_image,
+					game->texture.space, j * 32, i * 32);
+				choose_direction(game, i, j, map_copy);
 			}
 		}
 	}
 	map_to_map(map_copy, game->map, game);
-	i = -1;
-				// for (int i = 0; i < game->height; i++)
-				// {
-				// 	for (int j = 0; j < game->width; j++) {
-				// 		ft_printf("%c", map_copy[i][j]);
-				// 	}
-				// 	ft_printf("\n");
-				// }
-	while (++i < game->height)
-	{
-		j = -1;
-		free(map_copy[i]);
-	}
-
-	free(map_copy);
+	free_map_copy(map_copy, game);
 }
