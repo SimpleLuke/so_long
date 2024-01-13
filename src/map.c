@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:32:19 by llai              #+#    #+#             */
-/*   Updated: 2024/01/13 19:52:19 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/13 21:07:51 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ void	read_map(t_game *game, char *map_path)
 	{
 		free_lines(0, map_line, 0);
 		print_error("Error\nThe map is not valid.");
-		destory_game(game);
+		free_gamemap(game);
+		exit(EXIT_FAILURE);
 	}
 	free_lines(0, map_line, 0);
 	close(fd);
@@ -147,8 +148,13 @@ int	convert_map(t_game *game, char *map_line)
 bool	check_map(t_game *game, char *map_line)
 {
 	if (!check_rec(game, map_line) || !check_comp(game)
-		|| !check_wall(game) || !check_path(game))
+		|| !check_wall(game))
 		return (false);
+	if (!check_path(game))
+	{
+		print_error("Error: Invalid path\n");
+		return (false);
+	}
 	if (((double)game->comp.space / (game->height * game->width) * 100) > 40)
 		put_enemy(game);
 	return (true);

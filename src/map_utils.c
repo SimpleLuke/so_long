@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 14:18:56 by llai              #+#    #+#             */
-/*   Updated: 2024/01/13 20:02:28 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/13 21:02:47 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,10 @@ int	count_comp(t_game *game, int row, int col)
 		game->end_exit.is_end = false;
 	}
 	else
+	{
+		print_error("Error: Invalid componment symbol\n");
 		return (1);
+	}
 	return (0);
 }
 
@@ -150,7 +153,10 @@ int	count_comp(t_game *game, int row, int col)
 bool	check_rec(t_game *game, char *map_line)
 {
 	if (ft_strlen(map_line) % game->width || game->height < 2)
+	{
+		print_error("Error: The map is not a rectangle\n");
 		return (false);
+	}
 	return (true);
 }
 
