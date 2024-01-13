@@ -6,12 +6,32 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 17:06:40 by llai              #+#    #+#             */
-/*   Updated: 2024/01/12 17:25:50 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/13 20:10:54 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/* ************************************************************************** 
+ *  Summary of File:                                                          
+ *  
+ *  	This file contains code which helps reading and converting the map.
+ *
+ * ************************************************************************** */
 #include "../includes/so_long.h"
 
+void	map_to_map(char **src, char **dst, t_game *game);
+void	free_map_copy(char **map_copy, t_game *game);
+
+/* **************************************************************************
+ * void	map_to_map(char **src, char **dst, t_game *game)
+ *
+ * Summary of the function:
+ * 
+ * This function copies the src map into dst map.
+ *
+ * Parameters : A pointer to t_game and the 2D char array of src and dst.
+ *
+ * Return Value : It returns nothing.
+ * **************************************************************************/
 void	map_to_map(char **src, char **dst, t_game *game)
 {
 	int	i;
@@ -26,6 +46,17 @@ void	map_to_map(char **src, char **dst, t_game *game)
 	}
 }
 
+/* **************************************************************************
+ * void	free_map_copy(char **map_copy, t_game *game)
+ *
+ * Summary of the function:
+ * 
+ * This function frees the copied map.
+ *
+ * Parameters : A pointer to t_game and the 2D char array of copied map.
+ *
+ * Return Value : It returns nothing.
+ * **************************************************************************/
 void	free_map_copy(char **map_copy, t_game *game)
 {
 	int	i;
@@ -34,24 +65,4 @@ void	free_map_copy(char **map_copy, t_game *game)
 	while (++i < game->height)
 		free(map_copy[i]);
 	free(map_copy);
-}
-
-void	put_comp(t_game *game, int i, int j)
-{
-	if (game->map[i][j] == '1')
-		render_sprite(game, '1', i, j);
-	else if (game->map[i][j] == '0')
-		render_sprite(game, '0', i, j);
-	else if (game->map[i][j] == 'C')
-		render_sprite(game, '0', i, j);
-	else if (game->map[i][j] == 'P')
-	{
-		render_sprite(game, 'P', i, j);
-		game->player.location.x = j;
-		game->player.location.y = i;
-	}
-	else if (game->map[i][j] == 'E')
-		render_sprite(game, 'E', i, j);
-	else if (game->map[i][j] == 'M')
-		render_sprite(game, 'M', i, j);
 }
