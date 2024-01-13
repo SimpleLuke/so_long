@@ -6,53 +6,29 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 14:33:39 by llai              #+#    #+#             */
-/*   Updated: 2024/01/12 16:43:19 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/13 13:55:16 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/* ************************************************************************** 
+ *  Summary of File:                                                          
+ *  
+ *  	This program contains code which generate a game from a map files.
+ *  	The game requires the player to dogde enemies and gather
+ *  	collectibles. The player wins by arriving the exit safely with
+ *  	all the collectibles. The player loses when they are attacked
+ *  	by the enemies.
+ *  	The use of steps will be displayed.
+ *  	Any error will be displayed and program will exit.
+ *
+ * ************************************************************************** */
 #include "../includes/so_long.h"
-#include <stdlib.h>
-#include <time.h>
-
-void	sprite_to_list(t_game *game, t_win win)
-{
-	t_sprite		sprite;
-	t_sprite_slice	slice;
-
-	slice = (t_sprite_slice){0, 0, 32, 32};
-	sprite = new_sprite("ball", "assets/collectible-sheet.xpm", &win);
-	ft_lstadd_back(&game->texture.collectible_sprite.animations,
-		ft_lstnew(slice_sprite(sprite, slice, 6, COLLECTIBLE)));
-	sprite = new_sprite("player_down", "assets/player_down.xpm", &win);
-	ft_lstadd_back(&game->texture.collectible_sprite.animations,
-		ft_lstnew(slice_sprite(sprite, slice, 4, PLAYER_DOWN)));
-	sprite = new_sprite("player_up", "assets/player_up.xpm", &win);
-	ft_lstadd_back(&game->texture.collectible_sprite.animations,
-		ft_lstnew(slice_sprite(sprite, slice, 4, PLAYER_UP)));
-	sprite = new_sprite("player_left", "assets/player_left.xpm", &win);
-	ft_lstadd_back(&game->texture.collectible_sprite.animations,
-		ft_lstnew(slice_sprite(sprite, slice, 2, PLAYER_LEFT)));
-	sprite = new_sprite("player_right", "assets/player_right.xpm", &win);
-	ft_lstadd_back(&game->texture.collectible_sprite.animations,
-		ft_lstnew(slice_sprite(sprite, slice, 2, PLAYER_RIGHT)));
-	sprite = new_sprite("enemy_down", "assets/enemy_down.xpm", &win);
-	ft_lstadd_back(&game->texture.collectible_sprite.animations,
-		ft_lstnew(slice_sprite(sprite, slice, 2, ENEMY_DOWN)));
-}
-
-void	load_sprites(t_game *game)
-{
-	t_win	win;
-
-	win = game->base_image.win;
-	sprite_to_list(game, win);
-}
 
 int	main(int argc, char **argv)
 {
 	t_game	game;
 	t_win	win;
 
-	srand(time(NULL));
 	if (argc == 2)
 	{
 		init_game(&game);
@@ -70,6 +46,6 @@ int	main(int argc, char **argv)
 		mlx_loop(game.base_image.win.mlx);
 	}
 	else
-		ft_printf("Error\n");
+		print_error("Error\nPlease run the program with one map file.");
 	exit(EXIT_SUCCESS);
 }

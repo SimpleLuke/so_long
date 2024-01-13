@@ -20,6 +20,7 @@ SRC = src/main.c \
 	  src/image.c \
 	  src/debug.c \
 	  src/sprite.c \
+	  src/sprite_utils.c \
 	  src/animation.c \
 	  src/animation_utils.c \
 	  src/utils.c \

@@ -6,14 +6,28 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 13:13:22 by llai              #+#    #+#             */
-/*   Updated: 2024/01/10 17:24:17 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/13 13:47:23 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
+/* **************************************************************************
+ * void	push_swap(t_node *head, t_node *tail, int len)
+ *
+ * Summary of the function:
+ * 
+ * 	This function sorts the list and ouput the steps.
+ * 	It excutes different sorting algorithms depends on the size
+ * 	of the list.
+ *
+ * Parameters : The head node and the tail node and the length of the list.
+ *
+ * Return Value : It returns nothing.
+ * **************************************************************************/
 void	init_game(t_game *game)
 {
+	srand(time(NULL));
 	game->steps = 0;
 	game->width = 0;
 	game->height = 0;

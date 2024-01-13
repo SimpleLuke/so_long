@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 14:33:09 by llai              #+#    #+#             */
-/*   Updated: 2024/01/12 17:34:21 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/13 13:45:27 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,138 +18,22 @@
 # include "image.h"
 # include "sprite.h"
 # include "animation.h"
+# include "comp.h"
 # include <stdbool.h>
 # include <stdint.h>
+# include <stdlib.h>
+# include <time.h>
 
 # define ESC_KEY 0xff1b
 # define HEIGHT 32
 # define WIDTH 32
 # define FPS 16
 
-enum e_direction
-{
-	UP,
-	DOWN,
-	LEFT,
-	RIGHT,
-	STAY
-};
-
-typedef struct s_win
-{
-	void	*mlx;
-	void	*win_ptr;
-	int		width;
-	int		height;
-}	t_win;
-
-typedef struct s_plocation {
-	int	x;
-	int	y;
-}	t_plocation;
-
-typedef struct s_img
-{
-	t_win	win;
-	void	*img_ptr;
-	char	*addr;
-	int		h;
-	int		w;
-	int		bpp;
-	int		endian;
-	int		line_len;
-}	t_img;
-
-typedef struct s_player
-{
-	t_img		sprite;
-	enum e_direction	position;
-	t_plocation	location;
-}	t_player;
-
-typedef struct s_sprite
-{
-	t_list	*animations;
-	char	*name;
-	char	*file_path;
-	t_img	sprite_img;
-	int		width;
-	int		height;
-	int		z_index;
-}	t_sprite;
-
-typedef struct s_texture
-{
-	int		width;
-	int		height;
-	t_img	space;
-	t_img	wall;
-	t_img	collectible;
-	t_img	map_exit;
-	t_img	player_start;
-	t_sprite	collectible_sprite;
-}	t_texture;
-
-typedef struct s_comp
-{
-	int	space;
-	int	wall;
-	int	collectible;
-	int	map_exit;
-	int	player_start;
-}	t_comp;
-
-enum e_entity
-{
-	COLLECTIBLE,
-	PLAYER_UP,
-	PLAYER_DOWN,
-	PLAYER_RIGHT,
-	PLAYER_LEFT,
-	ENEMY_DOWN
-};
-
-typedef struct s_enemy
-{
-	t_sprite			enemy_sprite;
-	enum e_direction	position;
-}	t_enemy;
-
-typedef struct s_animation
-{
-	t_list			*frames;
-	int				width;
-	int				height;
-	int				_tmp_delay;
-	int				current_frame_num;
-	long int		last_updated;
-	long int		frame_count;
-	enum e_entity	entity;
-}	t_animation;
-
-typedef struct sprite_slice
-{
-	int	x;
-	int	y;
-	int	width;
-	int	height;
-} t_sprite_slice;
-
-typedef struct s_exit
-{
-	int	x;
-	int	y;
-	int	points;
-	bool	is_end;
-}	t_exit;
-
 typedef struct s_game
 {
 	int			width;
 	int			height;
 	int			steps;
-	// void		*mlx;
-	// void		*win;
 	char		**map;
 	t_player	player;
 	t_enemy		enemy;
@@ -159,13 +43,6 @@ typedef struct s_game
 	t_animation	*animation;
 	t_exit		end_exit;
 }	t_game;
-
-typedef struct s_animator
-{
-	t_list	*animations;
-	t_game	*game;
-	t_img	*img;
-}	t_animator;
 
 // Initialization
 void	init_game(t_game *game);
@@ -206,6 +83,8 @@ void	load_player_image(t_game *game);
 t_sprite	new_sprite(char *name, char *file_path, t_win *win);
 t_animation	*slice_sprite(t_sprite s, t_sprite_slice slice, int frames, enum e_entity e);
 void		destory_sprite(t_sprite s);
+void	load_sprites(t_game *game);
+void	sprite_to_list(t_game *game, t_win win);
 
 // Animation
 int		update(t_game *game);
