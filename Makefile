@@ -10,8 +10,8 @@ SRC = src/main.c \
 	  src/player_movment.c \
 	  src/movement_utils.c \
 	  src/mlx_utils.c \
-	  src/game_init.c \
 	  src/render.c \
+	  src/render_utils.c \
 	  src/map.c \
 	  src/map_utils.c \
 	  src/map_utils2.c \
