@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:24:07 by llai              #+#    #+#             */
-/*   Updated: 2024/01/12 16:54:59 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/13 18:30:16 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	add_frame(t_animation *a, t_sprite s, t_sprite_slice slice)
 	int		i;
 	int		j;
 
-	frame = (t_img *)ft_calloc(1, sizeof(t_img));
+	// frame = (t_img *)ft_calloc(1, sizeof(t_img));
+	frame = (t_img *)malloc(sizeof(t_img));
 	if (!frame)
 		return ;
 	*frame = new_img(slice.width, slice.height, s.sprite_img.win);
@@ -44,6 +45,8 @@ void	add_frame(t_animation *a, t_sprite s, t_sprite_slice slice)
 		i++;
 	}
 	ft_lstadd_back(&a->frames, ft_lstnew(frame));
+	// mlx_destroy_image(frame->win.mlx, frame->img_ptr);
+	// free(frame);
 }
 
 t_animation	*slice_sprite(t_sprite s, t_sprite_slice slice,

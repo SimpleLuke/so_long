@@ -6,11 +6,21 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 13:13:22 by llai              #+#    #+#             */
-/*   Updated: 2024/01/13 14:00:55 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/13 14:07:13 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/* ************************************************************************** 
+ *  Summary of File:                                                          
+ *  
+ *  	This file contains code which initialise the game for set up.
+ *  	It helps to set up the game structure and the window configuration.
+ *
+ * ************************************************************************** */
 #include "../includes/so_long.h"
+
+void	init_game(t_game *game);
+t_win	new_window(int w, int h, char *str);
 
 /* **************************************************************************
  * void	init_game(t_game *game)

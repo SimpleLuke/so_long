@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:47:39 by llai              #+#    #+#             */
-/*   Updated: 2024/01/12 17:32:04 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/13 16:08:59 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	update(t_game *game)
 	if ((timestamp_in_ms() - updated_at) < (uint64_t)(1000 / FPS))
 		return (0);
 	updated_at = timestamp_in_ms();
-	list = game->texture.collectible_sprite.animations;
+	list = game->texture.sprites.animations;
 	if (!list)
 		return (-1);
 	if (game->map[game->player.location.y][game->player.location.x] == 'M'

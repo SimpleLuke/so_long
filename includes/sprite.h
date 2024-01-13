@@ -45,7 +45,7 @@ typedef struct s_texture
 	t_img	collectible;
 	t_img	map_exit;
 	t_img	player_start;
-	t_sprite	collectible_sprite;
+	t_sprite	sprites;
 }	t_texture;
 
 typedef struct sprite_slice
