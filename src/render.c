@@ -6,18 +6,37 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 15:24:19 by llai              #+#    #+#             */
-/*   Updated: 2024/01/12 17:25:08 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/13 20:38:01 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/* ************************************************************************** 
+ *  Summary of File:                                                          
+ *  
+ *  	This file contains code which renders map, player and sprite into
+ *  	mlx images to the window.
+ *
+ * ************************************************************************** */
 #include "../includes/so_long.h"
 
+void	render_image(t_game *game);
 void	render_map(t_game *game);
-void	load_map_image(t_game *game);
-void	render_map(t_game *game);
+void	render_player(t_game *game);
 void	render_sprite(t_game *game, char type, int row, int col);
-void	load_image(t_game *game);
 
+/* **************************************************************************
+ * void	render_image(t_game *game)
+ *
+ * Summary of the function:
+ * 
+ * This function creates a base image as canvas. Then, it renders the 
+ * map and player on the canvas. Finally, it puts the image to 
+ * window.
+ *
+ * Parameters : A pointer to t_game.
+ *
+ * Return Value : It returns nothing.
+ * **************************************************************************/
 void	render_image(t_game *game)
 {
 	game->base_image = new_img(game->width * 32,
@@ -28,26 +47,17 @@ void	render_image(t_game *game)
 		game->base_image.win.win_ptr, game->base_image.img_ptr, 0, 0);
 }
 
-void	load_image(t_game *game)
-{
-	load_map_image(game);
-	load_player_image(game);
-}
-
-void	load_map_image(t_game *game)
-{
-	game->texture.space = new_file_img("assets/space.xpm",
-			game->base_image.win);
-	game->texture.wall = new_file_img("assets/wall.xpm",
-			game->base_image.win);
-	game->texture.collectible = new_file_img("assets/collectible.xpm",
-			game->base_image.win);
-	game->texture.map_exit = new_file_img("assets/exit.xpm",
-			game->base_image.win);
-	game->texture.player_start = new_file_img("assets/start.xpm",
-			game->base_image.win);
-}
-
+/* **************************************************************************
+ * void	render_map(t_game *game)
+ *
+ * Summary of the function:
+ * 
+ * This function puts the respective map tiles on the base image.
+ *
+ * Parameters : A pointer to t_game.
+ *
+ * Return Value : It returns nothing.
+ * **************************************************************************/
 void	render_map(t_game *game)
 {
 	int	i;
@@ -62,6 +72,36 @@ void	render_map(t_game *game)
 	}
 }
 
+/* **************************************************************************
+ * void	render_player(t_game *game)
+ *
+ * Summary of the function:
+ * 
+ * This function puts the player sprite on the base image based on 
+ * the map symbol.
+ *
+ * Parameters : A pointer to t_game.
+ *
+ * Return Value : It returns nothing.
+ * **************************************************************************/
+void	render_player(t_game *game)
+{
+	put_img_to_img(game->base_image, game->player.sprite,
+		game->player.location.x * 32, game->player.location.y * 32);
+}
+
+/* **************************************************************************
+ * void	render_sprite(t_game *game, char type, int row, int col)
+ *
+ * Summary of the function:
+ * 
+ * This function puts the sprite image based on the type and location
+ * to the base image.
+ *
+ * Parameters : A pointer to t_game, type character and row & col index.
+ *
+ * Return Value : It returns nothing.
+ * **************************************************************************/
 void	render_sprite(t_game *game, char type, int row, int col)
 {
 	if (type == '1')
