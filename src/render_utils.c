@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 20:09:08 by llai              #+#    #+#             */
-/*   Updated: 2024/01/13 20:10:39 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/13 20:42:08 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,71 @@
 
 # include "../includes/so_long.h"
 
+void	load_image(t_game *game);
+void	load_map_image(t_game *game);
+void	load_player_image(t_game *game);
 void	put_comp(t_game *game, int i, int j);
+
+/* **************************************************************************
+ * void	load_image(t_game *game)
+ *
+ * Summary of the function:
+ * 
+ * This function loads the map and player images.
+ *
+ * Parameters : A pointer to t_game.
+ *
+ * Return Value : It returns nothing.
+ * **************************************************************************/
+void	load_image(t_game *game)
+{
+	load_map_image(game);
+	load_player_image(game);
+}
+
+/* **************************************************************************
+ * void	load_map_image(t_game *game)
+ *
+ * Summary of the function:
+ * 
+ * This function loads the map tiles assets as image and store it in the 
+ * game structure.
+ *
+ * Parameters : A pointer to t_game.
+ *
+ * Return Value : It returns nothing.
+ * **************************************************************************/
+void	load_map_image(t_game *game)
+{
+	game->texture.space = new_file_img("assets/space.xpm",
+			game->base_image.win);
+	game->texture.wall = new_file_img("assets/wall.xpm",
+			game->base_image.win);
+	game->texture.collectible = new_file_img("assets/collectible.xpm",
+			game->base_image.win);
+	game->texture.map_exit = new_file_img("assets/exit.xpm",
+			game->base_image.win);
+	game->texture.player_start = new_file_img("assets/start.xpm",
+			game->base_image.win);
+}
+
+/* **************************************************************************
+ * void	load_player_image(t_game *game)
+ *
+ * Summary of the function:
+ * 
+ * This function loads the player sprite assets as image and store it in the 
+ * game structure.
+ *
+ * Parameters : A pointer to t_game.
+ *
+ * Return Value : It returns nothing.
+ * **************************************************************************/
+void	load_player_image(t_game *game)
+{
+	game->player.sprite = new_file_img("assets/player_still.xpm",
+			game->base_image.win);
+}
 
 /* **************************************************************************
  * void	put_comp(t_game *game, int i, int j)
