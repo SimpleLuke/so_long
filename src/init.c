@@ -6,22 +6,20 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 13:13:22 by llai              #+#    #+#             */
-/*   Updated: 2024/01/13 13:47:23 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/13 14:00:55 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
 /* **************************************************************************
- * void	push_swap(t_node *head, t_node *tail, int len)
+ * void	init_game(t_game *game)
  *
  * Summary of the function:
  * 
- * 	This function sorts the list and ouput the steps.
- * 	It excutes different sorting algorithms depends on the size
- * 	of the list.
+ * 	This function initialises the game structure and set up the random seed.
  *
- * Parameters : The head node and the tail node and the length of the list.
+ * Parameters : A pointer to a t_game type.
  *
  * Return Value : It returns nothing.
  * **************************************************************************/
@@ -39,6 +37,18 @@ void	init_game(t_game *game)
 	game->player.position = DOWN;
 }
 
+/* **************************************************************************
+ * t_win	new_window(int w, int h, char *str)
+ *
+ * Summary of the function:
+ * 
+ * 	This function initialises the mlx pointer and the window pointer.
+ *
+ * Parameters : The width and height of the window and a string for The
+ *				window name.
+ *
+ * Return Value : It returns a t_win struct.
+ * **************************************************************************/
 t_win	new_window(int w, int h, char *str)
 {
 	void	*mlx;
