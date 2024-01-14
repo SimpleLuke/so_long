@@ -6,15 +6,14 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:55:50 by llai              #+#    #+#             */
-/*   Updated: 2024/01/14 14:16:59 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/14 14:23:29 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* ************************************************************************** 
  *  Summary of File:                                                          
  *  
- *  	This file contains code which helps to destroy the window and 
- *  	free crucial memory allocations.
+ *  	This file contains code which moves player to a new positon.
  *
  * ************************************************************************** */
 #include "../includes/so_long.h"
