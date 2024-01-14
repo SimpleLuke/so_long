@@ -6,13 +6,36 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:47:39 by llai              #+#    #+#             */
-/*   Updated: 2024/01/13 16:08:59 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/14 14:52:47 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/* ************************************************************************** 
+ *  Summary of File:                                                          
+ *  
+ *  	This file contains code which updates with mlx_loop_hook. It helps
+ *  	run sprite animations.
+ *
+ * ************************************************************************** */
 #include "../includes/so_long.h"
 #include <stdint.h>
 
+int		update(t_game *game);
+void	update_animation(void *list_p, void *game_p);
+
+/* **************************************************************************
+ * int	update(t_game *game)
+ *
+ * Summary of the function:
+ * 
+ * This function iterates throught the animations list and update animations.
+ * It updates the steps string on the screen. If the player ran into enemy,
+ * it sets the is_end to true, so key control direction will be disabled.
+ *
+ * Parameters : A pointer to t_game.
+ *
+ * Return Value : It returns 0 exit code.
+ * **************************************************************************/
 int	update(t_game *game)
 {
 	static uint64_t	updated_at = 0;
@@ -35,57 +58,18 @@ int	update(t_game *game)
 	return (0);
 }
 
-void	render_enemy_sprite(t_game *game, t_img *img)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	while (++i < game->height)
-	{
-		j = -1;
-		while (++j < game->width)
-		{
-			if (game->map[i][j] == 'M')
-			{
-				put_img_to_img(game->base_image,
-					game->texture.space, j * 32, i * 32);
-				put_img_to_img(game->base_image, *img, j * 32, i * 32);
-			}
-		}
-	}
-}
-
-void	render_space_sprite(t_game *game)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	while (++i < game->height)
-	{
-		j = -1;
-		while (++j < game->width)
-		{
-			if (game->map[i][j] == '0' && i != game->player.location.y
-				&& j != game->player.location.x)
-				put_img_to_img(game->base_image, game->texture.space,
-					j * 32, i * 32);
-		}
-	}
-}
-
-void	render_player_sprite(t_game *game, t_img *img)
-{
-	int	x;
-	int	y;
-
-	x = game->player.location.x;
-	y = game->player.location.y;
-	put_img_to_img(game->base_image, game->texture.space, x * 32, y * 32);
-	put_img_to_img(game->base_image, *img, x * 32, y * 32);
-}
-
+/* **************************************************************************
+ * void	update_animation(void *list_p, void *game_p)
+ *
+ * Summary of the function:
+ * 
+ * This function iterates throught the frames in the animations. Then, 
+ * it runs the sprite depends on the enetity condition.
+ *
+ * Parameters : A two void pointers for t_animation and t_game.
+ *
+ * Return Value : It returns nothing.
+ * **************************************************************************/
 void	update_animation(void *list_p, void *game_p)
 {
 	t_game		*game;
