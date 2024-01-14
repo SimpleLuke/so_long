@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:24:07 by llai              #+#    #+#             */
-/*   Updated: 2024/01/14 13:26:54 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/14 15:45:47 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 t_sprite	new_sprite(char *name, char *file_path, t_win *win);
 void		add_frame(t_animation *a, t_sprite s, t_sprite_slice slice);
 t_animation	*slice_sprite(t_sprite s, t_sprite_slice slice,
-						int frames, enum e_entity e);
+				int frames, enum e_entity e);
 
 /* **************************************************************************
  * t_sprite	new_sprite(char *name, char *file_path, t_win *win)

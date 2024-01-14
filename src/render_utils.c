@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 20:09:08 by llai              #+#    #+#             */
-/*   Updated: 2024/01/13 20:42:08 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/14 15:46:58 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  *
  * ************************************************************************** */
 
-# include "../includes/so_long.h"
+#include "../includes/so_long.h"
 
 void	load_image(t_game *game);
 void	load_map_image(t_game *game);

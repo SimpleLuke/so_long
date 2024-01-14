@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 19:10:30 by llai              #+#    #+#             */
-/*   Updated: 2024/01/14 15:33:28 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/14 15:46:40 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ int	destroy_game(t_game *game)
 {
 	free_images(game);
 	free_gamemap(game);
-	// destroy_animation(&game->texture.sprites.animations);
-	// destroy_animation_list(game);
 	mlx_destroy_window(game->base_image.win.mlx, game->base_image.win.win_ptr);
 	free(game->base_image.win.mlx);
 	exit(EXIT_SUCCESS);
@@ -130,36 +128,3 @@ void	free_gamemap(t_game *game)
 		free(game->map[i]);
 	free(game->map);
 }
-
-// void	destroy_sprite_image(void *ptr)
-// {
-// 	t_img	*img;
-//
-// 	img = (t_img *)ptr;
-// 	if (img->img_ptr && img->win.mlx)
-// 	{
-// 		ft_printf("IN:CALLED\n");
-// 		mlx_destroy_image(img->win.mlx, img->img_ptr);
-// 	}
-// }
-//
-// void	destroy_animation(void *ptr)
-// {
-// 	t_animation	*a;
-//
-// 	a = (t_animation *)ptr;
-// 	if (!a)
-// 		return ;
-// 	ft_printf("CALLED\n");
-// 	// ft_lstiter(a->frames, destroy_sprite_image);
-// 	// ft_lstclear(&a->frames, free);
-// 	// printf("HERE:%zu\n", sizeof(a->frames->content));
-// 	// free(a->frames->next->content);
-// 	ft_printf("Frames destroyed: \n");
-// }
-//
-// void	destroy_animation_list(t_game *game)
-// {
-// 	ft_lstclear(&game->texture.sprites.animations, free);
-// }
-//
