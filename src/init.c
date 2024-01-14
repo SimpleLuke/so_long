@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 13:13:22 by llai              #+#    #+#             */
-/*   Updated: 2024/01/13 14:07:13 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/14 14:20:48 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	init_game(t_game *game)
 	game->comp.map_exit = 0;
 	game->comp.player_start = 0;
 	game->player.position = DOWN;
+	game->texture.sprites.animations = NULL;
 }
 
 /* **************************************************************************
