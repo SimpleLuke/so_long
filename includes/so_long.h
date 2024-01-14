@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 14:33:09 by llai              #+#    #+#             */
-/*   Updated: 2024/01/14 15:43:59 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/14 15:57:07 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ typedef struct s_game
  *
  * Return Value : It returns nothing.
  * **************************************************************************/
-void	init_game(t_game *game);
+void			init_game(t_game *game);
 
 /* **************************************************************************
  * t_win	new_window(int w, int h, char *str)
@@ -72,8 +72,7 @@ void	init_game(t_game *game);
  *
  * Return Value : It returns a t_win struct.
  * **************************************************************************/
-t_win	new_window(int w, int h, char *str);
-
+t_win			new_window(int w, int h, char *str);
 
 /* ======================================================================= */
 // Map 
@@ -93,7 +92,7 @@ t_win	new_window(int w, int h, char *str);
  *
  * Return Value : It returns nothing.
  * **************************************************************************/
-void	read_map(t_game *game, char *map_path);
+void			read_map(t_game *game, char *map_path);
 
 /* **************************************************************************
  * bool	check_map(t_game *game, char *map_line)
@@ -108,7 +107,7 @@ void	read_map(t_game *game, char *map_path);
  *
  * Return Value : It returns true or false.
  * **************************************************************************/
-int		convert_map(t_game *game, char *map_line);
+int				convert_map(t_game *game, char *map_line);
 
 // map_utils.c
 /* **************************************************************************
@@ -123,7 +122,7 @@ int		convert_map(t_game *game, char *map_line);
  *
  * Return Value : It returns true or false.
  * **************************************************************************/
-bool	check_wall(t_game *game);
+bool			check_wall(t_game *game);
 
 /* **************************************************************************
  * bool	check_comp(t_game *game)
@@ -137,7 +136,7 @@ bool	check_wall(t_game *game);
  *
  * Return Value : It returns true or false.
  * **************************************************************************/
-bool	check_comp(t_game *game);
+bool			check_comp(t_game *game);
 
 /* **************************************************************************
  * bool	check_rec(t_game *game, char *map_line)
@@ -151,7 +150,7 @@ bool	check_comp(t_game *game);
  *
  * Return Value : It returns true or false.
  * **************************************************************************/
-bool	check_rec(t_game *game, char *map_line);
+bool			check_rec(t_game *game, char *map_line);
 
 /* **************************************************************************
  * void	init_gamemap(t_game *game)
@@ -165,7 +164,7 @@ bool	check_rec(t_game *game, char *map_line);
  *
  * Return Value : It returns nothing.
  * **************************************************************************/
-void	init_gamemap(t_game *game);
+void			init_gamemap(t_game *game);
 
 /* ======================================================================= */
 // path.c
@@ -184,7 +183,7 @@ void	init_gamemap(t_game *game);
  *
  * Return Value : It returns nothing.
  * **************************************************************************/
-bool	check_path(t_game *game);
+bool			check_path(t_game *game);
 
 /* ======================================================================= */
 // map_utils2.c
@@ -200,7 +199,7 @@ bool	check_path(t_game *game);
  *
  * Return Value : It returns nothing.
  * **************************************************************************/
-void	map_to_map(char **src, char **dst, t_game *game);
+void			map_to_map(char **src, char **dst, t_game *game);
 
 /* **************************************************************************
  * void	free_map_copy(char **map_copy, t_game *game)
@@ -213,7 +212,7 @@ void	map_to_map(char **src, char **dst, t_game *game);
  *
  * Return Value : It returns nothing.
  * **************************************************************************/
-void	free_map_copy(char **map_copy, t_game *game);
+void			free_map_copy(char **map_copy, t_game *game);
 
 /* ======================================================================= */
 // Render - render.c
@@ -231,7 +230,7 @@ void	free_map_copy(char **map_copy, t_game *game);
  *
  * Return Value : It returns nothing.
  * **************************************************************************/
-void	render_image(t_game *game);
+void			render_image(t_game *game);
 
 /* **************************************************************************
  * void	render_map(t_game *game)
@@ -244,7 +243,7 @@ void	render_image(t_game *game);
  *
  * Return Value : It returns nothing.
  * **************************************************************************/
-void	render_map(t_game *game);
+void			render_map(t_game *game);
 
 /* **************************************************************************
  * void	render_player(t_game *game)
@@ -258,7 +257,7 @@ void	render_map(t_game *game);
  *
  * Return Value : It returns nothing.
  * **************************************************************************/
-void	render_player(t_game *game);
+void			render_player(t_game *game);
 
 /* **************************************************************************
  * void	render_sprite(t_game *game, char type, int row, int col)
@@ -272,7 +271,7 @@ void	render_player(t_game *game);
  *
  * Return Value : It returns nothing.
  * **************************************************************************/
-void	render_sprite(t_game *game, char type, int row, int col);
+void			render_sprite(t_game *game, char type, int row, int col);
 
 /* ======================================================================= */
 // render_utils.c
@@ -288,7 +287,7 @@ void	render_sprite(t_game *game, char type, int row, int col);
  *
  * Return Value : It returns nothing.
  * **************************************************************************/
-void	load_image(t_game *game);
+void			load_image(t_game *game);
 
 /* **************************************************************************
  * void	load_map_image(t_game *game)
@@ -302,7 +301,7 @@ void	load_image(t_game *game);
  *
  * Return Value : It returns nothing.
  * **************************************************************************/
-void	load_map_image(t_game *game);
+void			load_map_image(t_game *game);
 
 /* **************************************************************************
  * void	load_player_image(t_game *game)
@@ -316,7 +315,7 @@ void	load_map_image(t_game *game);
  *
  * Return Value : It returns nothing.
  * **************************************************************************/
-void	load_player_image(t_game *game);
+void			load_player_image(t_game *game);
 
 /* **************************************************************************
  * void	put_comp(t_game *game, int i, int j)
@@ -329,7 +328,7 @@ void	load_player_image(t_game *game);
  *
  * Return Value : It returns nothing.
  * **************************************************************************/
-void	put_comp(t_game *game, int i, int j);
+void			put_comp(t_game *game, int i, int j);
 
 /* ======================================================================= */
 // Image - image.c
@@ -345,7 +344,7 @@ void	put_comp(t_game *game, int i, int j);
  *
  * Return Value : It returns a t_img image.
  * **************************************************************************/
-t_img	new_file_img(char *path, t_win window);
+t_img			new_file_img(char *path, t_win window);
 
 /* **************************************************************************
  * t_img	new_img(int width, int height, t_win window)
@@ -358,7 +357,7 @@ t_img	new_file_img(char *path, t_win window);
  *
  * Return Value : It returns a t_img image.
  * **************************************************************************/
-t_img	new_img(int width, int height, t_win window);
+t_img			new_img(int width, int height, t_win window);
 
 /* **************************************************************************
  * void	put_pixel_img(t_img img, int x, int y, int color)
@@ -372,7 +371,7 @@ t_img	new_img(int width, int height, t_win window);
  *
  * Return Value : It returns nothing.
  * **************************************************************************/
-void	put_img_to_img(t_img dst, t_img src, int x, int y);
+void			put_img_to_img(t_img dst, t_img src, int x, int y);
 
 /* **************************************************************************
  * void	put_img_to_img(t_img dst, t_img src, int x, int y)
@@ -385,7 +384,7 @@ void	put_img_to_img(t_img dst, t_img src, int x, int y);
  *
  * Return Value : It returns nothing.
  * **************************************************************************/
-void	put_pixel_img(t_img img, int x, int y, int color);
+void			put_pixel_img(t_img img, int x, int y, int color);
 
 /* **************************************************************************
  * unsigned int	get_pixel_img(t_img img, int x, int y)
@@ -414,7 +413,7 @@ unsigned int	get_pixel_img(t_img img, int x, int y);
  *
  * Return Value : It returns a t_sprite struct.
  * **************************************************************************/
-t_sprite	new_sprite(char *name, char *file_path, t_win *win);
+t_sprite		new_sprite(char *name, char *file_path, t_win *win);
 /* **************************************************************************
  * t_animation	*slice_sprite(t_sprite s, t_sprite_slice slice,
  *							int frames, enum e_entity e)
@@ -430,8 +429,8 @@ t_sprite	new_sprite(char *name, char *file_path, t_win *win);
  *
  * Return Value : It returns a pointer to t_animation.
  * **************************************************************************/
-t_animation	*slice_sprite(t_sprite s, t_sprite_slice slice,
-						int frames, enum e_entity e);
+t_animation		*slice_sprite(t_sprite s, t_sprite_slice slice,
+					int frames, enum e_entity e);
 
 /* ======================================================================= */
 // sprite_utils.c
@@ -447,7 +446,7 @@ t_animation	*slice_sprite(t_sprite s, t_sprite_slice slice,
  *
  * Return Value : It returns nothing.
  * **************************************************************************/
-void	load_sprites(t_game *game);
+void			load_sprites(t_game *game);
 
 /* ======================================================================= */
 // Animation - animation.c
@@ -465,7 +464,7 @@ void	load_sprites(t_game *game);
  *
  * Return Value : It returns 0 exit code.
  * **************************************************************************/
-int		update(t_game *game);
+int				update(t_game *game);
 
 /* **************************************************************************
  * void	update_animation(void *list_p, void *game_p)
@@ -479,7 +478,7 @@ int		update(t_game *game);
  *
  * Return Value : It returns nothing.
  * **************************************************************************/
-void	update_animation(void *list_p, void *game_p);
+void			update_animation(void *list_p, void *game_p);
 /* ======================================================================= */
 // aniamtion_utils.c
 /* ======================================================================= */
@@ -494,10 +493,23 @@ void	update_animation(void *list_p, void *game_p);
  *
  * Return Value : It returns nothing.
  * **************************************************************************/
-void	check_enetity(t_animation *a, t_game *game, t_img *img);
+void			check_enetity(t_animation *a, t_game *game, t_img *img);
 
-// Color
-int	create_trgb(int t, int r, int g, int b);
+/* ======================================================================= */
+// Color - color.c
+/* ======================================================================= */
+/* **************************************************************************
+ * int	create_trgb(int t, int r, int g, int b)
+ *
+ * Summary of the function:
+ * 
+ * This function creates a hex integer based on trgb.
+ *
+ * Parameters : An integer of transparent, red, green and blue.
+ *
+ * Return Value : It returns an integer.
+ * **************************************************************************/
+int				create_trgb(int t, int r, int g, int b);
 
 /* ======================================================================= */
 // Window management - close.c
@@ -513,7 +525,7 @@ int	create_trgb(int t, int r, int g, int b);
  *
  * Return Value : It returns 0 exit code.
  * **************************************************************************/
-int		destroy_game(t_game *game);
+int				destroy_game(t_game *game);
 
 /* **************************************************************************
  * int	esc_close_win(int keycode, t_game *game)
@@ -527,7 +539,7 @@ int		destroy_game(t_game *game);
  *
  * Return Value : It returns 0 exit code.
  * **************************************************************************/
-int	esc_close_win(int keycode, t_game *game);
+int				esc_close_win(int keycode, t_game *game);
 
 /* **************************************************************************
  * int	cross_close_win(t_game *game)
@@ -541,7 +553,7 @@ int	esc_close_win(int keycode, t_game *game);
  *
  * Return Value : It returns 0 exit code.
  * **************************************************************************/
-int		cross_close_win(t_game *game);
+int				cross_close_win(t_game *game);
 
 /* ======================================================================= */
 // player - player_movement.c
@@ -558,7 +570,7 @@ int		cross_close_win(t_game *game);
  *
  * Return Value : It returns 0 exit code.
  * **************************************************************************/
-int		keystroke(int keycode, t_game *game);
+int				keystroke(int keycode, t_game *game);
 
 /* ======================================================================= */
 // movement_utils.c
@@ -574,8 +586,8 @@ int		keystroke(int keycode, t_game *game);
  *
  * Return Value : It returns nothing.
  * **************************************************************************/
+void			move_up(t_game *game);
 
-void	move_up(t_game *game);
 /* **************************************************************************
  * void	move_down(t_game *game)
  *
@@ -587,7 +599,7 @@ void	move_up(t_game *game);
  *
  * Return Value : It returns nothing.
  * **************************************************************************/
-void	move_down(t_game *game);
+void			move_down(t_game *game);
 
 /* **************************************************************************
  * void	move_left(t_game *game)
@@ -600,7 +612,7 @@ void	move_down(t_game *game);
  *
  * Return Value : It returns nothing.
  * **************************************************************************/
-void	move_left(t_game *game);
+void			move_left(t_game *game);
 
 /* **************************************************************************
  * void	move_right(t_game *game)
@@ -613,7 +625,7 @@ void	move_left(t_game *game);
  *
  * Return Value : It returns nothing.
  * **************************************************************************/
-void	move_right(t_game *game);
+void			move_right(t_game *game);
 
 /* ======================================================================= */
 // Enemy - enemy.c
@@ -629,7 +641,7 @@ void	move_right(t_game *game);
  *
  * Return Value : It returns nothing.
  * **************************************************************************/
-void	put_enemy(t_game *game);
+void			put_enemy(t_game *game);
 
 /* **************************************************************************
  * void	move_enemy(t_game *game)
@@ -643,7 +655,7 @@ void	put_enemy(t_game *game);
  *
  * Return Value : It returns nothing.
  * **************************************************************************/
-void	move_enemy(t_game *game);
+void			move_enemy(t_game *game);
 
 /* ======================================================================= */
 // Text - text.c
@@ -659,7 +671,7 @@ void	move_enemy(t_game *game);
  *
  * Return Value : It returns nothing.
  * **************************************************************************/
-void	put_steps_on_screen(t_game *game);
+void			put_steps_on_screen(t_game *game);
 
 /* ======================================================================= */
 // Game utils - game_utils.c
@@ -676,7 +688,7 @@ void	put_steps_on_screen(t_game *game);
  *
  * Return Value : It returns true or false.
  * **************************************************************************/
-bool	is_end_game(t_game *game);
+bool			is_end_game(t_game *game);
 
 /* ======================================================================= */
 // Time - utils.c
@@ -692,7 +704,7 @@ bool	is_end_game(t_game *game);
  *
  * Return Value : It returns uint64_t as elapsed time in milliseconds.
  * **************************************************************************/
-uint64_t	timestamp_in_ms(void);
+uint64_t		timestamp_in_ms(void);
 
 /* ======================================================================= */
 // Debug - debug.c
@@ -708,6 +720,6 @@ uint64_t	timestamp_in_ms(void);
  *
  * Return Value : It returns the length of output text.
  * **************************************************************************/
-int		print_error(char *msg);
+int				print_error(char *msg);
 
 #endif // !SO_LONG_H

@@ -1,3 +1,4 @@
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   sprite.h                                           :+:      :+:    :+:   */
@@ -5,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 16:06:18 by llai              #+#    #+#             */
-/*   Updated: 2024/01/08 19:33:22 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/14 15:58:52 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +39,13 @@ typedef struct s_sprite
 
 typedef struct s_texture
 {
-	int		width;
-	int		height;
-	t_img	space;
-	t_img	wall;
-	t_img	collectible;
-	t_img	map_exit;
-	t_img	player_start;
+	int			width;
+	int			height;
+	t_img		space;
+	t_img		wall;
+	t_img		collectible;
+	t_img		map_exit;
+	t_img		player_start;
 	t_sprite	sprites;
 }	t_texture;
 
@@ -54,6 +55,6 @@ typedef struct sprite_slice
 	int	y;
 	int	width;
 	int	height;
-} t_sprite_slice;
+}	t_sprite_slice;
 
 #endif // !SPRITE_H

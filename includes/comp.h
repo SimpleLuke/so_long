@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 13:32:21 by llai              #+#    #+#             */
-/*   Updated: 2024/01/13 13:39:23 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/14 15:58:08 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,17 @@ enum e_direction
 	STAY
 };
 
-typedef struct s_plocation {
-	int	x; int	y;
+typedef struct s_plocation
+{
+	int	x;
+	int	y;
 }	t_plocation;
 
 typedef struct s_player
 {
-	t_img		sprite;
+	t_img				sprite;
 	enum e_direction	position;
-	t_plocation	location;
+	t_plocation			location;
 }	t_player;
 
 typedef struct s_enemy
@@ -54,11 +56,10 @@ typedef struct s_enemy
 
 typedef struct s_exit
 {
-	int	x;
-	int	y;
-	int	points;
+	int		x;
+	int		y;
+	int		points;
 	bool	is_end;
 }	t_exit;
-
 
 #endif // !COMP_H
