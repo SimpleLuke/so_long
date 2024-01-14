@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 14:33:39 by llai              #+#    #+#             */
-/*   Updated: 2024/01/13 13:55:16 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/14 13:35:07 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	main(int argc, char **argv)
 		render_image(&game);
 		load_sprites(&game);
 		mlx_hook(win.win_ptr, 2, 1L << 0, esc_close_win, &game);
-		mlx_hook(win.win_ptr, 17, 0, destory_game, &game);
+		mlx_hook(win.win_ptr, 17, 0, destroy_game, &game);
 		mlx_key_hook(win.win_ptr, keystroke, &game);
 		mlx_loop_hook(win.mlx, update, &game);
 		mlx_loop(game.base_image.win.mlx);

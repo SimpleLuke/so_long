@@ -6,12 +6,29 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 15:57:07 by llai              #+#    #+#             */
-/*   Updated: 2024/01/12 11:59:23 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/14 15:38:19 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/* ************************************************************************** 
+ *  Summary of File:                                                          
+ *  
+ *  	This file contains code which puts text on the screen.
+ *
+ * ************************************************************************** */
 #include "../includes/so_long.h"
 
+/* **************************************************************************
+ * void	put_steps_on_screen(t_game *game)
+ *
+ * Summary of the function:
+ * 
+ * This function outputs steps counts next to the exit.
+ *
+ * Parameters : A pointer to t_game.
+ *
+ * Return Value : It returns nothing.
+ * **************************************************************************/
 void	put_steps_on_screen(t_game *game)
 {
 	char	*steps;

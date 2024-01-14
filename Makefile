@@ -16,7 +16,6 @@ SRC = src/main.c \
 	  src/map_utils.c \
 	  src/map_utils2.c \
 	  src/path.c \
-	  src/player.c \
 	  src/image.c \
 	  src/debug.c \
 	  src/sprite.c \

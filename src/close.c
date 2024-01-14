@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 19:10:30 by llai              #+#    #+#             */
-/*   Updated: 2024/01/14 13:56:03 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/14 15:33:28 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int		destroy_game(t_game *game);
 int		esc_close_win(int keycode, t_game *vars);
 int		cross_close_win(t_game *vars);
 void	free_images(t_game *game);
+void	free_gamemap(t_game *game);
 
 /* **************************************************************************
  * int	destroy_game(t_game *game)

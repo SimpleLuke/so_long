@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:30:12 by llai              #+#    #+#             */
-/*   Updated: 2024/01/14 15:17:20 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/14 15:29:34 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-void	put_enemy(t_game *game);
+void				put_enemy(t_game *game);
 enum e_direction	choose_direction(t_game *game,
-	int i, int j, char **map_copy);
-void	move_enemy(t_game *game);
-bool	valid_enemy_move(char sym);
-int	set_map(int i, int j, char **map_copy, char type);
+			int i, int j, char **map_copy);
+void				move_enemy(t_game *game);
+bool				valid_enemy_move(char sym);
+int					set_map(int i, int j, char **map_copy, char type);
 
 /* **************************************************************************
  * void	put_enemy(t_game *game)
