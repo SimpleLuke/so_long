@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 14:18:56 by llai              #+#    #+#             */
-/*   Updated: 2024/01/13 21:02:47 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/14 16:26:32 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,21 +44,25 @@ bool	check_wall(t_game *game)
 	int	i;
 	int	j;
 
-	i = 0;
-	j = 0;
-	while (i < game->height)
+	i = -1;
+	j = -1;
+	while (++i < game->height)
 	{
-		while (j < game->width)
+		while (++j < game->width)
 		{
 			if ((i == 0 && game->map[i][j] != '1')
 				|| (i == game->height - 1 && game->map[i][j] != '1'))
+			{
+				print_error("Error: The map must be surrounded by walls.\n");
 				return (false);
+			}
 			if ((j == 0 && game->map[i][j] != '1')
 				|| (j == game->width - 1 && game->map[i][j] != '1'))
+			{
+				print_error("Error: The map must be surrounded by walls.\n");
 				return (false);
-			j++;
+			}
 		}
-		i++;
 	}
 	return (true);
 }

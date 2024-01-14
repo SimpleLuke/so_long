@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 14:33:09 by llai              #+#    #+#             */
-/*   Updated: 2024/01/14 15:57:07 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/14 16:08:38 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -554,6 +554,19 @@ int				esc_close_win(int keycode, t_game *game);
  * Return Value : It returns 0 exit code.
  * **************************************************************************/
 int				cross_close_win(t_game *game);
+
+/* **************************************************************************
+ * void	free_gamemap(t_game *game)
+ *
+ * Summary of the function:
+ * 
+ * This function frees the 2D char game map.
+ *
+ * Parameters : A pointer to t_game.
+ *
+ * Return Value : It returns nothing.
+ * **************************************************************************/
+void	free_gamemap(t_game *game);
 
 /* ======================================================================= */
 // player - player_movement.c

@@ -4,12 +4,10 @@ CC = cc
 CFLAG = -Wall -Werror -Wextra -g
 SRC = src/main.c \
 	  src/init.c \
-	  src/draw_shape.c \
 	  src/color.c \
 	  src/close.c \
 	  src/player_movment.c \
 	  src/movement_utils.c \
-	  src/mlx_utils.c \
 	  src/render.c \
 	  src/render_utils.c \
 	  src/map.c \

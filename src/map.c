@@ -6,7 +6,7 @@
 /*   By: llai <llai@student.42london.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:32:19 by llai              #+#    #+#             */
-/*   Updated: 2024/01/13 21:07:51 by llai             ###   ########.fr       */
+/*   Updated: 2024/01/14 16:26:23 by llai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,21 @@ void	read_map(t_game *game, char *map_path)
 	char	*map_line;
 
 	fd = open(map_path, O_RDONLY);
+	if (fd < 0)
+	{
+		print_error("Error\nThe map file path is not valid.\n");
+		exit(EXIT_FAILURE);
+	}
 	map_line = map_to_line(game, fd);
+	if (!check_rec(game, map_line))
+	{
+		print_error("Error\nThe map is not valid.\n");
+		exit(EXIT_FAILURE);
+	}
 	if (!convert_map(game, map_line) && !check_map(game, map_line))
 	{
 		free_lines(0, map_line, 0);
-		print_error("Error\nThe map is not valid.");
+		print_error("Error\nThe map is not valid.\n");
 		free_gamemap(game);
 		exit(EXIT_FAILURE);
 	}
